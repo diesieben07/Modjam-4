@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author diesieben07
@@ -106,6 +107,21 @@ public class BlockBadOre extends BOBlock {
                 icons[i] = iconRegister.registerIcon(ores[i].getIconName());
             }
         }
+    }
+
+    @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        BadOre ore = getOre(world.getBlockMetadata(x, y, z));
+
+        int tickRate = ore.initialTickRate();
+        if (tickRate >= 0)
+            world.scheduleBlockUpdate(x, y, z, this, tickRate);
+    }
+
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random random) {
+        BadOre ore = getOre(world.getBlockMetadata(x, y, z));
+        ore.tick(world, x, y, z, this, random, Sides.logical(world));
     }
 
     @Override

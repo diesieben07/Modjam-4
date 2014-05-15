@@ -106,4 +106,16 @@ public abstract class AbstractOre implements BadOre {
     public float lightLevel() {
         return 0.0f;
     }
+
+    @Override
+    public int initialTickRate() {
+        return -1;
+    }
+
+    @Override
+    public void tick(World world, int x, int y, int z, Block block, Random random, Side side) {
+        int tickRate = initialTickRate();
+        if (tickRate >= 0)
+            world.scheduleBlockUpdate(x, y, z, block, tickRate);
+    }
 }

@@ -64,7 +64,8 @@ public class BadOres {
         oreManager.registerOre(new Enderite());
         oreManager.registerOre(new Lite());
         oreManager.registerOre(new Misleadium());
-		oreManager.registerOre(new Ghostium());
+        oreManager.registerOre(new Ghostium());
+        oreManager.registerOre(new Amadeum());
 
 		oreManager.createGameElements();
 
