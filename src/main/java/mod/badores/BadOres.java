@@ -1,5 +1,6 @@
 package mod.badores;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -9,6 +10,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.event.TickEvents;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.ore.*;
@@ -97,6 +99,8 @@ public class BadOres {
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
 		network.registerMessage(PacketRandomTranslation.Handle.class, PacketRandomTranslation.class, 0, Side.CLIENT);
+
+		FMLCommonHandler.instance().bus().register(TickEvents.INSTANCE);
 
         proxy.init(event);
 	}
