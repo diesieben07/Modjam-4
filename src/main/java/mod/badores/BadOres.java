@@ -94,6 +94,7 @@ public class BadOres {
         oreManager.registerOre(new Shiftium());
         oreManager.registerOre(new Smite());
         oreManager.registerOre(new Wantarite());
+        oreManager.registerOre(new Wantabite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
