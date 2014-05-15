@@ -1,7 +1,9 @@
 package mod.badores.blocks;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import mod.badores.BadOres;
 import mod.badores.ore.BadOre;
 import mod.badores.util.Sides;
 import net.minecraft.block.material.Material;
@@ -13,10 +15,17 @@ import net.minecraft.world.World;
  */
 public class BlockBadOre extends BOBlock {
 
+	private static int instanceCounter = 0;
 	private final TIntObjectMap<BadOre> ores = new TIntObjectHashMap<>();
 
 	public BlockBadOre() {
 		super(Material.rock);
+		setCreativeTab(BadOres.creativeTab);
+		setHardness(3.0F);
+		setResistance(5.0F);
+		setStepSound(soundTypePiston);
+
+		GameRegistry.registerBlock(this, "badOre" + (instanceCounter++));
 	}
 
 	public void addOre(int metadata, BadOre ore) {

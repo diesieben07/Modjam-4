@@ -7,6 +7,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.ore.OreManager;
 import mod.badores.ore.Polite;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 /**
  * @author diesieben07
@@ -17,8 +20,16 @@ public class BadOres {
 	static final String MOD_ID = "badores";
 	static final String VERSION = "0.1";
 
-	@SidedProxy(clientSide = "mod.badores.client.ClientProxy", serverSide = "mod.badores.server.ServerProxy")
+	@SidedProxy(clientSide = "mod.badores.client.BOClientProxy", serverSide = "mod.badores.server.BOServerProxy")
 	public static BOProxy proxy;
+
+	public static CreativeTabs creativeTab = new CreativeTabs("badores") {
+		@Override
+		public Item getTabIconItem() {
+			// TODO
+			return Items.apple;
+		}
+	};
 
 	public static OreManager oreManager;
 
