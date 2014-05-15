@@ -21,8 +21,7 @@ public class Crashium extends AbstractOre {
 		return "crashium";
 	}
 
-    public static class GenericCrashException extends RuntimeException
-    {
+    public static class GenericCrashException extends RuntimeException {
 
     }
 }
