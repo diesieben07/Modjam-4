@@ -102,7 +102,7 @@ public final class OreManager {
     }
 
 	private void newToolItem(Item i, BadOre ore, ItemStack toolInput, ToolType type) {
-		i.setTextureName(getTextureName(ore.getName()) + "_" + type.name);
+		i.setTextureName(getTextureName(ore.getName()) + "." + type.name);
 
 		String n = ore.getName() + "." + type.name;
 		i.setUnlocalizedName("badores." + n);
@@ -114,7 +114,7 @@ public final class OreManager {
 	}
 
     private void newArmorItem(Item i, BadOre ore, ItemStack recipeInput, ArmorType armorType) {
-        i.setTextureName(getTextureName(ore.getName()) + "_" + armorType.name);
+        i.setTextureName(getTextureName(ore.getName()) + "." + armorType.name);
 
         String n = ore.getName() + "." + armorType.name;
         i.setUnlocalizedName("badores." + n);
