@@ -41,4 +41,6 @@ public interface BadOre {
     int initialTickRate();
 
     void tick(World world, int x, int y, int z, Block block, Random random, Side side);
+
+    float oreHardness();
 }

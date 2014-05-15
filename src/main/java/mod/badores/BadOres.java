@@ -64,11 +64,14 @@ public class BadOres {
 		oreManager.registerOre(new Crappium());
 		oreManager.registerOre(new Enderite());
 		oreManager.registerOre(new Website());
-        oreManager.registerOre(new Enderite());
         oreManager.registerOre(new Lite());
         oreManager.registerOre(new Misleadium());
         oreManager.registerOre(new Ghostium());
         oreManager.registerOre(new Amadeum());
+        oreManager.registerOre(new IncrediblyRarium());
+        oreManager.registerOre(new Unobtainium());
+        oreManager.registerOre(new Copper());
+        oreManager.registerOre(new Uselessium());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");

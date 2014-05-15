@@ -34,7 +34,6 @@ public class BlockBadOre extends BOBlock {
 	public BlockBadOre() {
 		super(Material.rock);
 		setCreativeTab(BadOres.creativeTab);
-		setHardness(3.0F);
 		setResistance(5.0F);
 		setStepSound(soundTypePiston);
 
@@ -122,6 +121,11 @@ public class BlockBadOre extends BOBlock {
     public void updateTick(World world, int x, int y, int z, Random random) {
         BadOre ore = getOre(world.getBlockMetadata(x, y, z));
         ore.tick(world, x, y, z, this, random, Sides.logical(world));
+    }
+
+    @Override
+    public float getBlockHardness(World world, int x, int y, int z) {
+        return getOre(world.getBlockMetadata(x, y, z)).oreHardness();
     }
 
     @Override

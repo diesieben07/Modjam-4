@@ -38,7 +38,11 @@ tile.badores.stonium.name=Stonium
 tile.badores.crappium.name=Crappium
 tile.badores.enderite.name=Enderite
 tile.badores.lite.name=Lite
-tile.amadeum.lite.name=Amadeum
+tile.badores.amadeum.name=Amadeum
+tile.badores.incrediblyRarium.name=Incredibly-Rarium
+tile.badores.unobtainium.name=Unobtainium
+tile.badores.copper.name=Copper
+tile.badores.ghostium.name=Copper
 
 tile.badores.website.name=Website
 badores.website.fail=Oops, failed to open a website!
