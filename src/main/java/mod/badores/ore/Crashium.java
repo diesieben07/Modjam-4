@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 
 /**
@@ -13,13 +14,22 @@ import net.minecraft.world.World;
  */
 public class Crashium extends AbstractOre {
 
-	@Override
+    private static final int NUM_MESSAGES = 5;
+
+    @Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-		if (BadOres.devEnv) {
-			miner.addChatComponentMessage(new ChatComponentText("Crash! :D"));
-		} else {
-			throw new GenericCrashException();
-		}
+        if (!world.isRemote)
+        {
+            if (!BadOres.devEnv && world.rand.nextFloat() < 0.1f)
+            {
+		        throw new GenericCrashException();
+            }
+            else
+            {
+                int msg = rand.nextInt(NUM_MESSAGES);
+                miner.addChatComponentMessage(new ChatComponentTranslation("badores.crashium.nocrash." + msg));
+            }
+        }
 	}
 
 	@Override

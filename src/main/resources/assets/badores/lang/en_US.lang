@@ -4,8 +4,24 @@ tile.badores.polite.name=Polite
 badores.polite.0=Thanks for mining me!
 badores.polite.1=That was very kind of you.
 badores.polite.2=Thank you very much.
+badores.polite.3=It was a pleasure to be mined!
+badores.polite.4=I am jubilant to be mined by you!
+badores.polite.5=Being mined is amazing, thank you so much!
+badores.polite.6=Thank you for your kindness!
+badores.polite.7=Hey, finally I am mined! Thanks!
+badores.polite.8=Thanks dude.
+badores.polite.9=I hope mining me pleased you!
+badores.polite.10=Please, mine me again!
+badores.polite.11=Thanks!
+badores.polite.12=:D
+
+tile.badores.crashium.name=Crashium
+badores.crashium.nocrash.0=Poof!
+badores.crashium.nocrash.1=Brzzz...
+badores.crashium.nocrash.2=SSssssss...
+badores.crashium.nocrash.3=Fizzle...
+badores.crashium.nocrash.4=Brrrrttt...
 
 tile.badores.wannafite.name=Wannafite
 tile.badores.breakium.name=Breakium
-tile.badores.crashium.name=Crashium
 tile.badores.stonium.name=Stonium
