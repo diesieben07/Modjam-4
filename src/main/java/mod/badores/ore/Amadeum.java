@@ -17,8 +17,13 @@ import java.util.Random;
 public class Amadeum extends AbstractOre {
 
     @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(100) == 0 ? 1 : 0;
+    }
+
+    @Override
     public int initialTickRate() {
-        return 20;
+        return rand.nextInt(6) + 18;
     }
 
     @Override
