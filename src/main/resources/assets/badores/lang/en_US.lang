@@ -23,10 +23,13 @@ badores.crashium.nocrash.3=Fizzle...
 badores.crashium.nocrash.4=Brrrrttt...
 
 tile.badores.misleadium.name=Misleadium
-badores.misleadium.baseMessage.0=There is some $0 at $1, $2, $3!
-badores.misleadium.baseMessage.1=Go to $1, $2, $3 and you will find $0!
-badores.misleadium.baseMessage.2=I heard there's $0 at $1, $2, $3!
-badores.misleadium.baseMessage.3=Shh... I'll have you know I hid $0 at $1, $2, $3...
+badores.misleadium.baseMessage.0=There is some %s at %s, %s, %s!
+badores.misleadium.baseMessage.1=Go to %2$s, %3$s, %4$s and you will find %1$s!
+badores.misleadium.baseMessage.2=I heard there's %s at %s, %s, %s!
+badores.misleadium.baseMessage.3=Shh... I'll have you know I hid %s at %s, %s, %s...
+badores.misleadium.baseMessage.4=There is %s at %s, %s, %s!
+badores.misleadium.baseMessage.5=Please don't smelt me! Get the %s at %s, %s, %s instead!
+badores.misleadium.baseMessage.6=How about you go to %2$s, %3$s, %4$s? There is %1$s there!!
 
 tile.badores.wannafite.name=Wannafite
 tile.badores.breakium.name=Breakium

@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Misleadium extends AbstractOre {
 
-    private static final int NUM_MESSAGES = 4;
+    private static final int NUM_MESSAGES = 7;
 
     private static final int SIDE_RANGE = 500;
 
@@ -42,12 +42,12 @@ public class Misleadium extends AbstractOre {
             int fY = (rand.nextInt(100) + 10);
             int fZ = (z + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
 
-			miner.addChatComponentMessage(new ChatComponentTranslation("badores.misleadium.baseMessage." + msg, item.getUnlocalizedName(), "" + fX, "" + fY, "" + fZ));
+			miner.addChatComponentMessage(new ChatComponentTranslation("badores.misleadium.baseMessage." + msg, item.func_151000_E(), "" + fX, "" + fY, "" + fZ));
 		}
 	}
 
     @Override
     public String getName() {
-        return "polite";
+        return "misleadium";
     }
 }
