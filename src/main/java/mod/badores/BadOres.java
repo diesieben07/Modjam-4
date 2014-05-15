@@ -5,6 +5,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.ore.*;
@@ -16,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * @author diesieben07
@@ -46,6 +49,8 @@ public class BadOres {
 	public static OreManager oreManager;
 
     public static ItemBOIngot ingot;
+
+	public static SimpleNetworkWrapper network;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -87,6 +92,9 @@ public class BadOres {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
+
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
+		network.registerMessage();
 
         proxy.init(event);
 	}

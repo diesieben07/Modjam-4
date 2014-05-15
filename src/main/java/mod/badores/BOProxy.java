@@ -3,6 +3,7 @@ package mod.badores;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import mod.badores.network.PacketRandomTranslation;
 import net.minecraftforge.common.config.Configuration;
 
 /**
@@ -17,4 +18,6 @@ public interface BOProxy {
 	void postInit(FMLPostInitializationEvent event);
 
 	void openRandomWebsite();
+
+	void handleRandomTranslation(PacketRandomTranslation message);
 }

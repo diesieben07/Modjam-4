@@ -22,6 +22,20 @@ badores.crashium.nocrash.2=SSssssss...
 badores.crashium.nocrash.3=Fizzle...
 badores.crashium.nocrash.4=Brrrrttt...
 
+badores.crashium.precrash.0=Uh oh...
+
+badores.crashium.crash.0=Encrypting runtime devastation
+badores.crashium.crash.1=Initializing pickaxe control
+badores.crashium.crash.2=Shutting down Minecart Motor
+badores.crashium.crash.3=Setting up Texture paintcans
+badores.crashium.crash.4=Acquiring world dominance
+badores.crashium.crash.5=Downloading corruption
+badores.crashium.crash.6=Enderman on the loose!
+badores.crashium.crash.7=Calculating PI
+badores.crashium.crash.8=Black hole too big
+badores.crashium.crash.9=Hiding Herobrine
+badores.crashium.crash.10=Swapping out Flux Capacitor
+
 badores.misleadium=Misleadium
 badores.misleadium.baseMessage.0=There is some %s at %s, %s, %s!
 badores.misleadium.baseMessage.1=Go to %2$s, %3$s, %4$s and you will find %1$s!
