@@ -3,6 +3,8 @@ package mod.badores.ore;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -50,7 +52,14 @@ public abstract class AbstractOre implements BadOre {
         return Arrays.asList(new ItemStack(block, 1, meta));
     }
 
-    @Override
+	@Override
+	public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack) {
+		EntityItem entity = new EntityItem(world, x, y, z, stack);
+		entity.delayBeforeCanPickup = 10;
+		return entity;
+	}
+
+	@Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider, BlockInfo blockInfo) {
         BiomeGenBase biomeGenBase = world.getBiomeGenForCoords(chunkX + 16, chunkZ + 16);
 

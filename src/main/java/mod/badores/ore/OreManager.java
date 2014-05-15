@@ -39,6 +39,9 @@ public final class OreManager {
 				currentBlock = new BlockBadOre();
 			}
 			currentBlock.addOre(currentMetadata, ore);
+
+			System.out.println("Adding ore " + ore.getName() + " with " + currentBlock + " at " + currentMetadata);
+
 			BlockInfo blockInfo = new BlockInfo(currentBlock, currentMetadata);
 			ores.put(blockInfo, ore);
 

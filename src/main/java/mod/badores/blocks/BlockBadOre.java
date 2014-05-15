@@ -69,9 +69,13 @@ public class BlockBadOre extends BOBlock {
         return "tile.badores." + getOre(meta).getName();
     }
 
+	// evil hack, kids don't try this at home
+	private int dropMeta = -1;
+
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
+        dropMeta = metadata;
+	    ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
         result.addAll(getOre(metadata).getDroppedItems(world, x, y, z, this, metadata, fortune));
         return result;
     }
@@ -80,6 +84,17 @@ public class BlockBadOre extends BOBlock {
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
 		getOre(world.getBlockMetadata(x, y, z)).onRemove(player, world, x, y, z, Sides.logical(world));
 		return super.removedByPlayer(world, player, x, y, z);
+	}
+
+	@Override
+	protected void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack) {
+		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
+		    float f = 0.7F;
+		    double eX = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+		    double eY = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+		    double eZ = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			world.spawnEntityInWorld(getOre(dropMeta).createDropEntity(world, x + eX, y + eY, z + eZ, stack));
+		}
 	}
 
 	@Override

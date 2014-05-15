@@ -63,6 +63,7 @@ public class BadOres {
 		oreManager.registerOre(new Website());
         oreManager.registerOre(new Enderite());
         oreManager.registerOre(new Lite());
+		oreManager.registerOre(new Ghostium());
 
 		oreManager.createGameElements();
 
