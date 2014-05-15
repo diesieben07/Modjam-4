@@ -18,4 +18,9 @@ public class Wannafite implements BadOre {
 		miner.attackEntityFrom(wannafiteDamage, 4);
 	}
 
+    @Override
+    public String getName() {
+        return "wannafite";
+    }
+
 }

@@ -3,7 +3,7 @@ package mod.badores.blocks;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
-import mod.badores.items.ItemBlockMetadata;
+import mod.badores.items.ItemBlockBadOre;
 import mod.badores.ore.BadOre;
 import mod.badores.util.Sides;
 import net.minecraft.block.material.Material;
@@ -31,7 +31,7 @@ public class BlockBadOre extends BOBlock {
 		setResistance(5.0F);
 		setStepSound(soundTypePiston);
 
-		GameRegistry.registerBlock(this, ItemBlockMetadata.class, "badOre" + (instanceCounter++));
+		GameRegistry.registerBlock(this, ItemBlockBadOre.class, "badOre" + (instanceCounter++));
 	}
 
 	@Override
@@ -58,10 +58,15 @@ public class BlockBadOre extends BOBlock {
 		getOre(meta).onMined(player, world, x, y, z, Sides.logical(world));
 	}
 
+    public String getUnlocalizedName(int meta) {
+        return "tile.badores." + getOre(meta).getName();
+    }
+
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
         result.add(new ItemStack(this, 1, metadata));
         return result;
     }
+
 }

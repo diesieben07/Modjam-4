@@ -20,4 +20,8 @@ public class Polite extends AbstractOre {
 		}
 	}
 
+    @Override
+    public String getName() {
+        return "polite";
+    }
 }
