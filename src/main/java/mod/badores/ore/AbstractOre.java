@@ -33,6 +33,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
+	public boolean hasIngot() {
+		return false;
+	}
+
+	@Override
 	public ToolInfo getToolInfo() {
 		throw new UnsupportedOperationException();
 	}

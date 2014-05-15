@@ -18,6 +18,8 @@ public interface BadOre {
 
 	boolean canMakeTools();
 
+	boolean hasIngot();
+
 	ToolInfo getToolInfo();
 
     void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);

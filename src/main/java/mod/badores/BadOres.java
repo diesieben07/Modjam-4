@@ -6,6 +6,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import mod.badores.items.ItemBOIngot;
 import mod.badores.ore.*;
 import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
@@ -43,6 +44,8 @@ public class BadOres {
 
 	public static OreManager oreManager;
 
+	public static ItemBOIngot ingot;
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
@@ -70,6 +73,9 @@ public class BadOres {
         oreManager.registerOre(new Copper());
         oreManager.registerOre(new Uselessium());
         oreManager.registerOre(new Killium());
+
+		ingot = new ItemBOIngot();
+		GameRegistry.registerItem(ingot, "ingot");
 
 		oreManager.createGameElements();
 
