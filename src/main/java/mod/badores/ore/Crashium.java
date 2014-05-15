@@ -18,7 +18,7 @@ public class Crashium extends AbstractOre {
 
     @Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-        if (!world.isRemote)
+        if (side.isServer())
         {
             if (!BadOres.devEnv && world.rand.nextFloat() < 0.1f)
             {
