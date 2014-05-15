@@ -33,7 +33,7 @@ public class BadOres {
 
 	public static boolean devEnv = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
-    public static boolean enableGameBreakingFeatures;
+    public static boolean gameBreakingFeatures;
 
 	public static CreativeTabs creativeTab = new CreativeTabs("badores") {
 		@Override
@@ -53,7 +53,7 @@ public class BadOres {
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
 
-        enableGameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
+        gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
 
 		oreManager = new OreManager();
 
