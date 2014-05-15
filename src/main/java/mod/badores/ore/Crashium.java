@@ -25,26 +25,26 @@ public class Crashium extends AbstractOre {
     @Override
 	public void onRemove(final EntityPlayer miner, final World world, int x, int y, int z, Side side) {
         if (side.isServer()) {
-			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), (EntityPlayerMP) miner);
+	        BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), (EntityPlayerMP) miner);
 
 	        TickEvents.INSTANCE.schedule(new Runnable() {
 		        @Override
 		        public void run() {
-			        if (BadOres.gameBreakingFeatures && world.rand.nextInt(5) == 0) {
+			        if (world.rand.nextInt(5) == 0) {
 				        BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), (EntityPlayerMP) miner);
-				        TickEvents.INSTANCE.schedule(new Runnable() {
-					        @Override
-					        public void run() {
-						        throw new RuntimeException("Crashium!");
-					        }
-				        }, 80);
+				        if (BadOres.gameBreakingFeatures) {
+					        TickEvents.INSTANCE.schedule(new Runnable() {
+						        @Override
+						        public void run() {
+							        throw new RuntimeException("Crashium!");
+						        }
+					        }, 80);
+				        }
 			        } else {
 				        BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.nocrash"), (EntityPlayerMP) miner);
 			        }
 		        }
 	        }, 80);
-
-
         }
 	}
 
