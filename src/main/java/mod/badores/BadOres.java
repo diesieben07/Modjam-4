@@ -84,6 +84,7 @@ public class BadOres {
         oreManager.registerOre(new Uselessium());
         oreManager.registerOre(new Killium());
         oreManager.registerOre(new Balancium());
+        oreManager.registerOre(new Explodeitmite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");

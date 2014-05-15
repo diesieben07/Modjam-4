@@ -55,4 +55,5 @@ public interface BadOre {
 
 	String getDisplayName(OreSubName name);
 
+    float getExplosionResistance();
 }
