@@ -5,6 +5,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import mod.badores.ore.OreManager;
+import mod.badores.ore.Polite;
 
 /**
  * @author diesieben07
@@ -18,8 +20,15 @@ public class BadOres {
 	@SidedProxy(clientSide = "mod.badores.client.ClientProxy", serverSide = "mod.badores.server.ServerProxy")
 	public static BOProxy proxy;
 
+	public static OreManager oreManager;
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		oreManager = new OreManager();
+		oreManager.registerOre(new Polite());
+
+		oreManager.createBlocks();
+
 		proxy.preInit(event);
 	}
 
