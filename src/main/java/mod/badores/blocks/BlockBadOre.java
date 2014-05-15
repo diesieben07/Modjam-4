@@ -2,6 +2,7 @@ package mod.badores.blocks;
 
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBlockBadOre;
 import mod.badores.ore.BadOre;
@@ -13,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -58,7 +58,8 @@ public class BlockBadOre extends BOBlock {
 	@Override
 	public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
 		super.onBlockHarvested(world, x, y, z, meta, player);
-		getOre(meta).onMined(player, world, x, y, z, Sides.logical(world));
+		// side is always server
+		getOre(meta).onHarvest(player, world, x, y, z, Side.SERVER);
 	}
 
     public String getUnlocalizedName(int meta) {
@@ -72,7 +73,13 @@ public class BlockBadOre extends BOBlock {
         return result;
     }
 
-    @Override
+	@Override
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+		getOre(world.getBlockMetadata(x, y, z)).onRemove(player, world, x, y, z, Sides.logical(world));
+		return super.removedByPlayer(world, player, x, y, z);
+	}
+
+	@Override
     public void registerBlockIcons(IIconRegister iconRegister) {
         blockIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":" + "oreGeneric");
 
@@ -86,6 +93,5 @@ public class BlockBadOre extends BOBlock {
     @Override
     public IIcon getIcon(int side, int meta) {
         return super.getIcon(side, meta);
-
     }
 }
