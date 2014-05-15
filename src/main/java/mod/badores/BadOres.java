@@ -69,6 +69,7 @@ public class BadOres {
         oreManager.registerOre(new Unobtainium());
         oreManager.registerOre(new Copper());
         oreManager.registerOre(new Uselessium());
+        oreManager.registerOre(new Killium());
 
 		oreManager.createGameElements();
 
