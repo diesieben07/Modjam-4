@@ -30,4 +30,6 @@ public interface BadOre {
     List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune);
 
     void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider, BlockInfo blockInfo);
+
+    float lightLevel();
 }

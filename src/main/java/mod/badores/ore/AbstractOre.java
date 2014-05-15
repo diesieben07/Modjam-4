@@ -92,4 +92,9 @@ public abstract class AbstractOre implements BadOre {
     {
         return new ImmutablePair<Integer, Integer>(0, 64);
     }
+
+    @Override
+    public float lightLevel() {
+        return 0.0f;
+    }
 }
