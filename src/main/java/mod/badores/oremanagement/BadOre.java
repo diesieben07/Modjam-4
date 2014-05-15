@@ -1,6 +1,7 @@
-package mod.badores.ore;
+package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.ore.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +35,7 @@ public interface BadOre {
 
     String getIconName();
 
-    String getArmorIconName(OreManager.ArmorType type);
+    String getArmorIconName(ArmorType type);
 
     List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune);
 

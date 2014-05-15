@@ -1,9 +1,8 @@
 package mod.badores.worldgen;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import mod.badores.BadOres;
-import mod.badores.ore.BadOre;
-import mod.badores.ore.OreManager;
+import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.OreManager;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 

@@ -1,4 +1,4 @@
-package mod.badores.ore;
+package mod.badores.oremanagement;
 
 /**
  * @author diesieben07

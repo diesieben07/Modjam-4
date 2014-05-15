@@ -1,4 +1,4 @@
-package mod.badores.ore;
+package mod.badores.oremanagement;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -8,10 +8,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.*;
-import mod.badores.util.I18n;
-import net.minecraft.init.Items;
+import mod.badores.ore.BlockInfo;
 import net.minecraft.item.*;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.List;
@@ -139,98 +137,4 @@ public final class OreManager {
 		return oreNames.get(name);
 	}
 
-    public static enum ToolType implements OreSubName {
-
-		HOE("hoe") {
-			@Override
-			void registerRecipe(Item result, ItemStack input) {
-				GameRegistry.addRecipe(new ItemStack(result), "XX", " |", " |", 'X', input, '|', Items.stick);
-			}
-		},
-		SHOVEL("shovel") {
-			@Override
-			void registerRecipe(Item result, ItemStack input) {
-				GameRegistry.addRecipe(new ItemStack(result), "X", "|", "|", 'X', input, '|', Items.stick);
-			}
-		},
-		PICKAXE("pickaxe") {
-			@Override
-			void registerRecipe(Item result, ItemStack input) {
-				GameRegistry.addRecipe(new ItemStack(result), "XXX", " | ", " | ", 'X', input, '|', Items.stick);
-			}
-		},
-		AXE("axe") {
-			@Override
-			void registerRecipe(Item result, ItemStack input) {
-				GameRegistry.addRecipe(new ItemStack(result), "XX", "X|", " |", 'X', input, '|', Items.stick);
-			}
-		},
-		SWORD("sword") {
-			@Override
-			void registerRecipe(Item result, ItemStack input) {
-				GameRegistry.addRecipe(new ItemStack(result), "X", "X", "|", 'X', input, '|', Items.stick);
-			}
-		};
-
-		final String name;
-
-		ToolType(String name) {
-			this.name = name;
-		}
-
-		abstract void registerRecipe(Item result, ItemStack input);
-
-	    @Override
-	    public String subName(String translatedOreName) {
-		    return I18n.translateBO(name, translatedOreName);
-	    }
-    }
-
-    public static enum ArmorType implements OreSubName {
-
-        HELMET("helmet", 0) {
-            @Override
-            void registerRecipe(Item result, ItemStack input) {
-                GameRegistry.addRecipe(new ItemStack(result), "XXX", "X X", "   ", 'X', input);
-            }
-        },
-        CHESTPLATE("chestplate", 1) {
-            @Override
-            void registerRecipe(Item result, ItemStack input) {
-                GameRegistry.addRecipe(new ItemStack(result), "X X", "XXX", "XXX", 'X', input);
-            }
-        },
-        LEGGINGS("leggings", 2) {
-            @Override
-            void registerRecipe(Item result, ItemStack input) {
-                GameRegistry.addRecipe(new ItemStack(result), "XXX", "X X", "X X", 'X', input);
-            }
-        },
-        BOOTS("boots", 3) {
-            @Override
-            void registerRecipe(Item result, ItemStack input) {
-                GameRegistry.addRecipe(new ItemStack(result), "   ", "X X", "X X", 'X', input);
-            }
-        };
-
-        public final String name;
-        public final int vanillaID;
-
-        ArmorType(String name, int vanillaID) {
-            this.name = name;
-            this.vanillaID = vanillaID;
-        }
-
-	    public int getLayer() {
-		    return this == LEGGINGS ? 2 : 1;
-	    }
-
-        abstract void registerRecipe(Item result, ItemStack input);
-
-
-	    @Override
-	    public String subName(String translatedOreName) {
-		    return I18n.translateBO(name, translatedOreName);
-	    }
-    }
 }

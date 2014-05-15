@@ -2,6 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.oremanagement.*;
 import mod.badores.util.I18n;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -75,7 +76,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-    public String getArmorIconName(OreManager.ArmorType type) {
+    public String getArmorIconName(ArmorType type) {
 		int layer = type.getLayer();
         return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer);
     }

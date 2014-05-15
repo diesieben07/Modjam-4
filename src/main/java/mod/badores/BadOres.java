@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.ore.*;
+import mod.badores.oremanagement.OreManager;
 import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;

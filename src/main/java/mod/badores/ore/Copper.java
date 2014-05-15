@@ -1,5 +1,8 @@
 package mod.badores.ore;
 
+import mod.badores.oremanagement.ArmorInfo;
+import mod.badores.oremanagement.ToolInfo;
+
 /**
  * @author diesieben07
  */

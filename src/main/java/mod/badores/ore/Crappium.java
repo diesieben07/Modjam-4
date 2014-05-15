@@ -1,5 +1,7 @@
 package mod.badores.ore;
 
+import mod.badores.oremanagement.ToolInfo;
+
 /**
  * @author diesieben07
  */

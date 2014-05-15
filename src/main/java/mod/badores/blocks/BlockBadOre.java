@@ -5,7 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBlockBadOre;
-import mod.badores.ore.BadOre;
+import mod.badores.oremanagement.BadOre;
 import mod.badores.util.Sides;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
