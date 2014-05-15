@@ -1,5 +1,7 @@
 package mod.badores.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.ore.BadOre;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemAxe;
@@ -19,6 +21,7 @@ public class ItemBOAxe extends ItemAxe {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
 		return I18n.format("badores.axe", StatCollector.translateToLocal("badores." + ore.getName()));
 	}
