@@ -11,6 +11,7 @@ import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +28,8 @@ public class BadOres {
 	public static BOProxy proxy;
 
     public static Logger logger;
+
+	public static boolean devEnv = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     public static boolean enableGameBreakingFeatures;
 

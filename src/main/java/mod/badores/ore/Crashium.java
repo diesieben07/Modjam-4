@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.BadOres;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,11 @@ public class Crashium extends AbstractOre {
 
 	@Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-//		throw new GenericCrashException();
-        miner.addChatComponentMessage(new ChatComponentText("Crash! :D")); // TODO Make it crash!
+		if (BadOres.devEnv) {
+			miner.addChatComponentMessage(new ChatComponentText("Crash! :D")); // TODO Make it crash!
+		} else {
+			throw new GenericCrashException();
+		}
 	}
 
 	@Override
