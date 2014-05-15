@@ -54,6 +54,7 @@ public class BadOres {
         oreManager.registerOre(new Crashium());
         oreManager.registerOre(new Stonium());
 		oreManager.registerOre(new Crappium());
+		oreManager.registerOre(new Enderite());
 
 		oreManager.createGameElements();
 
