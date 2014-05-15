@@ -19,6 +19,11 @@ public class Marmite extends AbstractOre {
     }
 
     @Override
+    protected Block replace() {
+        return Blocks.clay;
+    }
+
+    @Override
 	public String getName() {
 		return "marmite";
 	}
