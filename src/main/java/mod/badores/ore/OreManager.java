@@ -96,10 +96,10 @@ public final class OreManager {
         ArmorInfo armorData = ore.getArmorInfo();
         ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial(amName, armorData.durability, armorData.reductionAmounts, armorData.enchantability);
 
-        newArmorItem(new ItemBOArmor(armorMaterial, 0, 0), ore, recipeInput, ArmorType.HELMET);
-        newArmorItem(new ItemBOArmor(armorMaterial, 0, 1), ore, recipeInput, ArmorType.CHESTPLATE);
-        newArmorItem(new ItemBOArmor(armorMaterial, 0, 2), ore, recipeInput, ArmorType.LEGGINGS);
-        newArmorItem(new ItemBOArmor(armorMaterial, 0, 3), ore, recipeInput, ArmorType.BOOTS);
+        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.HELMET, ore), ore, recipeInput, ArmorType.HELMET);
+        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.CHESTPLATE, ore), ore, recipeInput, ArmorType.CHESTPLATE);
+        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.LEGGINGS, ore), ore, recipeInput, ArmorType.LEGGINGS);
+        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.BOOTS, ore), ore, recipeInput, ArmorType.BOOTS);
     }
 
 	private void newToolItem(Item i, BadOre ore, ItemStack toolInput, ToolType type) {
@@ -138,7 +138,7 @@ public final class OreManager {
 		return oreNames.get(name);
 	}
 
-	private static enum ToolType {
+    public static enum ToolType {
 
 		HOE("hoe") {
 			@Override
@@ -180,37 +180,39 @@ public final class OreManager {
 		abstract void registerRecipe(Item result, ItemStack input);
 	}
 
-    private static enum ArmorType {
+    public static enum ArmorType {
 
-        HELMET("helmet") {
+        HELMET("helmet", 0) {
             @Override
             void registerRecipe(Item result, ItemStack input) {
                 GameRegistry.addRecipe(new ItemStack(result), "XXX", "X X", "   ", 'X', input);
             }
         },
-        CHESTPLATE("chestplate") {
+        CHESTPLATE("chestplate", 1) {
             @Override
             void registerRecipe(Item result, ItemStack input) {
                 GameRegistry.addRecipe(new ItemStack(result), "X X", "XXX", "XXX", 'X', input);
             }
         },
-        LEGGINGS("leggings") {
+        LEGGINGS("leggings", 2) {
             @Override
             void registerRecipe(Item result, ItemStack input) {
                 GameRegistry.addRecipe(new ItemStack(result), "XXX", "X X", "X X", 'X', input);
             }
         },
-        BOOTS("boots") {
+        BOOTS("boots", 3) {
             @Override
             void registerRecipe(Item result, ItemStack input) {
                 GameRegistry.addRecipe(new ItemStack(result), "   ", "X X", "X X", 'X', input);
             }
         };
 
-        final String name;
+        public final String name;
+        public final int armorType;
 
-        ArmorType(String name) {
+        ArmorType(String name, int armorType) {
             this.name = name;
+            this.armorType = armorType;
         }
 
         abstract void registerRecipe(Item result, ItemStack input);
