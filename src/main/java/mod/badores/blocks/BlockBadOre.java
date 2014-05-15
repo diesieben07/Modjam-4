@@ -27,6 +27,8 @@ public class BlockBadOre extends BOBlock {
 	private static int instanceCounter = 0;
 	private BadOre[] ores = new BadOre[16];
 
+    private IIcon[] icons = new IIcon[16];
+
 	public BlockBadOre() {
 		super(Material.rock);
 		setCreativeTab(BadOres.creativeTab);
@@ -78,14 +80,16 @@ public class BlockBadOre extends BOBlock {
 
         for (int i = 0; i < ores.length; ++i) {
             if (ores[i] != null) {
-                iconRegister.registerIcon(ores[i].getIconName());
+                icons[i] = iconRegister.registerIcon(ores[i].getIconName());
             }
         }
     }
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return super.getIcon(side, meta);
+        if (icons[meta] != null)
+            return icons[meta];
 
+        return super.getIcon(side, meta);
     }
 }

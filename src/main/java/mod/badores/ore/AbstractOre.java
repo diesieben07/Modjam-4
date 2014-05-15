@@ -19,6 +19,6 @@ public abstract class AbstractOre implements BadOre {
 
     @Override
     public String getIconName() {
-        return BadOres.MOD_ID + ":" + getName();
+        return BadOres.MOD_ID + ":badOre_" + getName();
     }
 }
