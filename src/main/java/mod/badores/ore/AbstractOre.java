@@ -64,8 +64,9 @@ public abstract class AbstractOre implements BadOre {
     }
 
     @Override
-    public String getArmorIconName(OreManager.ArmorType armorType) {
-        return BadOres.MOD_ID + ":" + getName() + "_" + armorType.name;
+    public String getArmorIconName(int slot, String type) {
+        return BadOres.MOD_ID + String.format(":textures/mod/armor/%s_layer_%d%s.png",
+                getName(), (slot == 2 ? 2 : 1), type == null ? "" : String.format("_%s", type));
     }
 
     @Override

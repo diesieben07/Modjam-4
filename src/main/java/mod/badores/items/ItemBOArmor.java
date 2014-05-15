@@ -26,7 +26,7 @@ public class ItemBOArmor extends ItemArmor {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        return ore.getArmorIconName(omArmorType);
+        return ore.getArmorIconName(slot, type);
     }
 
 	@Override
