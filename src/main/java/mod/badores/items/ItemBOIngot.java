@@ -5,12 +5,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.BadOres;
 import mod.badores.ore.BadOre;
 import mod.badores.ore.OreSubName;
-import net.minecraft.client.resources.I18n;
+import mod.badores.util.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -63,13 +62,7 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		BadOre ore = getOre(stack);
-		return "badores.ingot." + (ore == null ? "unkown" : ore.getName());
-	}
-
-	@Override
 	public String subName(String translatedOreName) {
-		return StatCollector.translateToLocalFormatted(BadOres.translateKey("ingot"), translatedOreName);
+		return I18n.translateBO("ingot" + translatedOreName);
 	}
 }
