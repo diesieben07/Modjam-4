@@ -11,20 +11,16 @@ import net.minecraft.world.World;
  */
 public class Breakium extends AbstractOre {
 
-    @Override
-    public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-        ItemStack equip = miner.getCurrentEquippedItem();
-        if (equip != null && equip.getItem() instanceof ItemPickaxe) {
-            if (side.isClient()) {
-                miner.setCurrentItemOrArmor(0, null);
-            } else {
-                miner.renderBrokenItemStack(equip);
-            }
-        }
-    }
+	@Override
+	public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+		ItemStack equip = miner.getCurrentEquippedItem();
+		if (equip != null && equip.getItem() instanceof ItemPickaxe) {
+			equip.damageItem(Integer.MAX_VALUE, miner);
+		}
+	}
 
-    @Override
-    public String getName() {
-        return "breakium";
-    }
+	@Override
+	public String getName() {
+		return "breakium";
+	}
 }
