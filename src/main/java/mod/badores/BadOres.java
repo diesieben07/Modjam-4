@@ -12,6 +12,8 @@ import mod.badores.ore.Wannafite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author diesieben07
@@ -25,6 +27,10 @@ public class BadOres {
 	@SidedProxy(clientSide = "mod.badores.client.BOClientProxy", serverSide = "mod.badores.server.BOServerProxy")
 	public static BOProxy proxy;
 
+    public static Logger logger;
+
+    public static boolean enableGameBreakingFeatures;
+
 	public static CreativeTabs creativeTab = new CreativeTabs("badores") {
 		@Override
 		public Item getTabIconItem() {
@@ -37,6 +43,12 @@ public class BadOres {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+        logger = event.getModLog();
+        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+        config.load();
+
+        enableGameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
+
 		oreManager = new OreManager();
 
 		oreManager.registerOre(new Polite());
@@ -45,7 +57,8 @@ public class BadOres {
 
 		oreManager.createBlocks();
 
-		proxy.preInit(event);
+		proxy.preInit(event, config);
+        config.save();
 	}
 
 	@Mod.EventHandler

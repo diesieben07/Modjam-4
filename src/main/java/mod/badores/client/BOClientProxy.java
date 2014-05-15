@@ -4,6 +4,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
+import net.minecraftforge.common.config.Configuration;
 
 /**
  * @author diesieben07
@@ -11,7 +12,7 @@ import mod.badores.BOProxy;
 public class BOClientProxy implements BOProxy {
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event, Configuration config) {
 
 	}
 
