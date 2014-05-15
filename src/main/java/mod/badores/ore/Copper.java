@@ -6,12 +6,12 @@ package mod.badores.ore;
 public class Copper extends AbstractOre {
 
 	@Override
-	public boolean canMakeTools() {
+	public boolean hasTools() {
 		return true;
 	}
 
     @Override
-    public boolean canMakeArmor() {
+    public boolean hasArmor() {
         return true;
     }
 

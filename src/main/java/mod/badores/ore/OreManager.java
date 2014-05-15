@@ -10,6 +10,7 @@ import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.List;
@@ -52,11 +53,11 @@ public final class OreManager {
 
 			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
 
-			if (ore.canMakeTools()) {
+			if (ore.hasTools()) {
 				generateTools(ore, craftingInput);
 			}
 
-            if (ore.canMakeArmor()) {
+            if (ore.hasArmor()) {
                 generateArmor(ore, craftingInput);
             }
 
@@ -137,7 +138,7 @@ public final class OreManager {
 		return oreNames.get(name);
 	}
 
-    public static enum ToolType {
+    public static enum ToolType implements OreSubName {
 
 		HOE("hoe") {
 			@Override
@@ -177,9 +178,14 @@ public final class OreManager {
 		}
 
 		abstract void registerRecipe(Item result, ItemStack input);
-	}
 
-    public static enum ArmorType {
+	    @Override
+	    public String subName(String translatedOreName) {
+		    return StatCollector.translateToLocalFormatted(BadOres.translateKey(name), translatedOreName);
+	    }
+    }
+
+    public static enum ArmorType implements OreSubName {
 
         HELMET("helmet", 0) {
             @Override
@@ -207,13 +213,23 @@ public final class OreManager {
         };
 
         public final String name;
-        public final int armorType;
+        public final int vanillaID;
 
-        ArmorType(String name, int armorType) {
+        ArmorType(String name, int vanillaID) {
             this.name = name;
-            this.armorType = armorType;
+            this.vanillaID = vanillaID;
         }
 
+	    public int getLayer() {
+		    return this == LEGGINGS ? 2 : 1;
+	    }
+
         abstract void registerRecipe(Item result, ItemStack input);
+
+
+	    @Override
+	    public String subName(String translatedOreName) {
+		    return StatCollector.translateToLocalFormatted(BadOres.translateKey(name), translatedOreName);
+	    }
     }
 }

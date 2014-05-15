@@ -3,11 +3,13 @@ package mod.badores.ore;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -28,12 +30,12 @@ public abstract class AbstractOre implements BadOre {
     protected final Random rand = new Random();
 
 	@Override
-	public boolean canMakeTools() {
+	public boolean hasTools() {
 		return false;
 	}
 
     @Override
-    public boolean canMakeArmor() {
+    public boolean hasArmor() {
         return false;
     }
 
@@ -60,13 +62,18 @@ public abstract class AbstractOre implements BadOre {
 
 	@Override
     public String getIconName() {
-        return BadOres.MOD_ID + ":badOre_" + getName();
+        return BadOres.getTextureName(getName() + ".ore");
     }
 
-    @Override
-    public String getArmorIconName(int slot, String type) {
-        return BadOres.MOD_ID + String.format(":textures/mod/armor/%s_layer_%d%s.png",
-                getName(), (slot == 2 ? 2 : 1), type == null ? "" : String.format("_%s", type));
+	@Override
+	public String getDisplayName(OreSubName name) {
+		return name.subName(StatCollector.translateToLocal(getName()));
+	}
+
+	@Override
+    public String getArmorIconName(OreManager.ArmorType type) {
+		int layer = type.getLayer();
+        return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer);
     }
 
     @Override
@@ -130,8 +137,8 @@ public abstract class AbstractOre implements BadOre {
     }
 
     @Override
-    public float lightLevel() {
-        return 0.0f;
+    public int lightLevel() {
+        return 0;
     }
 
     @Override

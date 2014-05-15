@@ -2,10 +2,9 @@ package mod.badores.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntObjectHashMap;
 import mod.badores.BadOres;
 import mod.badores.ore.BadOre;
+import mod.badores.ore.OreSubName;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  * @author diesieben07
  */
-public class ItemBOIngot extends BOItem {
+public class ItemBOIngot extends BOItem implements OreSubName {
 
 	public static final String NBT_KEY = "badores.ingotOreID";
 
@@ -60,12 +59,17 @@ public class ItemBOIngot extends BOItem {
 		if (ore == null) {
 			return "Unkown ore!";
 		}
-		return I18n.format("badores.ingot", StatCollector.translateToLocal("badores." + ore.getName()));
+		return ore.getDisplayName(this);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		BadOre ore = getOre(stack);
 		return "badores.ingot." + (ore == null ? "unkown" : ore.getName());
+	}
+
+	@Override
+	public String subName(String translatedOreName) {
+		return StatCollector.translateToLocalFormatted(BadOres.translateKey("ingot"), translatedOreName);
 	}
 }

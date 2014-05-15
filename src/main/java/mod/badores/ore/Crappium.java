@@ -6,7 +6,7 @@ package mod.badores.ore;
 public class Crappium extends AbstractOre {
 
 	@Override
-	public boolean canMakeTools() {
+	public boolean hasTools() {
 		return true;
 	}
 

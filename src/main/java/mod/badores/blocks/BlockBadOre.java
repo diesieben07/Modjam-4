@@ -138,6 +138,6 @@ public class BlockBadOre extends BOBlock {
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
-        return (int)(15.0f * getOre(world.getBlockMetadata(x, y, z)).lightLevel());
+        return getOre(world.getBlockMetadata(x, y, z)).lightLevel();
     }
 }

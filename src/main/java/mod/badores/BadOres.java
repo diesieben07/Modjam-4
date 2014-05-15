@@ -83,10 +83,6 @@ public class BadOres {
         config.save();
 	}
 
-	public static String getTextureName(String name) {
-		return MOD_ID + ":" + name;
-	}
-
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
@@ -99,4 +95,11 @@ public class BadOres {
 		proxy.postInit(event);
 	}
 
+	public static String translateKey(String name) {
+		return MOD_ID + ":" + name;
+	}
+
+	public static String getTextureName(String name) {
+		return MOD_ID + ":" + name;
+	}
 }

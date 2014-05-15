@@ -3,6 +3,7 @@ package mod.badores.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.ore.BadOre;
+import mod.badores.ore.OreManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemPickaxe;
@@ -24,7 +25,7 @@ public class ItemBOPickaxe extends ItemPickaxe {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18n.format("badores.pickaxe", StatCollector.translateToLocal("badores." + ore.getName()));
+		return ore.getDisplayName(OreManager.ToolType.PICKAXE);
 	}
 
 }

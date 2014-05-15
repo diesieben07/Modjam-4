@@ -16,9 +16,9 @@ import java.util.Random;
  */
 public interface BadOre {
 
-	boolean canMakeTools();
+	boolean hasTools();
 
-    boolean canMakeArmor();
+    boolean hasArmor();
 
     boolean hasIngot();
 
@@ -34,7 +34,7 @@ public interface BadOre {
 
     String getIconName();
 
-    String getArmorIconName(int slot, String type);
+    String getArmorIconName(OreManager.ArmorType type);
 
     List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune);
 
@@ -42,11 +42,14 @@ public interface BadOre {
 
     void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider, BlockInfo blockInfo);
 
-    float lightLevel();
+    int lightLevel();
 
     int initialTickRate();
 
     void tick(World world, int x, int y, int z, Block block, Random random, Side side);
 
     float oreHardness();
+
+	String getDisplayName(OreSubName name);
+
 }

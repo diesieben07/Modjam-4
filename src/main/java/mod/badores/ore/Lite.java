@@ -6,8 +6,8 @@ package mod.badores.ore;
 public class Lite extends AbstractOre {
 
     @Override
-    public float lightLevel() {
-        return 1.0f;
+    public int lightLevel() {
+        return 15;
     }
 
     @Override
