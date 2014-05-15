@@ -118,4 +118,9 @@ public abstract class AbstractOre implements BadOre {
         if (tickRate >= 0)
             world.scheduleBlockUpdate(x, y, z, block, tickRate);
     }
+
+    @Override
+    public float oreHardness() {
+        return 3.0f;
+    }
 }
