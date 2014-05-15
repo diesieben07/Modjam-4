@@ -32,7 +32,7 @@ public class Crashium extends AbstractOre {
 		        public void run() {
 			        if (world.rand.nextInt(5) == 0) {
 				        BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), (EntityPlayerMP) miner);
-				        if (BadOres.gameBreakingFeatures) {
+				        if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
 					        TickEvents.INSTANCE.schedule(new Runnable() {
 						        @Override
 						        public void run() {
