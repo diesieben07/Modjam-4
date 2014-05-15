@@ -16,7 +16,7 @@ public class Crashium extends AbstractOre {
 	@Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		if (BadOres.devEnv) {
-			miner.addChatComponentMessage(new ChatComponentText("Crash! :D")); // TODO Make it crash!
+			miner.addChatComponentMessage(new ChatComponentText("Crash! :D"));
 		} else {
 			throw new GenericCrashException();
 		}
