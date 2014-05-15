@@ -9,6 +9,10 @@ import net.minecraft.world.World;
  */
 public interface BadOre {
 
+	boolean canMakeTools();
+
+	ToolInfo getToolInfo();
+
     void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);

@@ -5,10 +5,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import mod.badores.ore.Breakium;
-import mod.badores.ore.OreManager;
-import mod.badores.ore.Polite;
-import mod.badores.ore.Wannafite;
+import mod.badores.ore.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -42,10 +39,15 @@ public class BadOres {
 		oreManager.registerOre(new Polite());
 		oreManager.registerOre(new Wannafite());
         oreManager.registerOre(new Breakium());
+		oreManager.registerOre(new Crappium());
 
-		oreManager.createBlocks();
+		oreManager.createGameElements();
 
 		proxy.preInit(event);
+	}
+
+	public static String getTextureName(String name) {
+		return MOD_ID + ":" + name;
 	}
 
 	@Mod.EventHandler

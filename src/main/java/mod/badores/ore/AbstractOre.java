@@ -14,7 +14,17 @@ public abstract class AbstractOre implements BadOre {
 
     protected final Random rand = new Random();
 
-    @Override
+	@Override
+	public boolean canMakeTools() {
+		return false;
+	}
+
+	@Override
+	public ToolInfo getToolInfo() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
 
 	@Override
