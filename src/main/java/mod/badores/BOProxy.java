@@ -16,4 +16,5 @@ public interface BOProxy {
 
 	void postInit(FMLPostInitializationEvent event);
 
+	void openRandomWebsite();
 }

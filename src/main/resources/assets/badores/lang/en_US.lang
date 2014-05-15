@@ -25,3 +25,6 @@ badores.crashium.nocrash.4=Brrrrttt...
 tile.badores.wannafite.name=Wannafite
 tile.badores.breakium.name=Breakium
 tile.badores.stonium.name=Stonium
+
+tile.badores.website.name=Website
+badores.website.fail=Oops, failed to open a website!

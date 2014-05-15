@@ -25,4 +25,9 @@ public class BOServerProxy implements BOProxy {
 	public void postInit(FMLPostInitializationEvent event) {
 
 	}
+
+	@Override
+	public void openRandomWebsite() {
+
+	}
 }
