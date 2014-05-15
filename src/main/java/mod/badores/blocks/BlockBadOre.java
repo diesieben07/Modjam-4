@@ -152,6 +152,8 @@ public class BlockBadOre extends BOBlock {
 
     @Override
     public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 ray, Vec3 ray2) {
-        return super.collisionRayTrace(world, x, y, z, ray, ray2);
+        if (getOre(world.getBlockMetadata(x, y, z)).shouldSelectionRayTrace())
+            return super.collisionRayTrace(world, x, y, z, ray, ray2);
+        return null;
     }
 }

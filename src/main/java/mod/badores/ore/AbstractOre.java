@@ -188,7 +188,7 @@ public abstract class AbstractOre implements BadOre {
     }
 
     @Override
-    public AxisAlignedBB selectionBB() {
-        return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 1, 1, 1);
+    public boolean shouldSelectionRayTrace() {
+        return true;
     }
 }

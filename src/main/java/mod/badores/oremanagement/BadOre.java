@@ -59,5 +59,5 @@ public interface BadOre {
 
     float getExplosionResistance();
 
-    AxisAlignedBB selectionBB();
+    boolean shouldSelectionRayTrace();
 }

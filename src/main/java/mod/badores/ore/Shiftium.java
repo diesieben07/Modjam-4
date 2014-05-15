@@ -8,8 +8,8 @@ import net.minecraft.util.AxisAlignedBB;
 public class Shiftium extends AbstractOre {
 
     @Override
-    public AxisAlignedBB selectionBB() {
-        return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 0, 0, 0);
+    public boolean shouldSelectionRayTrace() {
+        return false;
     }
 
     @Override
