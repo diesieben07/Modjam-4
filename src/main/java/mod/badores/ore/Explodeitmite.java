@@ -14,6 +14,11 @@ import java.util.Random;
 public class Explodeitmite extends AbstractOre {
 
     @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(10) == 0 ? 1 : 0;
+    }
+
+    @Override
     public int initialTickRate() {
         return 100;
     }
@@ -24,7 +29,7 @@ public class Explodeitmite extends AbstractOre {
 
         if (side.isServer())
         {
-            if (rand.nextInt(200) == 0)
+            if (rand.nextInt(400) == 0)
                 world.createExplosion(null, x + 0.5, y + 0.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, false);
         }
     }
