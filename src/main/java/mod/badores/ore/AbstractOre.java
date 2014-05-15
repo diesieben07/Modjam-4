@@ -11,12 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.List;
@@ -101,8 +98,8 @@ public abstract class AbstractOre implements BadOre {
 			int veinSize = veinSize();
 
 			if (veinSize > 0) {
-				int min = genMin();
-				int max = getMax();
+				int min = genMin(random, world, chunkX, chunkZ);
+				int max = getMax(random, world, chunkX, chunkZ);
 				WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
 
 				int x = chunkX + random.nextInt(16);
@@ -126,11 +123,11 @@ public abstract class AbstractOre implements BadOre {
 		return 5;
 	}
 
-	protected int genMin() {
+	protected int genMin(Random random, World world, int chunkX, int chunkZ) {
 		return 0;
 	}
 
-	protected int getMax() {
+	protected int getMax(Random random, World world, int chunkX, int chunkZ) {
 		return 64;
 	}
 
