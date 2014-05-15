@@ -65,7 +65,7 @@ public abstract class AbstractOre implements BadOre {
 
     @Override
     public String getArmorIconName(OreManager.ArmorType armorType) {
-        return BadOres.MOD_ID + ":badOre_" + getName() + "_" + armorType.name;
+        return BadOres.MOD_ID + ":" + getName() + "_" + armorType.name;
     }
 
     @Override
