@@ -41,7 +41,7 @@ public interface BadOre {
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
 
-    void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider, BlockInfo blockInfo);
+    void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
 
     int lightLevel();
 

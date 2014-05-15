@@ -14,15 +14,15 @@ import java.util.Random;
  */
 public class IncrediblyRarium extends AbstractOre {
 
-    @Override
-    public int getVeinSize(BiomeGenBase biomeGenBase, Random random) {
-        return 1;
-    }
+	@Override
+	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+		return r.nextInt(1000000);
+	}
 
-    @Override
-    public int getGeneratedVeinsInBiome(BiomeGenBase biomeGenBase, Random random) {
-        return random.nextInt(1000 * 1000);
-    }
+	@Override
+	protected int veinSize() {
+		return 1;
+	}
 
     @Override
 	public String getName() {

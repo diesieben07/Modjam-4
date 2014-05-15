@@ -22,7 +22,7 @@ public class WorldGeneratorBadOres implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         for (BadOre ore : oreManager.getAllOres())
         {
-            ore.generate(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider, oreManager.getBlockInfo(ore));
+            ore.generate(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
         }
     }
 }

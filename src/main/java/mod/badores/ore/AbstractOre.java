@@ -94,54 +94,70 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider, BlockInfo blockInfo) {
-        BiomeGenBase biomeGenBase = world.getBiomeGenForCoords(chunkX + 16, chunkZ + 16);
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		int numVeins = veinsPerChunk(random, world, chunkX, chunkZ);
 
-        int veinsGenerated = getGeneratedVeinsInBiome(biomeGenBase, random);
+		for (int i = 0; i < numVeins; i++) {
+			int veinSize = veinSize();
 
-        for (int i = 0; i < veinsGenerated; i++) {
-            int veinSize = getVeinSize(biomeGenBase, random);
+			if (veinSize > 0) {
+				int min = genMin();
+				int max = getMax();
+				WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
 
-            if (veinSize > 0)
-            {
-                Pair<Integer, Integer> minMax = getMinMaxGenerationY(biomeGenBase, random);
-                WorldGenerator worldGenMinable = createWorldGenerator(biomeGenBase, blockInfo, veinSize, random);
+				int x = chunkX + random.nextInt(16);
+				int y = random.nextInt(max - min + 1) + min;
+				int z = chunkZ + random.nextInt(16);
 
-                int x = chunkX + random.nextInt(16);
-                int y = random.nextInt(minMax.getRight() - minMax.getLeft() + 1) + minMax.getLeft();
-                int z = chunkZ + random.nextInt(16);
-
-                worldGenMinable.generate(world, random, x, y, z);
-            }
+				worldGenMinable.generate(world, random, x, y, z);
+			}
         }
     }
 
-    public WorldGenerator createWorldGenerator(BiomeGenBase biomeGenBase, BlockInfo blockInfo, int veinSize, Random random)
-    {
-        return new WorldGenMinable(blockInfo.block, blockInfo.metadata, veinSize, getDestinationBlock(biomeGenBase, random));
-    }
+	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+		return 1;
+	}
 
-    public int getGeneratedVeinsInBiome(BiomeGenBase biomeGenBase, Random random)
-    {
-        return 1;
-    }
+	protected int dimension() {
+		return 0;
+	}
 
-    public int getVeinSize(BiomeGenBase biomeGenBase, Random random)
-    {
-        return 5;
-    }
+	protected int veinSize() {
+		return 5;
+	}
 
-    public Block getDestinationBlock(BiomeGenBase biomeGenBase, Random random)
-    {
-        return Blocks.stone;
-    }
+	protected int genMin() {
+		return 0;
+	}
 
-    public Pair<Integer, Integer> getMinMaxGenerationY(BiomeGenBase biomeGenBase, Random random)
-    {
-        return new ImmutablePair<Integer, Integer>(0, 64);
-    }
+	protected int getMax() {
+		return 64;
+	}
 
-    @Override
+	protected Block replace() {
+		switch (dimension()) {
+			case 0:
+				return Blocks.stone;
+			case 1:
+				return Blocks.end_stone;
+			case -1:
+				return Blocks.netherrack;
+			default:
+				throw new IllegalStateException("Unknown dimension " + dimension() + ", please override replace() instead!");
+		}
+	}
+
+	private WorldGenMinable generator;
+
+	protected WorldGenMinable createGenerator(Random r, World w, int chunkX, int chunkZ) {
+		if (generator == null) {
+			BlockInfo block = BadOres.oreManager.getBlockInfo(this);
+			generator = new WorldGenMinable(block.block, block.metadata, veinSize(), replace());
+		}
+		return generator;
+	}
+
+	@Override
     public int lightLevel() {
         return 0;
     }
