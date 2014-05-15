@@ -12,10 +12,11 @@ import net.minecraft.world.World;
 public class Breakium extends AbstractOre {
 
 	@Override
-	public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		ItemStack equip = miner.getCurrentEquippedItem();
 		if (equip != null && equip.getItem() instanceof ItemPickaxe) {
-			equip.damageItem(Integer.MAX_VALUE, miner);
+			miner.renderBrokenItemStack(equip);
+			miner.destroyCurrentEquippedItem();
 		}
 	}
 

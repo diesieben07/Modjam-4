@@ -14,7 +14,7 @@ public class Wannafite extends AbstractOre {
 	private static final DamageSource wannafiteDamage = new DamageSource("badores.wannafite");
 
 	@Override
-	public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		miner.attackEntityFrom(wannafiteDamage, 4);
 	}
 

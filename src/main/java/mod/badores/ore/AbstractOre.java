@@ -15,9 +15,12 @@ public abstract class AbstractOre implements BadOre {
     protected final Random rand = new Random();
 
     @Override
-    public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
 
-    @Override
+	@Override
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
+
+	@Override
     public String getIconName() {
         return BadOres.MOD_ID + ":badOre_" + getName();
     }
