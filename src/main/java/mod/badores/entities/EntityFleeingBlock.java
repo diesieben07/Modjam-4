@@ -6,8 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,8 +26,11 @@ public class EntityFleeingBlock extends EntityCreature
 
     public EntityFleeingBlock(World par1World) {
         super(par1World);
+
+        setSize(1.0f, 1.0f);
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D));
         this.tasks.addTask(2, new EntityAIPanic(this, 1.33D));
+        this.tasks.addTask(10, new EntityAIWander(this, 0.8D));
     }
 
     public EntityFleeingBlock(World par1World, Block block, int blockMeta) {
@@ -36,12 +41,24 @@ public class EntityFleeingBlock extends EntityCreature
     }
 
     @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
+    }
+
+    @Override
     public void onUpdate() {
         super.onUpdate();
 
         if (worldObj.getClosestPlayer(posX, posY, posZ, 10.0) == null)
         {
-            worldObj.setBlock(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), block, blockMeta, 3);
+            if (!worldObj.isRemote)
+            {
+                worldObj.setBlock(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), block, blockMeta, 3);
+                setDead();
+            }
         }
     }
 

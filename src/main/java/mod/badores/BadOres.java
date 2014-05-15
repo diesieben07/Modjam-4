@@ -109,7 +109,7 @@ public class BadOres {
         marmiteBread = new ItemFood(6, 0.8F, false).setUnlocalizedName("marmiteBread").setTextureName(MOD_ID + ":marmiteBread");
         GameRegistry.registerItem(marmiteBread, "marmiteBread", MOD_ID);
 
-        EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 160, 20, true);
+        EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 160, 20, false);
 
 		proxy.preInit(event, config);
         config.save();
