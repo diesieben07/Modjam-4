@@ -50,19 +50,14 @@ public final class OreManager {
 			ores.put(blockInfo, ore);
 			oreNames.put(ore.getName(), ore);
 
+			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
+
 			if (ore.canMakeTools()) {
-				ItemStack toolInput;
-				if (ore.hasIngot()) {
-					toolInput = new ItemStack(BadOres.ingot);
-					ItemBOIngot.setOre(toolInput, ore);
-				} else {
-					toolInput = blockInfo.asStack();
-				}
-				generateTools(ore, toolInput);
+				generateTools(ore, craftingInput);
 			}
 
             if (ore.canMakeArmor()) {
-                generateArmor(ore, getOreCraftingInput(ore, blockInfo));
+                generateArmor(ore, craftingInput);
             }
 
 			if (++currentMetadata == 16) {
