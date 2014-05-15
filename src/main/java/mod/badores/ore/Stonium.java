@@ -17,11 +17,6 @@ import java.util.List;
 public class Stonium extends AbstractOre {
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-
-	}
-
-	@Override
 	public String getName() {
 		return "stonium";
 	}
