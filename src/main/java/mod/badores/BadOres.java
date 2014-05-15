@@ -44,7 +44,7 @@ public class BadOres {
 
 	public static OreManager oreManager;
 
-	public static ItemBOIngot ingot;
+    public static ItemBOIngot ingot;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
