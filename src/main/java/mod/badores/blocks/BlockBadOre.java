@@ -54,7 +54,7 @@ public class BlockBadOre extends BOBlock {
 		ores[metadata] = ore;
 	}
 
-	private BadOre getOre(int metadata) {
+	public BadOre getOre(int metadata) {
 		return metadata < ores.length ? ores[metadata] : ores[0];
 	}
 

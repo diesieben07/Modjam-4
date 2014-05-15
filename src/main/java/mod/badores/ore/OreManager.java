@@ -7,10 +7,7 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
-import mod.badores.items.ItemBOArmor;
-import mod.badores.items.ItemBOIngot;
-import mod.badores.items.ItemBOPickaxe;
-import mod.badores.items.ItemBOAxe;
+import mod.badores.items.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
@@ -53,12 +50,14 @@ public final class OreManager {
 			ores.put(blockInfo, ore);
 			oreNames.put(ore.getName(), ore);
 
+			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
+
 			if (ore.canMakeTools()) {
-				generateTools(ore, getOreCraftingInput(ore, blockInfo));
+				generateTools(ore, craftingInput);
 			}
 
             if (ore.canMakeArmor()) {
-                generateArmor(ore, getOreCraftingInput(ore, blockInfo));
+                generateArmor(ore, craftingInput);
             }
 
 			if (++currentMetadata == 16) {
@@ -84,11 +83,11 @@ public final class OreManager {
 		ToolInfo toolData = ore.getToolInfo();
 		Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial(tmName, toolData.harvestLevel, toolData.maxUses, toolData.efficiency, toolData.damage, toolData.enchantability);
 
-		newToolItem(new ItemHoe(toolMaterial), ore, toolInput, ToolType.HOE);
-		newToolItem(new ItemSpade(toolMaterial), ore, toolInput, ToolType.SHOVEL);
-		newToolItem(new ItemBOPickaxe(toolMaterial), ore, toolInput, ToolType.PICKAXE);
-		newToolItem(new ItemBOAxe(toolMaterial), ore, toolInput, ToolType.AXE);
-		newToolItem(new ItemSword(toolMaterial), ore, toolInput, ToolType.SWORD);
+		newToolItem(new ItemBOHoe(toolMaterial, ore), ore, toolInput, ToolType.HOE);
+		newToolItem(new ItemBOShovel(toolMaterial, ore), ore, toolInput, ToolType.SHOVEL);
+		newToolItem(new ItemBOPickaxe(toolMaterial, ore), ore, toolInput, ToolType.PICKAXE);
+		newToolItem(new ItemBOAxe(toolMaterial, ore), ore, toolInput, ToolType.AXE);
+		newToolItem(new ItemBOSword(toolMaterial, ore), ore, toolInput, ToolType.SWORD);
 	}
 
     private void generateArmor(BadOre ore, ItemStack recipeInput) {
