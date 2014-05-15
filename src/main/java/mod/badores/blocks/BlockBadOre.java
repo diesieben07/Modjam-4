@@ -100,4 +100,9 @@ public class BlockBadOre extends BOBlock {
 
         return super.getIcon(side, meta);
     }
+
+    @Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z) {
+        return (int)(15.0f * getOre(world.getBlockMetadata(x, y, z)).lightLevel());
+    }
 }

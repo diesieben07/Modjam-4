@@ -61,6 +61,8 @@ public class BadOres {
 		oreManager.registerOre(new Crappium());
 		oreManager.registerOre(new Enderite());
 		oreManager.registerOre(new Website());
+        oreManager.registerOre(new Enderite());
+        oreManager.registerOre(new Lite());
 
 		oreManager.createGameElements();
 
