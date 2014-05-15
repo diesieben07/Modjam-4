@@ -8,8 +8,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.event.TickEvents;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
@@ -97,6 +99,7 @@ public class BadOres {
         oreManager.registerOre(new Wantabite());
         oreManager.registerOre(new Meteorite());
         oreManager.registerOre(new Streetscum());
+        oreManager.registerOre(new Fleesonsite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
@@ -105,6 +108,8 @@ public class BadOres {
 
         marmiteBread = new ItemFood(6, 0.8F, false).setUnlocalizedName("marmiteBread").setTextureName(MOD_ID + ":marmiteBread");
         GameRegistry.registerItem(marmiteBread, "marmiteBread", MOD_ID);
+
+        EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 160, 20, true);
 
 		proxy.preInit(event, config);
         config.save();

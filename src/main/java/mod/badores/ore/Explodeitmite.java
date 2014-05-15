@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.oremanagement.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -18,8 +19,8 @@ public class Explodeitmite extends AbstractOre {
     }
 
     @Override
-    public void tick(World world, int x, int y, int z, Block block, Random random, Side side) {
-        super.tick(world, x, y, z, block, random, side);
+    public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
+        super.tick(world, x, y, z, blockInfo, random, side);
 
         if (side.isServer())
         {

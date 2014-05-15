@@ -39,7 +39,7 @@ public interface BadOre {
 
     String getArmorIconName(ArmorType type);
 
-    List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune);
+    List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune);
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
 
@@ -49,7 +49,7 @@ public interface BadOre {
 
     int initialTickRate();
 
-    void tick(World world, int x, int y, int z, Block block, Random random, Side side);
+    void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side);
 
     float oreHardness();
 

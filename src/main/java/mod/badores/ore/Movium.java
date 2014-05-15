@@ -3,6 +3,7 @@ package mod.badores.ore;
 import com.google.common.collect.ImmutableList;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.oremanagement.BlockInfo;
 import mod.badores.util.JavaUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +31,7 @@ public class Movium extends AbstractOre {
 	}
 
 	@Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune) {
+	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
 		return ImmutableList.of();
 	}
 

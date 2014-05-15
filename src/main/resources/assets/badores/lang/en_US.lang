@@ -80,6 +80,7 @@ badores.wantarite=Wantarite
 badores.wantabite=Wantabite
 badores.meteorite=Meteorite
 badores.streetscum=Streetscum
+badores.fleesonsite=Fleesonsite
 
 badores.website=Website
 badores.website.fail=Oops, failed to open a website!
@@ -95,4 +96,6 @@ badores.helmet=%s Helmet
 badores.chestplate=%s Chestplate
 badores.leggings=%s Leggings
 badores.boots=%s Boots
+
+entity.fleeingBlock.name=Fleeing Block
 

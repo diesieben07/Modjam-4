@@ -85,8 +85,8 @@ public abstract class AbstractOre implements BadOre {
     }
 
     @Override
-    public List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune) {
-        return Arrays.asList(new ItemStack(block, 1, meta));
+    public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
+        return Arrays.asList(new ItemStack(blockInfo.block, 1, meta));
     }
 
 	@Override
@@ -171,10 +171,10 @@ public abstract class AbstractOre implements BadOre {
     }
 
     @Override
-    public void tick(World world, int x, int y, int z, Block block, Random random, Side side) {
+    public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
         int tickRate = initialTickRate();
         if (tickRate >= 0)
-            world.scheduleBlockUpdate(x, y, z, block, tickRate);
+            world.scheduleBlockUpdate(x, y, z, blockInfo.block, tickRate);
     }
 
     @Override

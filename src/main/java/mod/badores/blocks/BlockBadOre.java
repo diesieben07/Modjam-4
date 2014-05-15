@@ -80,7 +80,8 @@ public class BlockBadOre extends BOBlock {
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         dropMeta = metadata;
 	    ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
-        result.addAll(getOre(metadata).getDroppedItems(world, x, y, z, this, metadata, fortune));
+        BadOre ore = getOre(metadata);
+        result.addAll(ore.getDroppedItems(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), metadata, fortune));
         return result;
     }
 
@@ -124,7 +125,7 @@ public class BlockBadOre extends BOBlock {
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         BadOre ore = getOre(world.getBlockMetadata(x, y, z));
-        ore.tick(world, x, y, z, this, random, Sides.logical(world));
+        ore.tick(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), random, Sides.logical(world));
     }
 
     @Override
