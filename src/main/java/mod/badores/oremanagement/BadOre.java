@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -57,4 +58,6 @@ public interface BadOre {
 	String getDisplayName(OreSubName name);
 
     float getExplosionResistance();
+
+    AxisAlignedBB selectionBB();
 }

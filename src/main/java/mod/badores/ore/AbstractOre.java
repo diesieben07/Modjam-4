@@ -10,6 +10,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -184,5 +185,10 @@ public abstract class AbstractOre implements BadOre {
     @Override
     public float getExplosionResistance() {
         return oreHardness() / 5.0f;
+    }
+
+    @Override
+    public AxisAlignedBB selectionBB() {
+        return AxisAlignedBB.getAABBPool().getAABB(0, 0, 0, 1, 1, 1);
     }
 }
