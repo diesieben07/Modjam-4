@@ -8,7 +8,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import mod.badores.items.ItemBOIngot;
+import mod.badores.network.PacketRandomTranslation;
 import mod.badores.ore.*;
 import mod.badores.oremanagement.OreManager;
 import mod.badores.worldgen.WorldGeneratorBadOres;
@@ -94,7 +96,7 @@ public class BadOres {
         GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
-		network.registerMessage();
+		network.registerMessage(PacketRandomTranslation.Handle.class, PacketRandomTranslation.class, 0, Side.CLIENT);
 
         proxy.init(event);
 	}

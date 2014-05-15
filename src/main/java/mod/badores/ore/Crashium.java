@@ -2,9 +2,11 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.network.PacketRandomTranslation;
 import mod.badores.util.JavaUtils;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
@@ -21,12 +23,10 @@ public class Crashium extends AbstractOre {
     @Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
         if (side.isServer()) {
-
+			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), (EntityPlayerMP) miner);
 
             if (BadOres.gameBreakingFeatures && world.rand.nextInt(10) == 0) {
-	            String msg = JavaUtils.selectRandom(rand, crashMsg);
-	            CrashReport cr = new CrashReport(msg, new RuntimeException());
-	            throw new ReportedException(cr);
+	            //throw new RuntimeException();
             } else {
                 int msg = rand.nextInt(NUM_NO_CRASH_MESSAGES);
                 miner.addChatComponentMessage(new ChatComponentTranslation("badores.crashium.nocrash." + msg));

@@ -4,6 +4,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
+import mod.badores.network.PacketRandomTranslation;
+import mod.badores.util.I18n;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.config.Configuration;
@@ -55,5 +57,13 @@ public class BOClientProxy implements BOProxy {
 		} catch (Exception e) {
 			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentTranslation("badores.website.fail"));
 		}
+	}
+
+	@Override
+	public void handleRandomTranslation(PacketRandomTranslation message) {
+		Minecraft mc = Minecraft.getMinecraft();
+		int count = Integer.parseInt(I18n.translate(message.baseKey + ".count"));
+		int n = mc.theWorld.rand.nextInt(count);
+		mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n));
 	}
 }
