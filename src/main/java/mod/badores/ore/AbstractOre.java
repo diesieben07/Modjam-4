@@ -108,9 +108,9 @@ public abstract class AbstractOre implements BadOre {
 				int max = getMax(random, world, chunkX, chunkZ);
 				WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
 
-				int x = chunkX + random.nextInt(16);
+				int x = chunkX * 16 + random.nextInt(16);
 				int y = random.nextInt(max - min + 1) + min;
-				int z = chunkZ + random.nextInt(16);
+				int z = chunkZ * 16 + random.nextInt(16);
 
 				worldGenMinable.generate(world, random, x, y, z);
 			}
