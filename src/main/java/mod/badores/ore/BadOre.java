@@ -50,6 +50,8 @@ public interface BadOre {
 
     float oreHardness();
 
+	String getDisplayName();
+
 	String getDisplayName(OreSubName name);
 
 }

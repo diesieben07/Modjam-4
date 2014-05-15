@@ -2,14 +2,13 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.util.I18n;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -66,8 +65,13 @@ public abstract class AbstractOre implements BadOre {
     }
 
 	@Override
+	public String getDisplayName() {
+		return I18n.translateBO(getName());
+	}
+
+	@Override
 	public String getDisplayName(OreSubName name) {
-		return name.subName(StatCollector.translateToLocal(getName()));
+		return name.subName(I18n.translateBO(getName()));
 	}
 
 	@Override

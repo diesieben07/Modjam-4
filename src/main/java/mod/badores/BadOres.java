@@ -96,7 +96,7 @@ public class BadOres {
 	}
 
 	public static String translateKey(String name) {
-		return MOD_ID + ":" + name;
+		return MOD_ID + "." + name;
 	}
 
 	public static String getTextureName(String name) {

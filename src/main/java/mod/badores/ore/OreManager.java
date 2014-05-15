@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.*;
+import mod.badores.util.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.util.StatCollector;
@@ -181,7 +182,7 @@ public final class OreManager {
 
 	    @Override
 	    public String subName(String translatedOreName) {
-		    return StatCollector.translateToLocalFormatted(BadOres.translateKey(name), translatedOreName);
+		    return I18n.translateBO(name, translatedOreName);
 	    }
     }
 
@@ -229,7 +230,7 @@ public final class OreManager {
 
 	    @Override
 	    public String subName(String translatedOreName) {
-		    return StatCollector.translateToLocalFormatted(BadOres.translateKey(name), translatedOreName);
+		    return I18n.translateBO(name, translatedOreName);
 	    }
     }
 }

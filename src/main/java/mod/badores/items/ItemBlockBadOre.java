@@ -23,7 +23,7 @@ public class ItemBlockBadOre extends ItemBlock {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return StatCollector.translateToLocal("badores." + ((BlockBadOre) field_150939_a).getOre(stack.getItemDamage()).getName());
+		return ((BlockBadOre) field_150939_a).getOre(stack.getItemDamage()).getDisplayName();
 	}
 
 	@Override
