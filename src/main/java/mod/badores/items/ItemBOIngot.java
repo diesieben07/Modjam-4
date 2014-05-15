@@ -6,11 +6,15 @@ import mod.badores.BadOres;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreSubName;
 import mod.badores.util.I18n;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -19,6 +23,8 @@ import java.util.List;
 public class ItemBOIngot extends BOItem implements OreSubName {
 
 	public static final String NBT_KEY = "badores.ingotOreID";
+
+    private Hashtable<String, IIcon> icons = new Hashtable<String, IIcon>();
 
 	public ItemBOIngot() {
 		setHasSubtypes(true);
@@ -65,4 +71,29 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	public String subName(String translatedOreName) {
 		return I18n.translateBO("ingot", translatedOreName);
 	}
+
+    @Override
+    public void registerIcons(IIconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(BadOres.MOD_ID + ":ingotGeneric");
+
+        for (BadOre ore : BadOres.oreManager.getAllOres()) {
+            if (ore.hasIngot()) {
+                icons.put(ore.getName(), par1IconRegister.registerIcon(BadOres.MOD_ID + ":" + ore.getName() + ".ingot"));
+            }
+        }
+    }
+
+    @Override
+    public IIcon getIconIndex(ItemStack par1ItemStack) {
+        BadOre ore = getOre(par1ItemStack);
+        if (icons.containsKey(ore.getName()))
+            return icons.get(ore.getName());
+
+        return super.getIconIndex(par1ItemStack);
+    }
+
+    @Override
+    public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
+        return getIconIndex(stack);
+    }
 }
