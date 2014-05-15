@@ -16,6 +16,7 @@ import mod.badores.event.TickEvents;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.ore.*;
+import mod.badores.oremanagement.BlockInfo;
 import mod.badores.oremanagement.OreManager;
 import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
@@ -47,10 +48,15 @@ public class BadOres {
     public static boolean gameBreakingFeatures;
 
 	public static CreativeTabs creativeTab = new CreativeTabs("badores") {
-		@Override
+        @Override
+        public ItemStack getIconItemStack() {
+            BlockInfo blockInfo = oreManager.getBlockInfo(oreManager.getOreByName("polite"));
+            return blockInfo.asStack();
+        }
+
+        @Override
 		public Item getTabIconItem() {
-			// TODO
-			return Items.apple;
+			return ingot;
 		}
 	};
 
