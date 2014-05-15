@@ -1,7 +1,6 @@
 package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.ore.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
