@@ -5,7 +5,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.ore.*;
+import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -68,7 +70,9 @@ public class BadOres {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.init(event);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
+
+        proxy.init(event);
 	}
 
 	@Mod.EventHandler
