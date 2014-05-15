@@ -9,8 +9,9 @@ import net.minecraft.world.World;
  */
 public interface BadOre {
 
-	void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side);
+    void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
     String getName();
 
+    String getIconName();
 }

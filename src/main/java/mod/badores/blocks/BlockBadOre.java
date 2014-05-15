@@ -7,10 +7,13 @@ import mod.badores.items.ItemBlockBadOre;
 import mod.badores.ore.BadOre;
 import mod.badores.util.Sides;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -69,4 +72,20 @@ public class BlockBadOre extends BOBlock {
         return result;
     }
 
+    @Override
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        blockIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":" + "oreGeneric");
+
+        for (int i = 0; i < ores.length; ++i) {
+            if (ores[i] != null) {
+                iconRegister.registerIcon(ores[i].getIconName());
+            }
+        }
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return super.getIcon(side, meta);
+
+    }
 }

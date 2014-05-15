@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.BadOres;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -15,4 +16,9 @@ public abstract class AbstractOre implements BadOre {
 
     @Override
     public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
+
+    @Override
+    public String getIconName() {
+        return BadOres.MOD_ID + ":" + getName();
+    }
 }

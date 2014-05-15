@@ -19,8 +19,8 @@ import net.minecraft.item.Item;
 @Mod(modid = BadOres.MOD_ID, name = "BadOres", version = BadOres.VERSION)
 public class BadOres {
 
-	static final String MOD_ID = "badores";
-	static final String VERSION = "0.1";
+	public static final String MOD_ID = "badores";
+    public static final String VERSION = "0.1";
 
 	@SidedProxy(clientSide = "mod.badores.client.BOClientProxy", serverSide = "mod.badores.server.BOServerProxy")
 	public static BOProxy proxy;

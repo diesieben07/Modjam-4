@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 /**
  * @author diesieben07
  */
-public class Wannafite implements BadOre {
+public class Wannafite extends AbstractOre {
 
 	// TODO: localize this
 	private static final DamageSource wannafiteDamage = new DamageSource("badores.wannafite");
