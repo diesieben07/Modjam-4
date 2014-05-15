@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -71,7 +72,7 @@ public abstract class AbstractOre implements BadOre {
             if (veinSize > 0)
             {
                 Pair<Integer, Integer> minMax = getMinMaxGenerationY(biomeGenBase, random);
-                WorldGenMinable worldGenMinable = new WorldGenMinable(blockInfo.block, blockInfo.metadata, veinSize, getDestinationBlock(biomeGenBase, random));
+                WorldGenerator worldGenMinable = createWorldGenerator(biomeGenBase, blockInfo, veinSize, random);
 
                 int x = chunkX + random.nextInt(16);
                 int y = random.nextInt(minMax.getRight() - minMax.getLeft() + 1) + minMax.getLeft();
@@ -80,6 +81,11 @@ public abstract class AbstractOre implements BadOre {
                 worldGenMinable.generate(world, random, x, y, z);
             }
         }
+    }
+
+    public WorldGenerator createWorldGenerator(BiomeGenBase biomeGenBase, BlockInfo blockInfo, int veinSize, Random random)
+    {
+        return new WorldGenMinable(blockInfo.block, blockInfo.metadata, veinSize, getDestinationBlock(biomeGenBase, random));
     }
 
     public int getGeneratedVeinsInBiome(BiomeGenBase biomeGenBase, Random random)
