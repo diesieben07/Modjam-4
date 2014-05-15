@@ -92,6 +92,7 @@ public class BadOres {
         oreManager.registerOre(new Explodeitmite());
         oreManager.registerOre(new Marmite());
         oreManager.registerOre(new Shiftium());
+        oreManager.registerOre(new Smite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
