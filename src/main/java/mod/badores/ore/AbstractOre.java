@@ -113,7 +113,7 @@ public abstract class AbstractOre implements BadOre {
 				int z = chunkZ * 16 + random.nextInt(16);
 
 				worldGenMinable.generate(world, random, x, y, z);
-			}
+            }
         }
     }
 

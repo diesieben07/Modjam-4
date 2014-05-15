@@ -16,7 +16,7 @@ public class IncrediblyRarium extends AbstractOre {
 
 	@Override
 	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
-		return r.nextInt(1000000);
+		return r.nextInt(10000) == 0 ? 1 : 0;
 	}
 
 	@Override
