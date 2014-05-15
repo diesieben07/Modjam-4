@@ -7,6 +7,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.ore.OreManager;
 import mod.badores.ore.Polite;
+import mod.badores.ore.Wannafite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -36,7 +37,9 @@ public class BadOres {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		oreManager = new OreManager();
+
 		oreManager.registerOre(new Polite());
+		oreManager.registerOre(new Wannafite());
 
 		oreManager.createBlocks();
 
