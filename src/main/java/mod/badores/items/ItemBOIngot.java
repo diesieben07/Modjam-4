@@ -78,7 +78,7 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 
         for (BadOre ore : BadOres.oreManager.getAllOres()) {
             if (ore.hasIngot()) {
-                icons.put(ore.getName(), par1IconRegister.registerIcon(BadOres.MOD_ID + ":" + ore.getName() + ".ingot"));
+                icons.put(ore.getName(), par1IconRegister.registerIcon(ore.getIngotIconName()));
             }
         }
     }

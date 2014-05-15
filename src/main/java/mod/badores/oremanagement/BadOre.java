@@ -34,6 +34,8 @@ public interface BadOre {
 
     String getIconName();
 
+    String getIngotIconName();
+
     String getArmorIconName(ArmorType type);
 
     List<ItemStack> getDroppedItems(World world, int x, int y, int z, Block block, int meta, int fortune);

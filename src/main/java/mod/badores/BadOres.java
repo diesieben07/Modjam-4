@@ -19,6 +19,8 @@ import mod.badores.worldgen.WorldGeneratorBadOres;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +56,9 @@ public class BadOres {
 
     public static ItemBOIngot ingot;
 
-	public static SimpleNetworkWrapper network;
+    public static Item marmiteBread;
+
+    public static SimpleNetworkWrapper network;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -86,11 +90,15 @@ public class BadOres {
 		oreManager.registerOre(new Movium());
         oreManager.registerOre(new Balancium());
         oreManager.registerOre(new Explodeitmite());
+        oreManager.registerOre(new Marmite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
 
 		oreManager.createGameElements();
+
+        marmiteBread = new ItemFood(6, 0.8F, false).setUnlocalizedName("marmiteBread").setTextureName(MOD_ID + ":marmiteBread");
+        GameRegistry.registerItem(marmiteBread, "marmiteBread", MOD_ID);
 
 		proxy.preInit(event, config);
         config.save();
@@ -106,7 +114,16 @@ public class BadOres {
 		FMLCommonHandler.instance().bus().register(TickEvents.INSTANCE);
 
         proxy.init(event);
+
+        addCrafting();
 	}
+
+    private void addCrafting()
+    {
+        ItemStack marmiteIngot = new ItemStack(ingot);
+        ItemBOIngot.setOre(marmiteIngot, oreManager.getOreByName("marmite"));
+        GameRegistry.addShapelessRecipe(new ItemStack(marmiteBread), Items.bread, marmiteIngot);
+    }
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {

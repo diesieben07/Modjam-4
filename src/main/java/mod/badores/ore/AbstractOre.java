@@ -62,7 +62,12 @@ public abstract class AbstractOre implements BadOre {
         return BadOres.getTextureName(getName() + ".ore");
     }
 
-	@Override
+    @Override
+    public String getIngotIconName() {
+        return BadOres.MOD_ID + ":" + getName() + ".ingot";
+    }
+
+    @Override
 	public String getDisplayName() {
 		return I18n.translateBO(getName());
 	}

@@ -1,5 +1,7 @@
 itemGroup.badores=Bad Ores
 
+item.marmiteBread.name=Marmite Bread
+
 badores.polite=Polite
 badores.polite.0=Thanks for mining me!
 badores.polite.1=That was very kind of you.
@@ -68,6 +70,7 @@ badores.uselessium=Uselessium
 badores.balancium=Balancium
 badores.explodeitmite=Explodeitmite
 badores.movium=Movium
+badores.marmite=Marmite
 
 badores.website=Website
 badores.website.fail=Oops, failed to open a website!
@@ -83,3 +86,4 @@ badores.helmet=%s Helmet
 badores.chestplate=%s Chestplate
 badores.leggings=%s Leggings
 badores.boots=%s Boots
+
