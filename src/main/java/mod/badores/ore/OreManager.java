@@ -7,9 +7,7 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
-import mod.badores.items.ItemBOIngot;
-import mod.badores.items.ItemBOPickaxe;
-import mod.badores.items.ItemBOAxe;
+import mod.badores.items.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
@@ -75,11 +73,11 @@ public final class OreManager {
 		ToolInfo toolData = ore.getToolInfo();
 		Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial(tmName, toolData.harvestLevel, toolData.maxUses, toolData.efficiency, toolData.damage, toolData.enchantability);
 
-		newItem(new ItemHoe(toolMaterial), ore, toolInput, ToolType.HOE);
-		newItem(new ItemSpade(toolMaterial), ore, toolInput, ToolType.SHOVEL);
-		newItem(new ItemBOPickaxe(toolMaterial), ore, toolInput, ToolType.PICKAXE);
-		newItem(new ItemBOAxe(toolMaterial), ore, toolInput, ToolType.AXE);
-		newItem(new ItemSword(toolMaterial), ore, toolInput, ToolType.SWORD);
+		newItem(new ItemBOHoe(toolMaterial, ore), ore, toolInput, ToolType.HOE);
+		newItem(new ItemBOShovel(toolMaterial, ore), ore, toolInput, ToolType.SHOVEL);
+		newItem(new ItemBOPickaxe(toolMaterial, ore), ore, toolInput, ToolType.PICKAXE);
+		newItem(new ItemBOAxe(toolMaterial, ore), ore, toolInput, ToolType.AXE);
+		newItem(new ItemBOSword(toolMaterial, ore), ore, toolInput, ToolType.SWORD);
 	}
 
 	private void newItem(Item i, BadOre ore, ItemStack toolInput, ToolType type) {

@@ -1,6 +1,6 @@
 itemGroup.badores=Bad Ores
 
-tile.badores.polite.name=Polite
+badores.polite=Polite
 badores.polite.0=Thanks for mining me!
 badores.polite.1=That was very kind of you.
 badores.polite.2=Thank you very much.
@@ -15,14 +15,14 @@ badores.polite.10=Please, mine me again!
 badores.polite.11=Thanks!
 badores.polite.12=:D
 
-tile.badores.crashium.name=Crashium
+badores.crashium=Crashium
 badores.crashium.nocrash.0=Poof!
 badores.crashium.nocrash.1=Brzzz...
 badores.crashium.nocrash.2=SSssssss...
 badores.crashium.nocrash.3=Fizzle...
 badores.crashium.nocrash.4=Brrrrttt...
 
-tile.badores.misleadium.name=Misleadium
+badores.misleadium=Misleadium
 badores.misleadium.baseMessage.0=There is some %s at %s, %s, %s!
 badores.misleadium.baseMessage.1=Go to %2$s, %3$s, %4$s and you will find %1$s!
 badores.misleadium.baseMessage.2=I heard there's %s at %s, %s, %s!
@@ -31,18 +31,25 @@ badores.misleadium.baseMessage.4=There is %s at %s, %s, %s!
 badores.misleadium.baseMessage.5=Please don't smelt me! Get the %s at %s, %s, %s instead!
 badores.misleadium.baseMessage.6=How about you go to %2$s, %3$s, %4$s? There is %1$s there!!
 
-tile.badores.wannafite.name=Wannafite
-tile.badores.breakium.name=Breakium
-tile.badores.stonium.name=Stonium
-tile.badores.stonium.name=Stonium
-tile.badores.crappium.name=Crappium
-tile.badores.enderite.name=Enderite
-tile.badores.lite.name=Lite
-tile.badores.amadeum.name=Amadeum
-tile.badores.incrediblyRarium.name=Incredibly-Rarium
-tile.badores.unobtainium.name=Unobtainium
-tile.badores.copper.name=Copper
-tile.badores.ghostium.name=Copper
+badores.wannafite=Wannafite
+badores.breakium=Breakium
+badores.stonium=Stonium
+badores.stonium=Stonium
+badores.crappium=Crappium
+badores.enderite=Enderite
+badores.lite=Lite
+badores.amadeum=Amadeum
+badores.incrediblyRarium=Incredibly-Rarium
+badores.unobtainium=Unobtainium
+badores.copper=Copper
+badores.ghostium=Copper
 
-tile.badores.website.name=Website
+badores.website=Website
 badores.website.fail=Oops, failed to open a website!
+
+badores.ingot=%s Ingot
+badores.pickaxe=%s Pickaxe
+badores.axe=%s Axe
+badores.shovel=%s Shovel
+badores.hoe=%s Hoe
+badores.sword=%s Sword
