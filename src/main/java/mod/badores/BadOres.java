@@ -44,7 +44,7 @@ public class BadOres {
 
 	public static OreManager oreManager;
 
-	public static ItemBOIngot ingot;
+    public static ItemBOIngot ingot;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -72,6 +72,7 @@ public class BadOres {
         oreManager.registerOre(new Unobtainium());
         oreManager.registerOre(new Copper());
         oreManager.registerOre(new Uselessium());
+        oreManager.registerOre(new Killium());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");

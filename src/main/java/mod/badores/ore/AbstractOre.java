@@ -32,7 +32,12 @@ public abstract class AbstractOre implements BadOre {
 		return false;
 	}
 
-	@Override
+    @Override
+    public boolean canMakeArmor() {
+        return false;
+    }
+
+    @Override
 	public boolean hasIngot() {
 		return false;
 	}
@@ -42,7 +47,12 @@ public abstract class AbstractOre implements BadOre {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
+    @Override
+    public ArmorInfo getArmorInfo() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
 
 	@Override
