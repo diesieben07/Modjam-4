@@ -63,6 +63,6 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 
 	@Override
 	public String subName(String translatedOreName) {
-		return I18n.translateBO("ingot" + translatedOreName);
+		return I18n.translateBO("ingot", translatedOreName);
 	}
 }
