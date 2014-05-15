@@ -1,5 +1,6 @@
 package mod.badores.blocks;
 
+import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBlockMetadata;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,4 +58,10 @@ public class BlockBadOre extends BOBlock {
 		getOre(meta).onMined(player, world, x, y, z, Sides.logical(world));
 	}
 
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
+        result.add(new ItemStack(this, 1, metadata));
+        return result;
+    }
 }

@@ -8,14 +8,15 @@ import net.minecraft.world.World;
 /**
  * @author diesieben07
  */
-public class Polite implements BadOre {
+public class Polite extends AbstractOre {
 
+    private static final int NUM_MESSAGES = 3;
 
 	@Override
 	public void onMined(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		if (side.isServer()) {
-			// TODO: randomize messages
-			miner.addChatComponentMessage(new ChatComponentTranslation("badores.polite.1"));
+			int msg = rand.nextInt(NUM_MESSAGES);
+			miner.addChatComponentMessage(new ChatComponentTranslation("badores.polite." + msg));
 		}
 	}
 
