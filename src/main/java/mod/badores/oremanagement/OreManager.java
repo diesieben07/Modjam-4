@@ -8,7 +8,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.*;
-import mod.badores.ore.BlockInfo;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
 

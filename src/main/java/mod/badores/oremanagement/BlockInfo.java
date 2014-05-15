@@ -1,7 +1,8 @@
-package mod.badores.ore;
+package mod.badores.oremanagement;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 /**
  * @author diesieben07
@@ -18,6 +19,10 @@ public final class BlockInfo {
 
 	public ItemStack asStack() {
 		return new ItemStack(block, 1, metadata);
+	}
+
+	public void placeAt(World world, int x, int y, int z) {
+		world.setBlock(x, y, z, block, metadata, 3);
 	}
 
 	@Override
