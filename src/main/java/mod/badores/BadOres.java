@@ -52,6 +52,7 @@ public class BadOres {
 		oreManager.registerOre(new Wannafite());
         oreManager.registerOre(new Breakium());
         oreManager.registerOre(new Crashium());
+        oreManager.registerOre(new Stonium());
 
 		oreManager.createBlocks();
 
