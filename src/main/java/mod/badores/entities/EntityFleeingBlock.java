@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
@@ -54,7 +55,12 @@ public class EntityFleeingBlock extends EntityCreature {
 		}
 	}
 
-	@Override
+    @Override
+    protected void dropFewItems(boolean par1, int par2) {
+        entityDropItem(new ItemStack(block, 1, blockMeta), 0.5f);
+    }
+
+    @Override
 	public ItemStack getHeldItem() {
 		return null;
 	}
