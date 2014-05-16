@@ -22,7 +22,7 @@ public class Meteorite extends AbstractOre {
 			for (int i = 0; i < number; i++) {
 				double spawnX = x + METEORITE_SPAWN_SIDE * (rand.nextDouble() - rand.nextDouble());
 				double spawnY = 260.0;
-				double spawnZ = x + METEORITE_SPAWN_SIDE * (rand.nextDouble() - rand.nextDouble());
+				double spawnZ = z + METEORITE_SPAWN_SIDE * (rand.nextDouble() - rand.nextDouble());
 				EntityFallingBlock entity = new EntityFallingBlock(world, spawnX, spawnY, spawnZ, fallingBlock);
 				// set age to 2 to prevent entity from vanishing (?)
 				entity.field_145812_b = 2;
