@@ -5,7 +5,7 @@ package mod.badores.ore;
  */
 public class Uselessium extends AbstractOre {
 
-    @Override
+	@Override
 	public String getName() {
 		return "uselessium";
 	}

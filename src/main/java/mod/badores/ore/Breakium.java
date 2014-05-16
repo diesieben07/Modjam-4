@@ -14,6 +14,7 @@ public class Breakium extends AbstractOre {
 	@Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		ItemStack equip = miner.getCurrentEquippedItem();
+		// todo: don't require pickaxe
 		if (equip != null && equip.getItem() instanceof ItemPickaxe) {
 			miner.renderBrokenItemStack(equip);
 			miner.destroyCurrentEquippedItem();

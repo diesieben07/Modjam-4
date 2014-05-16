@@ -10,7 +10,7 @@ import net.minecraft.world.World;
  */
 public class Polite extends AbstractOre {
 
-    private static final int NUM_MESSAGES = 13;
+	private static final int NUM_MESSAGES = 13;
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
@@ -20,8 +20,8 @@ public class Polite extends AbstractOre {
 		}
 	}
 
-    @Override
-    public String getName() {
-        return "polite";
-    }
+	@Override
+	public String getName() {
+		return "polite";
+	}
 }

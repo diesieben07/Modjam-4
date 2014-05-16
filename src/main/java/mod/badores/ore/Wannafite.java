@@ -18,9 +18,9 @@ public class Wannafite extends AbstractOre {
 		miner.attackEntityFrom(wannafiteDamage, 4);
 	}
 
-    @Override
-    public String getName() {
-        return "wannafite";
-    }
+	@Override
+	public String getName() {
+		return "wannafite";
+	}
 
 }

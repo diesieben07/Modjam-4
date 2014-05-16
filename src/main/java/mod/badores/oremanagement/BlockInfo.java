@@ -28,19 +28,15 @@ public final class BlockInfo {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (!(o instanceof BlockInfo)) return false;
 
-		BlockInfo blockInfo = (BlockInfo) o;
-
-		if (metadata != blockInfo.metadata) return false;
-		if (!block.equals(blockInfo.block)) return false;
-
-		return true;
+		BlockInfo that = (BlockInfo) o;
+		return this.block == that.block && this.metadata == that.metadata;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = block.hashCode();
+		int result = System.identityHashCode(block);
 		result = 31 * result + metadata;
 		return result;
 	}

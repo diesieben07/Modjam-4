@@ -10,7 +10,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -25,19 +24,19 @@ import java.util.Random;
  */
 public abstract class AbstractOre implements BadOre {
 
-    protected final Random rand = new Random();
+	protected final Random rand = new Random();
 
 	@Override
 	public boolean hasTools() {
 		return false;
 	}
 
-    @Override
-    public boolean hasArmor() {
-        return false;
-    }
+	@Override
+	public boolean hasArmor() {
+		return false;
+	}
 
-    @Override
+	@Override
 	public boolean hasIngot() {
 		return false;
 	}
@@ -47,28 +46,30 @@ public abstract class AbstractOre implements BadOre {
 		throw new UnsupportedOperationException();
 	}
 
-    @Override
-    public ArmorInfo getArmorInfo() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
+	@Override
+	public ArmorInfo getArmorInfo() {
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) { }
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	}
 
 	@Override
-    public String getIconName() {
-        return BadOres.getTextureName(getName() + ".ore");
-    }
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	}
 
-    @Override
-    public String getIngotIconName() {
-        return BadOres.MOD_ID + ":" + getName() + ".ingot";
-    }
+	@Override
+	public String getIconName() {
+		return BadOres.getTextureName(getName() + ".ore");
+	}
 
-    @Override
+	@Override
+	public String getIngotIconName() {
+		return BadOres.MOD_ID + ":" + getName() + ".ingot";
+	}
+
+	@Override
 	public String getDisplayName() {
 		return I18n.translateBO(getName());
 	}
@@ -79,15 +80,15 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-    public String getArmorIconName(ArmorType type) {
+	public String getArmorIconName(ArmorType type) {
 		int layer = type.getLayer();
-        return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer);
-    }
+		return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer);
+	}
 
-    @Override
-    public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
-        return Arrays.asList(new ItemStack(blockInfo.block, 1, meta));
-    }
+	@Override
+	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
+		return Arrays.asList(new ItemStack(blockInfo.block, 1, meta));
+	}
 
 	@Override
 	public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack) {
@@ -97,7 +98,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		int numVeins = veinsPerChunk(random, world, chunkX, chunkZ);
 
 		for (int i = 0; i < numVeins; i++) {
@@ -113,9 +114,9 @@ public abstract class AbstractOre implements BadOre {
 				int z = chunkZ * 16 + random.nextInt(16);
 
 				worldGenMinable.generate(world, random, x, y, z);
-            }
-        }
-    }
+			}
+		}
+	}
 
 	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
 		return 1;
@@ -161,34 +162,34 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-    public int lightLevel() {
-        return 0;
-    }
+	public int lightLevel() {
+		return 0;
+	}
 
-    @Override
-    public int initialTickRate() {
-        return -1;
-    }
+	@Override
+	public int initialTickRate() {
+		return -1;
+	}
 
-    @Override
-    public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
-        int tickRate = initialTickRate();
-        if (tickRate >= 0)
-            world.scheduleBlockUpdate(x, y, z, blockInfo.block, tickRate);
-    }
+	@Override
+	public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
+		int tickRate = initialTickRate();
+		if (tickRate >= 0)
+			world.scheduleBlockUpdate(x, y, z, blockInfo.block, tickRate);
+	}
 
-    @Override
-    public float oreHardness() {
-        return 3.0f;
-    }
+	@Override
+	public float oreHardness() {
+		return 3.0f;
+	}
 
-    @Override
-    public float getExplosionResistance() {
-        return oreHardness() / 5.0f;
-    }
+	@Override
+	public float getExplosionResistance() {
+		return oreHardness() / 5.0f;
+	}
 
-    @Override
-    public boolean shouldSelectionRayTrace() {
-        return true;
-    }
+	@Override
+	public boolean shouldSelectionRayTrace() {
+		return true;
+	}
 }

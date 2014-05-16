@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -33,7 +32,7 @@ public class BlockBadOre extends BOBlock {
 	private static int instanceCounter = 0;
 	private BadOre[] ores = new BadOre[16];
 
-    private IIcon[] icons = new IIcon[16];
+	private IIcon[] icons = new IIcon[16];
 
 	public BlockBadOre() {
 		super(Material.rock);
@@ -69,21 +68,21 @@ public class BlockBadOre extends BOBlock {
 		getOre(meta).onHarvest(player, world, x, y, z, Side.SERVER);
 	}
 
-    public String getUnlocalizedName(int meta) {
-        return "tile.badores." + getOre(meta).getName();
-    }
+	public String getUnlocalizedName(int meta) {
+		return "tile.badores." + getOre(meta).getName();
+	}
 
 	// evil hack, kids don't try this at home
 	private int dropMeta = -1;
 
-    @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        dropMeta = metadata;
-	    ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
-        BadOre ore = getOre(metadata);
-        result.addAll(ore.getDroppedItems(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), metadata, fortune));
-        return result;
-    }
+	@Override
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+		dropMeta = metadata;
+		ArrayList<ItemStack> result = Lists.newArrayListWithCapacity(1);
+		BadOre ore = getOre(metadata);
+		result.addAll(ore.getDroppedItems(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), metadata, fortune));
+		return result;
+	}
 
 	@Override
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
@@ -94,67 +93,67 @@ public class BlockBadOre extends BOBlock {
 	@Override
 	protected void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack) {
 		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
-		    float f = 0.7F;
-		    double eX = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
-		    double eY = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
-		    double eZ = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			float f = 0.7F;
+			double eX = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			double eY = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			double eZ = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
 			world.spawnEntityInWorld(getOre(dropMeta).createDropEntity(world, x + eX, y + eY, z + eZ, stack));
 		}
 	}
 
 	@Override
-    public void registerBlockIcons(IIconRegister iconRegister) {
-        blockIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":" + "oreGeneric");
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		blockIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":" + "oreGeneric");
 
-        for (int i = 0; i < ores.length; ++i) {
-            if (ores[i] != null) {
-                icons[i] = iconRegister.registerIcon(ores[i].getIconName());
-            }
-        }
-    }
+		for (int i = 0; i < ores.length; ++i) {
+			if (ores[i] != null) {
+				icons[i] = iconRegister.registerIcon(ores[i].getIconName());
+			}
+		}
+	}
 
-    @Override
-    public void onBlockAdded(World world, int x, int y, int z) {
-        BadOre ore = getOre(world.getBlockMetadata(x, y, z));
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+		BadOre ore = getOre(world.getBlockMetadata(x, y, z));
 
-        int tickRate = ore.initialTickRate();
-        if (tickRate >= 0)
-            world.scheduleBlockUpdate(x, y, z, this, tickRate);
-    }
+		int tickRate = ore.initialTickRate();
+		if (tickRate >= 0)
+			world.scheduleBlockUpdate(x, y, z, this, tickRate);
+	}
 
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random random) {
-        BadOre ore = getOre(world.getBlockMetadata(x, y, z));
-        ore.tick(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), random, Sides.logical(world));
-    }
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random random) {
+		BadOre ore = getOre(world.getBlockMetadata(x, y, z));
+		ore.tick(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), random, Sides.logical(world));
+	}
 
-    @Override
-    public float getBlockHardness(World world, int x, int y, int z) {
-        return getOre(world.getBlockMetadata(x, y, z)).oreHardness();
-    }
+	@Override
+	public float getBlockHardness(World world, int x, int y, int z) {
+		return getOre(world.getBlockMetadata(x, y, z)).oreHardness();
+	}
 
-    @Override
-    public IIcon getIcon(int side, int meta) {
-        if (icons[meta] != null)
-            return icons[meta];
+	@Override
+	public IIcon getIcon(int side, int meta) {
+		if (icons[meta] != null)
+			return icons[meta];
 
-        return super.getIcon(side, meta);
-    }
+		return super.getIcon(side, meta);
+	}
 
-    @Override
-    public int getLightValue(IBlockAccess world, int x, int y, int z) {
-        return getOre(world.getBlockMetadata(x, y, z)).lightLevel();
-    }
+	@Override
+	public int getLightValue(IBlockAccess world, int x, int y, int z) {
+		return getOre(world.getBlockMetadata(x, y, z)).lightLevel();
+	}
 
-    @Override
-    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-        return getOre(world.getBlockMetadata(x, y, z)).getExplosionResistance();
-    }
+	@Override
+	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+		return getOre(world.getBlockMetadata(x, y, z)).getExplosionResistance();
+	}
 
-    @Override
-    public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 ray, Vec3 ray2) {
-        if (getOre(world.getBlockMetadata(x, y, z)).shouldSelectionRayTrace())
-            return super.collisionRayTrace(world, x, y, z, ray, ray2);
-        return null;
-    }
+	@Override
+	public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 ray, Vec3 ray2) {
+		if (getOre(world.getBlockMetadata(x, y, z)).shouldSelectionRayTrace())
+			return super.collisionRayTrace(world, x, y, z, ray, ray2);
+		return null;
+	}
 }

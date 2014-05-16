@@ -4,7 +4,6 @@ import mod.badores.blocks.BlockBadOre;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 
 /**
  * @author diesieben07
@@ -13,7 +12,7 @@ public class ItemBlockBadOre extends ItemBlock {
 
 	public ItemBlockBadOre(Block block) {
 		super(block);
-        setHasSubtypes(true);
+		setHasSubtypes(true);
 	}
 
 	@Override
@@ -27,7 +26,7 @@ public class ItemBlockBadOre extends ItemBlock {
 	}
 
 	@Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return "badores." + ((BlockBadOre) field_150939_a).getOre(stack.getItemDamage()).getName();
-    }
+	public String getUnlocalizedName(ItemStack stack) {
+		return "badores." + ((BlockBadOre) field_150939_a).getOre(stack.getItemDamage()).getName();
+	}
 }

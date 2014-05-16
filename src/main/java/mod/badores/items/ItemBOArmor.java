@@ -13,19 +13,19 @@ import net.minecraft.item.ItemStack;
  */
 public class ItemBOArmor extends ItemArmor {
 
-    public ArmorType omArmorType;
-    public BadOre ore;
+	public ArmorType omArmorType;
+	public BadOre ore;
 
 	public ItemBOArmor(ArmorMaterial material, ArmorType armorType, BadOre ore) {
 		super(material, 0, armorType.vanillaID);
-        this.omArmorType = armorType;
-        this.ore = ore;
+		this.omArmorType = armorType;
+		this.ore = ore;
 	}
 
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        return ore.getArmorIconName(omArmorType);
-    }
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+		return ore.getArmorIconName(omArmorType);
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

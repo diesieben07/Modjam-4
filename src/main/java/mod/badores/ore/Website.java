@@ -5,9 +5,6 @@ import mod.badores.BadOres;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author diesieben07
  */

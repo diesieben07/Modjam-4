@@ -26,7 +26,7 @@ public enum TickEvents {
 	public void onTick(TickEvent.ServerTickEvent event) {
 		if (event.type == TickEvent.Type.SERVER && tasks.size() > 0) {
 			List<Task> sn = scheduledNow;
-			for (Iterator<Task> it = tasks.iterator(); it.hasNext();) {
+			for (Iterator<Task> it = tasks.iterator(); it.hasNext(); ) {
 				Task t = it.next();
 				if (t.tick()) {
 					sn.add(t);

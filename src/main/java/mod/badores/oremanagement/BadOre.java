@@ -1,11 +1,9 @@
 package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -19,45 +17,45 @@ public interface BadOre {
 
 	boolean hasTools();
 
-    boolean hasArmor();
+	boolean hasArmor();
 
-    boolean hasIngot();
+	boolean hasIngot();
 
-    ToolInfo getToolInfo();
+	ToolInfo getToolInfo();
 
-    ArmorInfo getArmorInfo();
+	ArmorInfo getArmorInfo();
 
-    void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
+	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
-    String getName();
+	String getName();
 
-    String getIconName();
+	String getIconName();
 
-    String getIngotIconName();
+	String getIngotIconName();
 
-    String getArmorIconName(ArmorType type);
+	String getArmorIconName(ArmorType type);
 
-    List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune);
+	List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune);
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
 
-    void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
+	void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
 
-    int lightLevel();
+	int lightLevel();
 
-    int initialTickRate();
+	int initialTickRate();
 
-    void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side);
+	void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side);
 
-    float oreHardness();
+	float oreHardness();
 
 	String getDisplayName();
 
 	String getDisplayName(OreSubName name);
 
-    float getExplosionResistance();
+	float getExplosionResistance();
 
-    boolean shouldSelectionRayTrace();
+	boolean shouldSelectionRayTrace();
 }

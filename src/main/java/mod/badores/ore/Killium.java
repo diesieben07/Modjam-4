@@ -15,13 +15,13 @@ public class Killium extends AbstractOre {
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-        if (rand.nextInt(5) == 0)
-		    miner.attackEntityFrom(killiumDamage, 10000.0f);
+		if (rand.nextInt(5) == 0)
+			miner.attackEntityFrom(killiumDamage, 10000.0f);
 	}
 
-    @Override
-    public String getName() {
-        return "killium";
-    }
+	@Override
+	public String getName() {
+		return "killium";
+	}
 
 }

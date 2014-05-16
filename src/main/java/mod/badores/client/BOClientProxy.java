@@ -11,8 +11,6 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.config.Configuration;
 
 import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;

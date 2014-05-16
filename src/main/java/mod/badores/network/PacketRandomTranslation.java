@@ -14,7 +14,8 @@ public class PacketRandomTranslation implements IMessage {
 
 	public String baseKey;
 
-	public PacketRandomTranslation() { }
+	public PacketRandomTranslation() {
+	}
 
 	public PacketRandomTranslation(String baseKey) {
 		this.baseKey = baseKey;

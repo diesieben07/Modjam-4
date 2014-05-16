@@ -8,7 +8,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.*;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.List;
@@ -55,9 +57,9 @@ public final class OreManager {
 				generateTools(ore, craftingInput);
 			}
 
-            if (ore.hasArmor()) {
-                generateArmor(ore, craftingInput);
-            }
+			if (ore.hasArmor()) {
+				generateArmor(ore, craftingInput);
+			}
 
 			if (++currentMetadata == 16) {
 				currentBlock = null;
@@ -66,16 +68,16 @@ public final class OreManager {
 		}
 	}
 
-    private ItemStack getOreCraftingInput(BadOre ore, BlockInfo blockInfo) {
-        ItemStack toolInput;
-        if (ore.hasIngot()) {
-            toolInput = new ItemStack(BadOres.ingot);
-            ItemBOIngot.setOre(toolInput, ore);
-        } else {
-            toolInput = blockInfo.asStack();
-        }
-        return toolInput;
-    }
+	private ItemStack getOreCraftingInput(BadOre ore, BlockInfo blockInfo) {
+		ItemStack toolInput;
+		if (ore.hasIngot()) {
+			toolInput = new ItemStack(BadOres.ingot);
+			ItemBOIngot.setOre(toolInput, ore);
+		} else {
+			toolInput = blockInfo.asStack();
+		}
+		return toolInput;
+	}
 
 	private void generateTools(BadOre ore, ItemStack toolInput) {
 		String tmName = "BAD_ORE_" + ore.getName();
@@ -89,16 +91,16 @@ public final class OreManager {
 		newToolItem(new ItemBOSword(toolMaterial, ore), ore, toolInput, ToolType.SWORD);
 	}
 
-    private void generateArmor(BadOre ore, ItemStack recipeInput) {
-        String amName = "BAD_ORE_" + ore.getName();
-        ArmorInfo armorData = ore.getArmorInfo();
-        ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial(amName, armorData.durability, armorData.reductionAmounts, armorData.enchantability);
+	private void generateArmor(BadOre ore, ItemStack recipeInput) {
+		String amName = "BAD_ORE_" + ore.getName();
+		ArmorInfo armorData = ore.getArmorInfo();
+		ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial(amName, armorData.durability, armorData.reductionAmounts, armorData.enchantability);
 
-        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.HELMET, ore), ore, recipeInput, ArmorType.HELMET);
-        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.CHESTPLATE, ore), ore, recipeInput, ArmorType.CHESTPLATE);
-        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.LEGGINGS, ore), ore, recipeInput, ArmorType.LEGGINGS);
-        newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.BOOTS, ore), ore, recipeInput, ArmorType.BOOTS);
-    }
+		newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.HELMET, ore), ore, recipeInput, ArmorType.HELMET);
+		newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.CHESTPLATE, ore), ore, recipeInput, ArmorType.CHESTPLATE);
+		newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.LEGGINGS, ore), ore, recipeInput, ArmorType.LEGGINGS);
+		newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.BOOTS, ore), ore, recipeInput, ArmorType.BOOTS);
+	}
 
 	private void newToolItem(Item i, BadOre ore, ItemStack toolInput, ToolType type) {
 		i.setTextureName(getTextureName(ore.getName()) + "." + type.name);
@@ -112,17 +114,17 @@ public final class OreManager {
 		type.registerRecipe(i, toolInput);
 	}
 
-    private void newArmorItem(Item i, BadOre ore, ItemStack recipeInput, ArmorType armorType) {
-        i.setTextureName(getTextureName(ore.getName()) + "." + armorType.name);
+	private void newArmorItem(Item i, BadOre ore, ItemStack recipeInput, ArmorType armorType) {
+		i.setTextureName(getTextureName(ore.getName()) + "." + armorType.name);
 
-        String n = ore.getName() + "." + armorType.name;
-        i.setUnlocalizedName("badores." + n);
+		String n = ore.getName() + "." + armorType.name;
+		i.setUnlocalizedName("badores." + n);
 
-        i.setCreativeTab(BadOres.creativeTab);
+		i.setCreativeTab(BadOres.creativeTab);
 
-        GameRegistry.registerItem(i, n);
-        armorType.registerRecipe(i, recipeInput);
-    }
+		GameRegistry.registerItem(i, n);
+		armorType.registerRecipe(i, recipeInput);
+	}
 
 	public List<BadOre> getAllOres() {
 		return allOres;

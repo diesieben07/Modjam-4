@@ -1,11 +1,6 @@
 package mod.badores.ore;
 
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.Random;
 
@@ -24,7 +19,7 @@ public class IncrediblyRarium extends AbstractOre {
 		return 1;
 	}
 
-    @Override
+	@Override
 	public String getName() {
 		return "incrediblyRarium";
 	}

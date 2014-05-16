@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.oremanagement.BlockInfo;
 import mod.badores.util.JavaUtils;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

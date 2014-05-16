@@ -12,7 +12,7 @@ public final class Sides {
 		return world.isRemote ? Side.CLIENT : Side.SERVER;
 	}
 
-
-	private Sides() { }
+	private Sides() {
+	}
 
 }

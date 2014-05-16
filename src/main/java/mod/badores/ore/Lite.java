@@ -5,12 +5,12 @@ package mod.badores.ore;
  */
 public class Lite extends AbstractOre {
 
-    @Override
-    public int lightLevel() {
-        return 15;
-    }
+	@Override
+	public int lightLevel() {
+		return 15;
+	}
 
-    @Override
+	@Override
 	public String getName() {
 		return "lite";
 	}

@@ -49,7 +49,6 @@ public enum ArmorType implements OreSubName {
 
 	abstract void registerRecipe(Item result, ItemStack input);
 
-
 	@Override
 	public String subName(String translatedOreName) {
 		return I18n.translateBO(name, translatedOreName);
