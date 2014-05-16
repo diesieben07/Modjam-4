@@ -69,7 +69,7 @@ public class EntityFleeingBlock extends EntityCreature {
 
 	}
 
-	@Override
+    @Override
 	public ItemStack[] getLastActiveItems() {
 		return new ItemStack[0];
 	}

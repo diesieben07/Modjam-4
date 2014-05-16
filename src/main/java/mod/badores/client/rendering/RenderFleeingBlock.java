@@ -15,7 +15,7 @@ public class RenderFleeingBlock extends RendererLivingEntity {
     private ResourceLocation texture;
 
     public RenderFleeingBlock() {
-        super(new ModelFleeingBlock(), 0.5f);
+        super(new ModelFleeingBlock(), 1.0f);
 
         texture = new ResourceLocation(BadOres.MOD_ID, "textures/entity/fleeingBlockFleesonsite.png");
     }

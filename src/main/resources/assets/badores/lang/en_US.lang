@@ -101,5 +101,5 @@ badores.chestplate=%s Chestplate
 badores.leggings=%s Leggings
 badores.boots=%s Boots
 
-entity.fleeingBlock.name=Fleeing Block
+entity.badores.fleeingBlock.name=Fleeing Block
 

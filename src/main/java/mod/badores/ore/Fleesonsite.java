@@ -25,7 +25,7 @@ public class Fleesonsite extends AbstractOre {
 			world.setBlockToAir(x, y, z);
 			EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
 			fleeingBlock.setPosition(x + 0.5, y, z + 0.5);
-			world.spawnEntityInWorld(fleeingBlock);
+            world.spawnEntityInWorld(fleeingBlock);
 		}
 	}
 
