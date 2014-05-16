@@ -2,7 +2,9 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.oremanagement.OreForm;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -24,6 +26,10 @@ public class Idlikeabite extends AbstractOre {
         }
     }
 
+    @Override
+    protected Block replace() {
+        return Blocks.dirt;
+    }
 
     @Override
 	public String getName() {
