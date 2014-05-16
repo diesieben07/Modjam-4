@@ -36,12 +36,16 @@ badores.polite.defend.3=Ouch! That was a good attack! But I held it!
 badores.polite.defend.4=Please, have people attack me more!
 badores.polite.defend.5=Another swing stopped professionally by me, your favourite armor!
 badores.polite.defend.6=Thank you for your continued trust.
-badores.polite.tool.count=5
+badores.polite.tool.count=9
 badores.polite.tool.0=Thanks for using me!
 badores.polite.tool.1=I love serving you!
 badores.polite.tool.2=Please use me more!
 badores.polite.tool.3=Please, harvest more blocks with me!
 badores.polite.tool.4=Hey, that one felt great!
+badores.polite.tool.5=I love harvesting with you.
+badores.polite.tool.6=I think this was the best performance yet!
+badores.polite.tool.7=Thanks for letting me mine this block!
+badores.polite.tool.8=Thank you for your continued use!
 
 badores.crashium=Crashium
 badores.crashium.nocrash.count=5
