@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.entities.EntityFleeingBlock;
+import mod.badores.event.BOEventHandler;
 import mod.badores.event.TickEvents;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
@@ -66,6 +67,7 @@ public class BadOres {
 	public static Item marmiteBread;
 
 	public static SimpleNetworkWrapper network;
+    public static BOEventHandler eventHandler;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -74,6 +76,9 @@ public class BadOres {
 		config.load();
 
 		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
+
+        eventHandler = new BOEventHandler();
+        eventHandler.register();
 
 		oreManager = new OreManager();
 
@@ -125,7 +130,6 @@ public class BadOres {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
-
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
 		network.registerMessage(PacketRandomTranslation.Handle.class, PacketRandomTranslation.class, 0, Side.CLIENT);

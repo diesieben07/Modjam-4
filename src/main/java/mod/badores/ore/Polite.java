@@ -4,12 +4,14 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.oremanagement.ArmorInfo;
+import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 /**
@@ -35,6 +37,13 @@ public class Polite extends AbstractOre {
     public void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side) {
         if (side.isServer()) {
             BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.attack"), (EntityPlayerMP) player);
+        }
+    }
+
+    @Override
+    public void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side) {
+        if (side.isServer()) {
+            BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.defend"), (EntityPlayerMP) player);
         }
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -27,8 +28,6 @@ public interface BadOre {
 
 	ArmorInfo getArmorInfo();
 
-
-
 	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
@@ -41,7 +40,9 @@ public interface BadOre {
 
 	void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side);
 
-	String getName();
+    void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side);
+
+    String getName();
 
 	String getIconName();
 
