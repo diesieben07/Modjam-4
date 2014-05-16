@@ -39,6 +39,11 @@ public class EntityFleeingBlock extends EntityCreature {
 	}
 
     @Override
+    protected boolean isAIEnabled() {
+        return true;
+    }
+
+    @Override
     protected boolean isMovementCeased()
     {
         return false;
@@ -48,7 +53,7 @@ public class EntityFleeingBlock extends EntityCreature {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.4);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
 	}
 
 	@Override
