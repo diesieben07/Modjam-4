@@ -1,8 +1,10 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.BadOres;
+import mod.badores.network.PacketRandomTranslation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 
 /**
@@ -10,13 +12,10 @@ import net.minecraft.world.World;
  */
 public class Polite extends AbstractOre {
 
-	private static final int NUM_MESSAGES = 13;
-
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		if (side.isServer()) {
-			int msg = rand.nextInt(NUM_MESSAGES);
-			miner.addChatComponentMessage(new ChatComponentTranslation("badores.polite." + msg));
+			BadOres.network.sendTo(new PacketRandomTranslation("badores.polite"), (EntityPlayerMP) miner);
 		}
 	}
 

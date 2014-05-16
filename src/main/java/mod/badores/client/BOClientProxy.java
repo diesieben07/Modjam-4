@@ -62,6 +62,6 @@ public class BOClientProxy implements BOProxy {
 		Minecraft mc = Minecraft.getMinecraft();
 		int count = Integer.parseInt(I18n.translate(message.baseKey + ".count"));
 		int n = mc.theWorld.rand.nextInt(count);
-		mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n));
+		mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n, message.data));
 	}
 }

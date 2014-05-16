@@ -1,13 +1,18 @@
 package mod.badores.ore;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.BadOres;
+import mod.badores.network.PacketRandomTranslation;
+import mod.badores.util.JavaUtils;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,30 +20,31 @@ import java.util.List;
  */
 public class Misleadium extends AbstractOre {
 
-	private static final int NUM_MESSAGES = 7;
-
 	private static final int SIDE_RANGE = 500;
+	private List<ItemStack> cache;
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		if (side.isServer()) {
-			int msg = world.rand.nextInt(NUM_MESSAGES);
+			// TODO is there a better way?
+			int numItems = Item.itemRegistry.getKeys().size();
+			Item item;
+			do {
+				int itemIdx = rand.nextInt(numItems);
+				item = (Item) Iterables.get(Item.itemRegistry, itemIdx);
+			} while (item.getCreativeTab() == null);
 
-			List<ItemStack> itemList = new ArrayList<ItemStack>();
-			for (Object anItemRegistry : Item.itemRegistry) {
-				Item item = (Item) anItemRegistry;
+			List<ItemStack> cache = (this.cache == null) ? (this.cache = Lists.newArrayList()) : this.cache;
+			cache.clear();
+			item.getSubItems(item, CreativeTabs.tabAllSearch, cache);
 
-				if (item != null && item.getCreativeTab() != null) {
-					item.getSubItems(item, null, itemList);
-				}
-			}
-			ItemStack item = itemList.get(rand.nextInt(itemList.size()));
+			ItemStack stack = JavaUtils.selectRandom(rand, cache);
 
 			int fX = (x + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
 			int fY = (rand.nextInt(100) + 10);
 			int fZ = (z + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
 
-			miner.addChatComponentMessage(new ChatComponentTranslation("badores.misleadium.baseMessage." + msg, item.func_151000_E(), "" + fX, "" + fY, "" + fZ));
+			BadOres.network.sendTo(new PacketRandomTranslation("badores.misleadium.baseMessage", stack.getDisplayName(), Integer.toString(fX), Integer.toString(fY), Integer.toString(fZ)), ((EntityPlayerMP) miner));
 		}
 	}
 
