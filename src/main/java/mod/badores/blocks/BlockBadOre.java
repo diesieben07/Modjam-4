@@ -53,7 +53,12 @@ public class BlockBadOre extends BOBlock {
 		}
 	}
 
-	public void addOre(int metadata, BadOre ore) {
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return BadOres.oreManager.getBlockInfo(getOre(world.getBlockMetadata(x, y, z))).asStack();
+    }
+
+    public void addOre(int metadata, BadOre ore) {
 		ores[metadata] = ore;
 	}
 
