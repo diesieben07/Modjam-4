@@ -113,6 +113,7 @@ public class BadOres {
 		oreManager.registerOre(new Nopium());
         oreManager.registerOre(new Zombieunite());
         oreManager.registerOre(new Paintitwhite());
+		oreManager.registerOre(new Iwontfite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
