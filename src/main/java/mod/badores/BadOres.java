@@ -127,6 +127,7 @@ public class BadOres {
 	public void init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new WorldGeneratorBadOres(oreManager), 100);
 
+
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
 		network.registerMessage(PacketRandomTranslation.Handle.class, PacketRandomTranslation.class, 0, Side.CLIENT);
 
