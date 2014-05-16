@@ -30,9 +30,9 @@ public class ItemBOSword extends ItemSword {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase player, EntityLivingBase target) {
-		AbstractOre.invokeOnAttack(ore, ToolType.SWORD, player, target);
-		return super.hitEntity(stack, player, target);
+	public boolean hitEntity(ItemStack stack, EntityLivingBase beingHit, EntityLivingBase attacker) {
+		AbstractOre.invokeOnAttack(ore, ToolType.SWORD, attacker, beingHit);
+		return super.hitEntity(stack, beingHit, attacker);
 	}
 
 	@Override

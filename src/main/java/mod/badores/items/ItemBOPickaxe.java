@@ -30,9 +30,9 @@ public class ItemBOPickaxe extends ItemPickaxe {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase player, EntityLivingBase target) {
-		AbstractOre.invokeOnAttack(ore, ToolType.PICKAXE, player, target);
-		return super.hitEntity(stack, player, target);
+	public boolean hitEntity(ItemStack stack, EntityLivingBase beingHit, EntityLivingBase attacker) {
+		AbstractOre.invokeOnAttack(ore, ToolType.PICKAXE, attacker, beingHit);
+		return super.hitEntity(stack, beingHit, attacker);
 	}
 
 	@Override

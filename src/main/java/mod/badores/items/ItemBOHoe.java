@@ -30,9 +30,9 @@ public class ItemBOHoe extends ItemHoe {
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase player, EntityLivingBase target) {
-		AbstractOre.invokeOnAttack(ore, ToolType.HOE, player, target);
-		return super.hitEntity(stack, player, target);
+	public boolean hitEntity(ItemStack stack, EntityLivingBase beingHit, EntityLivingBase attacker) {
+		AbstractOre.invokeOnAttack(ore, ToolType.HOE, attacker, beingHit);
+		return super.hitEntity(stack, beingHit, attacker);
 	}
 
 	@Override
