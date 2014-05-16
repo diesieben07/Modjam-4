@@ -5,7 +5,6 @@ import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.ToolInfo;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -54,8 +53,6 @@ public class Nopium extends AbstractOre {
 
 	private void dropRandomly(ItemStack stack, int slot, EntityPlayer player, Side side) {
 		if (side.isServer() && rand.nextInt(200) == 0) {
-			EntityItem item = player.func_146097_a(stack, false, true);
-			System.out.println(slot);
 			player.inventory.setInventorySlotContents(slot, null);
 		}
 	}
