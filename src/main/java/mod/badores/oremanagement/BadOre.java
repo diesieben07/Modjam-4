@@ -35,9 +35,9 @@ public interface BadOre {
 
 	void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side);
 
-	void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side);
+	void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack);
 
-	void onInventoryTick(OreForm form, ItemStack stack, EntityPlayer player, World world, Side side);
+	void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side);
 
 	String getName();
 

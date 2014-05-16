@@ -40,7 +40,7 @@ public class ItemBOPickaxe extends ItemPickaxe {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(ore, OreForm.PICKAXE, stack, world, player);
+		AbstractOre.invokeInventoryTick(ore, OreForm.PICKAXE, stack, slot, world, player);
 	}
 
 	@Override

@@ -72,10 +72,6 @@ public class BlockBadOre extends BOBlock {
 		getOre(meta).onHarvest(player, world, x, y, z, Side.SERVER);
 	}
 
-	public String getUnlocalizedName(int meta) {
-		return "tile.badores." + getOre(meta).getName();
-	}
-
 	// evil hack, kids don't try this at home
 	private int dropMeta = -1;
 

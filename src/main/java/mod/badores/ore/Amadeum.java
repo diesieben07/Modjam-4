@@ -80,12 +80,12 @@ public class Amadeum extends AbstractOre {
 	}
 
 	@Override
-	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side) {
+	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack) {
 		playSoundFromItem(player, world);
 	}
 
 	@Override
-	public void onInventoryTick(OreForm form, ItemStack stack, EntityPlayer player, World world, Side side) {
+	public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
 		playSoundFromItem(player, world);
 	}
 

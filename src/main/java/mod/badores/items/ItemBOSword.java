@@ -40,7 +40,7 @@ public class ItemBOSword extends ItemSword {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(ore, OreForm.SWORD, stack, world, player);
+		AbstractOre.invokeInventoryTick(ore, OreForm.SWORD, stack, slot, world, player);
 	}
 
 	@Override

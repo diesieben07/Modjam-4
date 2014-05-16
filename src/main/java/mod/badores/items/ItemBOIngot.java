@@ -110,6 +110,6 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(getOre(stack), OreForm.INGOT, stack, world, player);
+		AbstractOre.invokeInventoryTick(getOre(stack), OreForm.INGOT, stack, slot, world, player);
 	}
 }

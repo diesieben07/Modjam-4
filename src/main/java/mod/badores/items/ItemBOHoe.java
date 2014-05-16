@@ -40,7 +40,7 @@ public class ItemBOHoe extends ItemHoe {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(ore, OreForm.HOE, stack, world, player);
+		AbstractOre.invokeInventoryTick(ore, OreForm.HOE, stack, slot, world, player);
 	}
 
 	@Override

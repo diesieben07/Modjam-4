@@ -105,6 +105,7 @@ public class BadOres {
 		oreManager.registerOre(new Meteorite());
 		oreManager.registerOre(new Streetscum());
 		oreManager.registerOre(new Fleesonsite());
+		oreManager.registerOre(new Nopium());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");

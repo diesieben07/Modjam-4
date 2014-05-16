@@ -40,13 +40,13 @@ public class ItemBOArmor extends ItemArmor {
 
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		ore.onArmorTick(omArmorType, player, world, Sides.logical(world));
+		ore.onArmorTick(omArmorType, player, world, Sides.logical(world), 36 + (3 - omArmorType.vanillaID), itemStack);
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(ore, OreForm.fromArmor(omArmorType), stack, world, player);
+		AbstractOre.invokeInventoryTick(ore, OreForm.fromArmor(omArmorType), stack, slot, world, player);
 	}
 
 }
