@@ -59,6 +59,11 @@ public class Crashium extends AbstractOre {
 	}
 
 	@Override
+	public boolean hasIngot() {
+		return true;
+	}
+
+	@Override
 	public boolean hasTools() {
 		return true;
 	}

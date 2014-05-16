@@ -56,6 +56,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
+	public float getSmeltingXP() {
+		return 0.5f;
+	}
+
+	@Override
 	public ToolInfo getToolInfo() {
 		throw new UnsupportedOperationException();
 	}

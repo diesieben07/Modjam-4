@@ -31,6 +31,12 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 		setCreativeTab(BadOres.creativeTab);
 	}
 
+	public static ItemStack createIngot(BadOre ore) {
+		ItemStack stack = new ItemStack(BadOres.ingot, 1, 0);
+		setOre(stack, ore);
+		return stack;
+	}
+
 	public static BadOre getOre(ItemStack stack) {
 		if (stack.stackTagCompound != null) {
 			return BadOres.oreManager.getOreByName(stack.stackTagCompound.getString(NBT_KEY));

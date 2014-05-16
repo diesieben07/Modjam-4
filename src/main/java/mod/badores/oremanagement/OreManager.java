@@ -53,6 +53,10 @@ public final class OreManager {
 
 			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
 
+			if (ore.hasIngot()) {
+				addSmelting(ore, blockInfo);
+			}
+
 			if (ore.hasTools()) {
 				generateTools(ore, craftingInput);
 			}
@@ -66,6 +70,10 @@ public final class OreManager {
 				currentMetadata = 0;
 			}
 		}
+	}
+
+	private void addSmelting(BadOre ore, BlockInfo block) {
+		GameRegistry.addSmelting(block.asStack(), ItemBOIngot.createIngot(ore), ore.getSmeltingXP());
 	}
 
 	private ItemStack getOreCraftingInput(BadOre ore, BlockInfo blockInfo) {

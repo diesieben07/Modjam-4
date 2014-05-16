@@ -64,4 +64,6 @@ public interface BadOre {
 	float getExplosionResistance();
 
 	boolean shouldSelectionRayTrace();
+
+	float getSmeltingXP();
 }
