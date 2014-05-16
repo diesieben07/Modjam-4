@@ -33,6 +33,7 @@ public class Iwontfite extends AbstractOre {
 			ItemStack stack = inv.getStackInSlot(i);
 			if (stack != null && stack.getItem() instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlock) stack.getItem()).field_150939_a).getOre(stack) == this) {
 				event.ammount = 0;
+				break;
 			}
 		}
 	}
