@@ -1,5 +1,6 @@
 package mod.badores.items;
 
+import com.google.common.collect.Maps;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.BadOres;
@@ -18,8 +19,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author diesieben07
@@ -28,7 +29,7 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 
 	public static final String NBT_KEY = "badores.ingotOreID";
 
-	private Hashtable<String, IIcon> icons = new Hashtable<String, IIcon>();
+	private Map<BadOre, IIcon> icons = Maps.newHashMap();
 
 	public ItemBOIngot() {
 		setHasSubtypes(true);
@@ -88,18 +89,16 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 
 		for (BadOre ore : BadOres.oreManager.getAllOres()) {
 			if (ore.hasIngot()) {
-				icons.put(ore.getName(), iconRegister.registerIcon(ore.getIngotIconName()));
+				icons.put(ore, iconRegister.registerIcon(ore.getIngotIconName()));
 			}
 		}
 	}
 
 	@Override
-	public IIcon getIconIndex(ItemStack par1ItemStack) {
-		BadOre ore = getOre(par1ItemStack);
-		if (icons.containsKey(ore.getName()))
-			return icons.get(ore.getName());
-
-		return super.getIconIndex(par1ItemStack);
+	public IIcon getIconIndex(ItemStack stack) {
+		BadOre ore = getOre(stack);
+		IIcon icon = icons.get(ore);
+		return icon == null ? super.getIconIndex(stack) : icon;
 	}
 
 	@Override
@@ -112,4 +111,5 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 		super.onUpdate(stack, world, player, slot, inHotbar);
 		AbstractOre.invokeInventoryTick(getOre(stack), OreForm.INGOT, stack, slot, world, player);
 	}
+
 }

@@ -7,19 +7,23 @@ import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.util.Sides;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
  * @author diesieben07
  */
-public class ItemBOArmor extends ItemArmor {
+public class ItemBOArmor extends ItemArmor implements BOOreProduct {
 
 	public ArmorType omArmorType;
 	public BadOre ore;
+	private Item overriddenIcon;
 
 	public ItemBOArmor(ArmorMaterial material, ArmorType armorType, BadOre ore) {
 		super(material, 0, armorType.vanillaID);
@@ -47,6 +51,23 @@ public class ItemBOArmor extends ItemArmor {
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
 		AbstractOre.invokeInventoryTick(ore, OreForm.fromArmor(omArmorType), stack, slot, world, player);
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int metadata) {
+		return overriddenIcon == null ? super.getIconFromDamage(metadata) : overriddenIcon.getIconFromDamage(metadata);
+	}
+
+	@Override
+	public void registerIcons(IIconRegister iconRegister) {
+		if (overriddenIcon == null) {
+			super.registerIcons(iconRegister);
+		}
+	}
+
+	@Override
+	public void overrideIcon(Item model) {
+		overriddenIcon = model;
 	}
 
 }

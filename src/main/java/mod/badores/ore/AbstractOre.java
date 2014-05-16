@@ -2,6 +2,8 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.items.BOOreProduct;
+import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;
 import mod.badores.util.I18n;
 import mod.badores.util.Sides;
@@ -63,6 +65,14 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
+	public boolean dropsIngotDirectly() {
+		return false;
+	}
+
+	@Override
+	public void postProcessItem(BOOreProduct item, OreForm form) { }
+
+	@Override
 	public float getSmeltingXP() {
 		return 0.5f;
 	}
@@ -112,8 +122,12 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
-		return Arrays.asList(new ItemStack(blockInfo.block, 1, meta));
+	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
+		if (dropsIngotDirectly()) {
+			return Arrays.asList(ItemBOIngot.createIngot(this));
+		} else {
+			return Arrays.asList(BadOres.oreManager.getBlockInfo(this).asStack());
+		}
 	}
 
 	@Override

@@ -7,18 +7,22 @@ import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.ToolType;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
  * @author diesieben07
  */
-public class ItemBOSword extends ItemSword {
+public class ItemBOSword extends ItemSword implements BOOreProduct {
 
 	private final BadOre ore;
+	private Item overriddenIcon;
 
 	public ItemBOSword(ToolMaterial toolMaterial, BadOre ore) {
 		super(toolMaterial);
@@ -47,6 +51,23 @@ public class ItemBOSword extends ItemSword {
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
 		return ore.getDisplayName(ToolType.SWORD);
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int metadata) {
+		return overriddenIcon == null ? super.getIconFromDamage(metadata) : overriddenIcon.getIconFromDamage(metadata);
+	}
+
+	@Override
+	public void registerIcons(IIconRegister iconRegister) {
+		if (overriddenIcon == null) {
+			super.registerIcons(iconRegister);
+		}
+	}
+
+	@Override
+	public void overrideIcon(Item model) {
+		overriddenIcon = model;
 	}
 
 }

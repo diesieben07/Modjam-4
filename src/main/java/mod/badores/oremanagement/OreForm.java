@@ -39,4 +39,21 @@ public enum OreForm {
 				throw new IllegalArgumentException();
 		}
 	}
+
+	public static OreForm fromTool(ToolType type) {
+		switch (type) {
+			case SWORD:
+				return SWORD;
+			case HOE:
+				return HOE;
+			case SHOVEL:
+				return SHOVEL;
+			case AXE:
+				return AXE;
+			case PICKAXE:
+				return PICKAXE;
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
 }

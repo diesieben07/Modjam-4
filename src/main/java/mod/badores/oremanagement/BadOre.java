@@ -1,6 +1,7 @@
 package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.items.BOOreProduct;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,9 +25,13 @@ public interface BadOre {
 
 	boolean hasIngot();
 
+	boolean dropsIngotDirectly();
+
 	ToolInfo getToolInfo();
 
 	ArmorInfo getArmorInfo();
+
+	void postProcessItem(BOOreProduct item, OreForm form);
 
 	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
@@ -50,7 +55,7 @@ public interface BadOre {
 
 	String getArmorIconName(ArmorType type);
 
-	List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune);
+	List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune);
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
 

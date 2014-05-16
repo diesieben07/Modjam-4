@@ -53,7 +53,7 @@ public final class OreManager {
 
 			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
 
-			if (ore.hasIngot()) {
+			if (ore.hasIngot() && !ore.dropsIngotDirectly()) {
 				addSmelting(ore, blockInfo);
 			}
 
@@ -110,7 +110,7 @@ public final class OreManager {
 		newArmorItem(new ItemBOArmor(armorMaterial, ArmorType.BOOTS, ore), ore, recipeInput, ArmorType.BOOTS);
 	}
 
-	private void newToolItem(Item i, BadOre ore, ItemStack toolInput, ToolType type) {
+	private <T extends Item & BOOreProduct> void newToolItem(T i, BadOre ore, ItemStack toolInput, ToolType type) {
 		i.setTextureName(getTextureName(ore.getName()) + "." + type.name);
 
 		String n = ore.getName() + "." + type.name;
@@ -120,9 +120,10 @@ public final class OreManager {
 
 		GameRegistry.registerItem(i, n);
 		type.registerRecipe(i, toolInput);
+		ore.postProcessItem(i, OreForm.fromTool(type));
 	}
 
-	private void newArmorItem(Item i, BadOre ore, ItemStack recipeInput, ArmorType armorType) {
+	private <T extends Item & BOOreProduct> void newArmorItem(T i, BadOre ore, ItemStack recipeInput, ArmorType armorType) {
 		i.setTextureName(getTextureName(ore.getName()) + "." + armorType.name);
 
 		String n = ore.getName() + "." + armorType.name;
@@ -132,6 +133,7 @@ public final class OreManager {
 
 		GameRegistry.registerItem(i, n);
 		armorType.registerRecipe(i, recipeInput);
+		ore.postProcessItem(i, OreForm.fromArmor(armorType));
 	}
 
 	public List<BadOre> getAllOres() {

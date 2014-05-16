@@ -26,7 +26,7 @@ public class Wantarite extends AbstractOre {
 	}
 
 	@Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, BlockInfo blockInfo, int meta, int fortune) {
+	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
 		return Arrays.asList();
 	}
 

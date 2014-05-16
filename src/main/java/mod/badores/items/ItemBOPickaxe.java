@@ -7,18 +7,22 @@ import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.ToolType;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
  * @author diesieben07
  */
-public class ItemBOPickaxe extends ItemPickaxe {
+public class ItemBOPickaxe extends ItemPickaxe implements BOOreProduct {
 
 	private final BadOre ore;
+	private Item overriddenIcon;
 
 	public ItemBOPickaxe(ToolMaterial material, BadOre ore) {
 		super(material);
@@ -47,6 +51,23 @@ public class ItemBOPickaxe extends ItemPickaxe {
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
 		return ore.getDisplayName(ToolType.PICKAXE);
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int metadata) {
+		return overriddenIcon == null ? super.getIconFromDamage(metadata) : overriddenIcon.getIconFromDamage(metadata);
+	}
+
+	@Override
+	public void registerIcons(IIconRegister iconRegister) {
+		if (overriddenIcon == null) {
+			super.registerIcons(iconRegister);
+		}
+	}
+
+	@Override
+	public void overrideIcon(Item model) {
+		overriddenIcon = model;
 	}
 
 }
