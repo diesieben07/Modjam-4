@@ -101,12 +101,11 @@ public class BadOres {
 		oreManager.registerOre(new Shiftium());
 		oreManager.registerOre(new Smite());
 		oreManager.registerOre(new Wantarite());
-		oreManager.registerOre(new Wantabite());
+		oreManager.registerOre(new Idlikeabite());
 		oreManager.registerOre(new Meteorite());
 		oreManager.registerOre(new Streetscum());
 		oreManager.registerOre(new Fleesonsite());
 		oreManager.registerOre(new Nopium());
-		oreManager.registerOre(new Idlikeabite());
 		oreManager.registerOre(new Zombieunite());
 
 		ingot = new ItemBOIngot();
