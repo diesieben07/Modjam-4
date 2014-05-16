@@ -1,7 +1,11 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.oremanagement.ArmorInfo;
+import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.BlockInfo;
+import mod.badores.oremanagement.ToolInfo;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -30,19 +34,57 @@ public class Amadeum extends AbstractOre {
 		super.tick(world, x, y, z, blockInfo, random, side);
 
 		if (side.isServer()) {
-			int soundId = random.nextInt(5);
-			int note = random.nextInt(25);
-
-			float f = (float) Math.pow(2.0D, (note - 12) / 12.0D);
-			String soundName = soundNames[soundId];
-
-			world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "note." + soundName, 3.0F, f);
-//            world.spawnParticle("note", (double)x + 0.5D, (double)y + 1.2D, (double)z + 0.5D, (double)note / 24.0D, 0.0D, 0.0D);
+			randomSound(world, x, y, z, random);
 		}
+	}
+
+	private void randomSound(World world, double x, double y, double z, Random random) {
+		int soundId = random.nextInt(5);
+		int note = random.nextInt(25);
+
+		float f = (float) Math.pow(2.0D, (note - 12) / 12.0D);
+		String soundName = soundNames[soundId];
+
+		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note." + soundName, 3.0F, f);
+//            world.spawnParticle("note", (double)x + 0.5D, (double)y + 1.2D, (double)z + 0.5D, (double)note / 24.0D, 0.0D, 0.0D);
+	}
+
+	@Override
+	public boolean hasTools() {
+		return true;
+	}
+
+	@Override
+	public boolean hasArmor() {
+		return true;
+	}
+
+	@Override
+	public boolean hasIngot() {
+		return true;
+	}
+
+	@Override
+	public ArmorInfo getArmorInfo() {
+		// TODO ?
+		return new ArmorInfo(100, new int[]{1, 3, 2, 1}, 15);
+	}
+
+	@Override
+	public ToolInfo getToolInfo() {
+		// TODO ?
+		return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
 	}
 
 	@Override
 	public String getName() {
 		return "amadeum";
+	}
+
+	@Override
+	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side) {
+		if (rand.nextInt(200) == 0) {
+			randomSound(world, player.posX, player.posY, player.posZ, rand);
+		}
 	}
 }

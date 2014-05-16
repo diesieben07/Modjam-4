@@ -4,9 +4,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.util.Sides;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 /**
  * @author diesieben07
@@ -33,4 +36,16 @@ public class ItemBOArmor extends ItemArmor {
 		return ore.getDisplayName(omArmorType);
 	}
 
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+		ore.onArmorTick(omArmorType, player, world, Sides.logical(world));
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
+		super.onUpdate(stack, world, player, slot, inHotbar);
+		if (player instanceof EntityPlayer) {
+			ore.onInventoryTick(stack, ((EntityPlayer) player), world, Sides.logical(world));
+		}
+	}
 }

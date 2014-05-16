@@ -217,4 +217,10 @@ public abstract class AbstractOre implements BadOre {
 
 	@Override
 	public void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side) { }
+
+	@Override
+	public void onInventoryTick(ItemStack stack, EntityPlayer player, World world, Side side) { }
+
+	@Override
+	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side) { }
 }
