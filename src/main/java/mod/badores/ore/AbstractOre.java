@@ -145,7 +145,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
-		return 1;
+		return r.nextInt(4);
 	}
 
 	protected int dimension() {
@@ -153,7 +153,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	protected int veinSize() {
-		return 5;
+		return 8;
 	}
 
 	protected int genMin(Random random, World world, int chunkX, int chunkZ) {
