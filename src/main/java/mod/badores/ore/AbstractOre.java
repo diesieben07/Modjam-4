@@ -4,8 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.oremanagement.*;
 import mod.badores.util.I18n;
+import mod.badores.util.Sides;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -25,6 +27,12 @@ import java.util.Random;
 public abstract class AbstractOre implements BadOre {
 
 	protected final Random rand = new Random();
+
+	public static void invokeOnMine(BadOre ore, ToolType type, EntityLivingBase living, Block block, World world, int x, int y, int z) {
+		if (living instanceof EntityPlayer) {
+			ore.onToolMine(type, ((EntityPlayer) living), Sides.logical(world), world, x, y, z, block);
+		}
+	}
 
 	@Override
 	public boolean hasTools() {
@@ -192,4 +200,7 @@ public abstract class AbstractOre implements BadOre {
 	public boolean shouldSelectionRayTrace() {
 		return true;
 	}
+
+	@Override
+	public void onToolMine(ToolType type, EntityPlayer player, Side side, World world, int x, int y, int z, Block block) { }
 }

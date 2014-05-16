@@ -1,6 +1,7 @@
 package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,6 +29,8 @@ public interface BadOre {
 	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
+
+	void onToolMine(ToolType type, EntityPlayer player, Side side, World world, int x, int y, int z, Block block);
 
 	String getName();
 

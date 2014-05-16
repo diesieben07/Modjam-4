@@ -4,6 +4,9 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.event.TickEvents;
 import mod.badores.network.PacketRandomTranslation;
+import mod.badores.oremanagement.ToolInfo;
+import mod.badores.oremanagement.ToolType;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
@@ -15,14 +18,24 @@ public class Crashium extends AbstractOre {
 
 	@Override
 	public void onRemove(final EntityPlayer miner, final World world, int x, int y, int z, Side side) {
+		doCrash(miner, world, side);
+	}
+
+	@Override
+	public void onToolMine(ToolType type, EntityPlayer player, Side side, World world, int x, int y, int z, Block block) {
+		doCrash(player, world, side);
+	}
+
+	private void doCrash(EntityPlayer miner, final World world, Side side) {
 		if (side.isServer()) {
-			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), (EntityPlayerMP) miner);
+			final EntityPlayerMP player = ((EntityPlayerMP) miner);
+			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), player);
 
 			TickEvents.INSTANCE.schedule(new Runnable() {
 				@Override
 				public void run() {
 					if (world.rand.nextInt(5) == 0) {
-						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), (EntityPlayerMP) miner);
+						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), player);
 						if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
 							TickEvents.INSTANCE.schedule(new Runnable() {
 								@Override
@@ -32,11 +45,22 @@ public class Crashium extends AbstractOre {
 							}, 80);
 						}
 					} else {
-						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.nocrash"), (EntityPlayerMP) miner);
+						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.nocrash"), player);
 					}
 				}
 			}, 80);
 		}
+	}
+
+	@Override
+	public boolean hasTools() {
+		return true;
+	}
+
+	@Override
+	public ToolInfo getToolInfo() {
+		// TODO: different values?
+		return new ToolInfo(2, 250, 6.0F, 2.0F, 14);
 	}
 
 	@Override
