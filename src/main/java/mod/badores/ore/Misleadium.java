@@ -29,14 +29,15 @@ public class Misleadium extends AbstractOre {
 			// TODO is there a better way?
 			int numItems = Item.itemRegistry.getKeys().size();
 			Item item;
-			do {
-				int itemIdx = rand.nextInt(numItems);
-				item = (Item) Iterables.get(Item.itemRegistry, itemIdx);
-			} while (item.getCreativeTab() == null);
-
 			List<ItemStack> cache = (this.cache == null) ? (this.cache = Lists.newArrayList()) : this.cache;
 			cache.clear();
-			item.getSubItems(item, CreativeTabs.tabAllSearch, cache);
+			do {
+				do {
+					int itemIdx = rand.nextInt(numItems);
+					item = (Item) Iterables.get(Item.itemRegistry, itemIdx);
+				} while (item.getCreativeTab() == null);
+				item.getSubItems(item, CreativeTabs.tabAllSearch, cache);
+			} while (cache.isEmpty());
 
 			ItemStack stack = JavaUtils.selectRandom(rand, cache);
 
