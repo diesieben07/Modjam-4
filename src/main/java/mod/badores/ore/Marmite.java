@@ -2,6 +2,9 @@ package mod.badores.ore;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * @author diesieben07
@@ -18,7 +21,17 @@ public class Marmite extends AbstractOre {
 		return Blocks.clay;
 	}
 
-	@Override
+    @Override
+    protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+        return 64;
+    }
+
+    @Override
+    protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+        return 128;
+    }
+
+    @Override
 	public String getName() {
 		return "marmite";
 	}

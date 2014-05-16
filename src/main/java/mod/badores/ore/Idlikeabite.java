@@ -8,6 +8,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 /**
  * @author diesieben07
  */
@@ -24,6 +26,16 @@ public class Idlikeabite extends AbstractOre {
         if (side.isServer() && rand.nextInt(200) == 0) {
             player.getFoodStats().addExhaustion(1.0f);
         }
+    }
+
+    @Override
+    protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+        return 64;
+    }
+
+    @Override
+    protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+        return 128;
     }
 
     @Override

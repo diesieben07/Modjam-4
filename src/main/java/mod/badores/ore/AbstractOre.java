@@ -132,7 +132,7 @@ public abstract class AbstractOre implements BadOre {
 
 			if (veinSize > 0) {
 				int min = genMin(random, world, chunkX, chunkZ);
-				int max = getMax(random, world, chunkX, chunkZ);
+				int max = genMax(random, world, chunkX, chunkZ);
 				WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
 
 				int x = chunkX * 16 + random.nextInt(16);
@@ -160,7 +160,7 @@ public abstract class AbstractOre implements BadOre {
 		return 0;
 	}
 
-	protected int getMax(Random random, World world, int chunkX, int chunkZ) {
+	protected int genMax(Random random, World world, int chunkX, int chunkZ) {
 		return 64;
 	}
 
