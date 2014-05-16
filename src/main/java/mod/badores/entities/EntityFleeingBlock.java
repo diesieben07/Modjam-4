@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,8 +25,9 @@ public class EntityFleeingBlock extends EntityCreature {
 		super(par1World);
 
 		setSize(1.0f, 1.0f);
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D));
-		this.tasks.addTask(2, new EntityAIPanic(this, 1.33D));
+        this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(1, new EntityAIPanic(this, 1.33D));
+        this.tasks.addTask(2, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D));
 		this.tasks.addTask(10, new EntityAIWander(this, 0.8D));
 	}
 
@@ -36,11 +38,17 @@ public class EntityFleeingBlock extends EntityCreature {
 		this.blockMeta = blockMeta;
 	}
 
-	@Override
+    @Override
+    protected boolean isMovementCeased()
+    {
+        return false;
+    }
+
+    @Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.4);
 	}
 
 	@Override
