@@ -19,7 +19,12 @@ public class Balancium extends AbstractOre {
 		return "balancium";
 	}
 
-	@Override
+    @Override
+    protected int veinSize() {
+        return 3;
+    }
+
+    @Override
 	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		List<Item> allItems = getAllItems();
