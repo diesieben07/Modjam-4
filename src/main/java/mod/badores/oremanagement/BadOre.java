@@ -27,6 +27,8 @@ public interface BadOre {
 
 	ArmorInfo getArmorInfo();
 
+
+
 	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
@@ -59,13 +61,13 @@ public interface BadOre {
 
 	void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side);
 
-	float oreHardness();
+	float getHardness(World world, int x, int y, int z);
 
 	String getDisplayName();
 
 	String getDisplayName(OreSubName name);
 
-	float getExplosionResistance();
+	float getExplosionResistance(World world, int x, int y, int z);
 
 	boolean shouldSelectionRayTrace();
 

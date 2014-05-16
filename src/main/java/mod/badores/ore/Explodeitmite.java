@@ -39,12 +39,12 @@ public class Explodeitmite extends AbstractOre {
 	}
 
 	@Override
-	public float oreHardness() {
+	public float getHardness(World world, int x, int y, int z) {
 		return 8.0f;
 	}
 
 	@Override
-	public float getExplosionResistance() {
+	public float getExplosionResistance(World world, int x, int y, int z) {
 		return 10.0f;
 	}
 

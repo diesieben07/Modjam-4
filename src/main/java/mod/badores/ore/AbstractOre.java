@@ -204,13 +204,13 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public float oreHardness() {
+	public float getHardness(World world, int x, int y, int z) {
 		return 3.0f;
 	}
 
 	@Override
-	public float getExplosionResistance() {
-		return oreHardness() / 5.0f;
+	public float getExplosionResistance(World world, int x, int y, int z) {
+		return getHardness(world, x, y, z) / 5.0f;
 	}
 
 	@Override

@@ -129,7 +129,7 @@ public class BlockBadOre extends BOBlock {
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		return getOre(world.getBlockMetadata(x, y, z)).oreHardness();
+		return getOre(world.getBlockMetadata(x, y, z)).getHardness(world, x, y, z);
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public class BlockBadOre extends BOBlock {
 
 	@Override
 	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-		return getOre(world.getBlockMetadata(x, y, z)).getExplosionResistance();
+		return getOre(world.getBlockMetadata(x, y, z)).getExplosionResistance(world, x, y, z);
 	}
 
 	@Override
