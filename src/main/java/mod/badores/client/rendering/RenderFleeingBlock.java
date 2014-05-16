@@ -1,11 +1,9 @@
 package mod.badores.client.rendering;
 
 import mod.badores.BadOres;
-import mod.badores.oremanagement.BadOre;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -20,7 +18,12 @@ public class RenderFleeingBlock extends RendererLivingEntity {
         texture = new ResourceLocation(BadOres.MOD_ID, "textures/entity/fleeingBlockFleesonsite.png");
     }
 
-    @Override
+	@Override
+	protected boolean func_110813_b(EntityLivingBase par1EntityLivingBase) {
+		return false;
+	}
+
+	@Override
     protected ResourceLocation getEntityTexture(Entity var1) {
         return texture;
     }
