@@ -1,9 +1,12 @@
 package mod.badores.client;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
+import mod.badores.client.rendering.RenderFleeingBlock;
+import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.util.I18n;
 import net.minecraft.client.Minecraft;
@@ -28,7 +31,7 @@ public class BOClientProxy implements BOProxy {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityFleeingBlock.class, new RenderFleeingBlock());
 	}
 
 	@Override
