@@ -19,7 +19,7 @@ public class Explodeitmite extends AbstractOre {
 
 	@Override
 	public int initialTickRate() {
-		return 100;
+		return 10000;
 	}
 
 	@Override
@@ -27,15 +27,17 @@ public class Explodeitmite extends AbstractOre {
 		super.tick(world, x, y, z, blockInfo, random, side);
 
 		if (side.isServer()) {
-			if (rand.nextInt(400) == 0)
-				world.createExplosion(null, x + 0.5, y + 0.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, false);
+			if (rand.nextInt(4) == 0)
+				world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, true);
 		}
 	}
 
 	@Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
-		if (rand.nextInt(4) == 0)
-			world.createExplosion(null, x + 0.5, y + 0.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, false);
+        if (side.isServer()) {
+            if (rand.nextInt(4) == 0)
+                world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, true);
+        }
 	}
 
 	@Override
