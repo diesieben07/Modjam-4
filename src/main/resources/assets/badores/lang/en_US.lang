@@ -133,3 +133,5 @@ badores.boots=%s Boots
 
 entity.badores.fleeingBlock.name=Fleeing Block
 
+death.attack.badores.wannafite=%1$s wants to fite!
+death.attack.badores.killium=%1$s mined the wrong ore!

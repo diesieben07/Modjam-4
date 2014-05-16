@@ -10,8 +10,7 @@ import net.minecraft.world.World;
  */
 public class Killium extends AbstractOre {
 
-	// TODO: localize this
-	private static final DamageSource killiumDamage = new DamageSource("badores.wannafite").setDamageBypassesArmor().setDamageIsAbsolute();
+	private static final DamageSource killiumDamage = new DamageSource("badores.killium").setDamageBypassesArmor().setDamageIsAbsolute();
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {

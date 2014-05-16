@@ -10,7 +10,6 @@ import net.minecraft.world.World;
  */
 public class Wannafite extends AbstractOre {
 
-	// TODO: localize this
 	private static final DamageSource wannafiteDamage = new DamageSource("badores.wannafite");
 
 	@Override
