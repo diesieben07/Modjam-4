@@ -40,6 +40,12 @@ public abstract class AbstractOre implements BadOre {
 		}
 	}
 
+	public static void invokeInventoryTick(BadOre ore, OreForm form, ItemStack stack, World world, Entity player) {
+		if (player instanceof EntityPlayer) {
+			ore.onInventoryTick(form, stack, ((EntityPlayer) player), world, Sides.logical(world));
+		}
+	}
+
 	@Override
 	public boolean hasTools() {
 		return false;
@@ -219,7 +225,7 @@ public abstract class AbstractOre implements BadOre {
 	public void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side) { }
 
 	@Override
-	public void onInventoryTick(ItemStack stack, EntityPlayer player, World world, Side side) { }
+	public void onInventoryTick(OreForm form, ItemStack stack, EntityPlayer player, World world, Side side) { }
 
 	@Override
 	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side) { }

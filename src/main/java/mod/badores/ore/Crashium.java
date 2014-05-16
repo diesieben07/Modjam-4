@@ -17,6 +17,8 @@ import net.minecraft.world.World;
  */
 public class Crashium extends AbstractOre {
 
+	public static final int CRASH_PROBABILITY = 5;
+
 	@Override
 	public void onRemove(final EntityPlayer miner, final World world, int x, int y, int z, Side side) {
 		doCrash(miner, side);
@@ -40,7 +42,7 @@ public class Crashium extends AbstractOre {
 			TickEvents.INSTANCE.schedule(new Runnable() {
 				@Override
 				public void run() {
-					if (rand.nextInt(5) == 0) {
+					if (rand.nextInt(CRASH_PROBABILITY) == 0) {
 						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), player);
 						if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
 							TickEvents.INSTANCE.schedule(new Runnable() {

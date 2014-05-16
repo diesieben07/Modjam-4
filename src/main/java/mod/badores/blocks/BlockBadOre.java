@@ -61,6 +61,10 @@ public class BlockBadOre extends BOBlock {
 		return metadata < ores.length ? ores[metadata] : ores[0];
 	}
 
+	public BadOre getOre(ItemStack stack) {
+		return getOre(stack.getItemDamage());
+	}
+
 	@Override
 	public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
 		super.onBlockHarvested(world, x, y, z, meta, player);
@@ -156,4 +160,5 @@ public class BlockBadOre extends BOBlock {
 			return super.collisionRayTrace(world, x, y, z, ray, ray2);
 		return null;
 	}
+
 }

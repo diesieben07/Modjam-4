@@ -4,8 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.ore.AbstractOre;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.ToolType;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -33,6 +35,12 @@ public class ItemBOSword extends ItemSword {
 	public boolean hitEntity(ItemStack stack, EntityLivingBase beingHit, EntityLivingBase attacker) {
 		AbstractOre.invokeOnAttack(ore, ToolType.SWORD, attacker, beingHit);
 		return super.hitEntity(stack, beingHit, attacker);
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
+		super.onUpdate(stack, world, player, slot, inHotbar);
+		AbstractOre.invokeInventoryTick(ore, OreForm.SWORD, stack, world, player);
 	}
 
 	@Override

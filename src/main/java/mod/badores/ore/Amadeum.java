@@ -1,11 +1,9 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.oremanagement.ArmorInfo;
-import mod.badores.oremanagement.ArmorType;
-import mod.badores.oremanagement.BlockInfo;
-import mod.badores.oremanagement.ToolInfo;
+import mod.badores.oremanagement.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -83,8 +81,18 @@ public class Amadeum extends AbstractOre {
 
 	@Override
 	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side) {
+		playSoundFromItem(player, world);
+	}
+
+	@Override
+	public void onInventoryTick(OreForm form, ItemStack stack, EntityPlayer player, World world, Side side) {
+		playSoundFromItem(player, world);
+	}
+
+	private void playSoundFromItem(EntityPlayer player, World world) {
 		if (rand.nextInt(200) == 0) {
 			randomSound(world, player.posX, player.posY, player.posZ, rand);
 		}
 	}
+
 }

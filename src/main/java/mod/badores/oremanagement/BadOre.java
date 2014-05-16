@@ -37,7 +37,7 @@ public interface BadOre {
 
 	void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side);
 
-	void onInventoryTick(ItemStack stack, EntityPlayer player, World world, Side side);
+	void onInventoryTick(OreForm form, ItemStack stack, EntityPlayer player, World world, Side side);
 
 	String getName();
 

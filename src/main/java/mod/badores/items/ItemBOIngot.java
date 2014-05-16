@@ -3,16 +3,20 @@ package mod.badores.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.BadOres;
+import mod.badores.ore.AbstractOre;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.OreSubName;
 import mod.badores.util.I18n;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -79,12 +83,12 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	}
 
 	@Override
-	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(BadOres.MOD_ID + ":ingotGeneric");
+	public void registerIcons(IIconRegister iconRegister) {
+		this.itemIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":ingotGeneric");
 
 		for (BadOre ore : BadOres.oreManager.getAllOres()) {
 			if (ore.hasIngot()) {
-				icons.put(ore.getName(), par1IconRegister.registerIcon(ore.getIngotIconName()));
+				icons.put(ore.getName(), iconRegister.registerIcon(ore.getIngotIconName()));
 			}
 		}
 	}
@@ -101,5 +105,11 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	@Override
 	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
 		return getIconIndex(stack);
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
+		super.onUpdate(stack, world, player, slot, inHotbar);
+		AbstractOre.invokeInventoryTick(getOre(stack), OreForm.INGOT, stack, world, player);
 	}
 }
