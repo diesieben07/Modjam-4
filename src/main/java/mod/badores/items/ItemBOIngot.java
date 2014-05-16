@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 
 	public static final String NBT_KEY = "badores.ingotOreID";
 
-	private Hashtable<String, IIcon> icons = new Hashtable<String, IIcon>();
+	private HashMap<String, IIcon> icons = new HashMap<String, IIcon>();
 
 	public ItemBOIngot() {
 		setHasSubtypes(true);
