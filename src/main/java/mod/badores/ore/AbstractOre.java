@@ -107,7 +107,7 @@ public abstract class AbstractOre implements BadOre {
 	@Override
 	public String getArmorIconName(ArmorType type) {
 		int layer = type.getLayer();
-		return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer);
+		return BadOres.getTextureName("textures/armor/" + getName() + "." + "layer" + layer + ".png");
 	}
 
 	@Override
