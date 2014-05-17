@@ -20,7 +20,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -127,11 +126,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
+	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
 		if (dropsIngotDirectly()) {
-			return Arrays.asList(ItemBOIngot.createIngot(this));
+			drops.add(ItemBOIngot.createIngot(this));
 		} else {
-			return Arrays.asList(BadOres.oreManager.getBlockInfo(this).asStack());
+			drops.add(BadOres.oreManager.getBlockInfo(this).asStack());
 		}
 	}
 

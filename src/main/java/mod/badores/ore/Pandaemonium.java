@@ -2,8 +2,8 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.BlockInfo;
+import mod.badores.util.JavaUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -24,7 +23,9 @@ import java.util.Random;
  */
 public class Pandaemonium extends AbstractOre {
 
-    public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits)
+	public static final List<Item> items = Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
+
+	public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits)
     {
         if (world.getBlock(x, y, z).getBlockHardness(world, x, y, z) >= 0f)
             world.setBlock(x, y, z, block, meta, notifyBits);
@@ -72,22 +73,15 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-    public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
-        ArrayList<ItemStack> list = new ArrayList<ItemStack>();
-        List<Item> allItems = getAllItems();
-        int num = rand.nextInt(3);
+    public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	    int num = rand.nextInt(3);
         for (int i = 0; i < num; i++) {
-            Item item = allItems.get(rand.nextInt(allItems.size()));
-            list.add(new ItemStack(item, rand.nextInt(5)));
+            Item item = JavaUtils.selectRandom(rand, items);
+            drops.add(new ItemStack(item, rand.nextInt(5)));
         }
-        return list;
     }
 
-    private List<Item> getAllItems() {
-        return Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
-    }
-
-    @Override
+	@Override
     protected int genMin(Random random, World world, int chunkX, int chunkZ) {
         return 0;
     }
