@@ -13,6 +13,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +27,7 @@ import java.util.Map;
 /**
  * @author diesieben07
  */
-public class ItemBOIngot extends BOItem implements OreSubName {
+public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 
 	public static final String NBT_KEY = "badores.ingotOreID";
 
@@ -116,4 +118,9 @@ public class ItemBOIngot extends BOItem implements OreSubName {
     public int getItemStackLimit(ItemStack stack) {
         return getOre(stack).ingotStackSize();
     }
+
+	@Override
+	public void onContainerTick(Container c, Slot slot, ItemStack stack) {
+		getOre(stack).onContainerTick(OreForm.INGOT, c, slot, stack);
+	}
 }

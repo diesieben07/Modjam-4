@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -48,6 +50,8 @@ public interface BadOre {
 	void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side);
 
     void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side);
+
+	void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack);
 
     String getName();
 

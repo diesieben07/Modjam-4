@@ -5,6 +5,8 @@ import mod.badores.ore.AbstractOre;
 import mod.badores.oremanagement.OreForm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -12,7 +14,7 @@ import net.minecraft.world.World;
 /**
  * @author diesieben07
  */
-public class ItemBlockBadOre extends ItemBlock {
+public class ItemBlockBadOre extends ItemBlock implements BadOreItem {
 
 	public ItemBlockBadOre(Block block) {
 		super(block);
@@ -33,5 +35,10 @@ public class ItemBlockBadOre extends ItemBlock {
 	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
 		super.onUpdate(stack, world, player, slot, inHotbar);
 		AbstractOre.invokeInventoryTick(((BlockBadOre) field_150939_a).getOre(stack), OreForm.ORE, stack, slot, world, player);
+	}
+
+	@Override
+	public void onContainerTick(Container c, Slot slot, ItemStack stack) {
+		((BlockBadOre) field_150939_a).getOre(stack).onContainerTick(OreForm.ORE, c, slot, stack);
 	}
 }

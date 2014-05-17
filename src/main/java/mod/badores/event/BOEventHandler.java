@@ -1,6 +1,5 @@
 package mod.badores.event;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mod.badores.items.ItemBOArmor;
 import mod.badores.util.Sides;
@@ -17,7 +16,6 @@ public class BOEventHandler {
     public void register()
     {
         MinecraftForge.EVENT_BUS.register(this);
-        FMLCommonHandler.instance().bus().register(this);
     }
 
     @SubscribeEvent

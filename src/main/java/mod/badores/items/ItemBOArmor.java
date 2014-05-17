@@ -10,6 +10,8 @@ import mod.badores.util.Sides;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -19,7 +21,7 @@ import net.minecraft.world.World;
 /**
  * @author diesieben07
  */
-public class ItemBOArmor extends ItemArmor implements BOOreProduct {
+public class ItemBOArmor extends ItemArmor implements BOOreProduct, BadOreItem {
 
 	public ArmorType omArmorType;
 	public BadOre ore;
@@ -70,4 +72,8 @@ public class ItemBOArmor extends ItemArmor implements BOOreProduct {
 		overriddenIcon = model;
 	}
 
+	@Override
+	public void onContainerTick(Container c, Slot slot, ItemStack stack) {
+		ore.onContainerTick(OreForm.fromArmor(omArmorType), c, slot, stack);
+	}
 }

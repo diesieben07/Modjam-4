@@ -10,6 +10,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -19,7 +21,7 @@ import net.minecraft.world.World;
 /**
  * @author diesieben07
  */
-public class ItemBOSword extends ItemSword implements BOOreProduct {
+public class ItemBOSword extends ItemSword implements BOOreProduct, BadOreItem {
 
 	private final BadOre ore;
 	private Item overriddenIcon;
@@ -68,6 +70,11 @@ public class ItemBOSword extends ItemSword implements BOOreProduct {
 	@Override
 	public void overrideIcon(Item model) {
 		overriddenIcon = model;
+	}
+
+	@Override
+	public void onContainerTick(Container c, Slot slot, ItemStack stack) {
+		ore.onContainerTick(OreForm.SWORD, c, slot, stack);
 	}
 
 }

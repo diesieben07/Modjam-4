@@ -13,6 +13,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -250,11 +252,12 @@ public abstract class AbstractOre implements BadOre {
 	public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack) { }
 
     @Override
-    public void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side) {
+    public void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side) { }
 
-    }
+	@Override
+	public void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack) { }
 
-    @Override
+	@Override
     public int harvestLevelRequired() {
         return 2;
     }
@@ -263,4 +266,5 @@ public abstract class AbstractOre implements BadOre {
     public String toolRequired() {
         return "pickaxe";
     }
+
 }
