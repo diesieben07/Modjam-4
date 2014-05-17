@@ -28,7 +28,12 @@ public class Paintitwhite extends AbstractOre {
 
     @Override
     public int harvestLevelRequired() {
-        return 1;
+        return 0;
+    }
+
+    @Override
+    public String toolRequired() {
+        return "shovel";
     }
 
     @Override

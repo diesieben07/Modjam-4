@@ -259,4 +259,9 @@ public abstract class AbstractOre implements BadOre {
     public int harvestLevelRequired() {
         return 2;
     }
+
+    @Override
+    public String toolRequired() {
+        return "pickaxe";
+    }
 }

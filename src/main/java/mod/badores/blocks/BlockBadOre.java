@@ -169,7 +169,7 @@ public class BlockBadOre extends BOBlock {
 
     @Override
     public String getHarvestTool(int metadata) {
-        return "pickaxe";
+        return getOre(metadata).toolRequired();
     }
 
     @Override
