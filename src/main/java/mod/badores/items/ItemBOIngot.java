@@ -73,7 +73,7 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 	public String getItemStackDisplayName(ItemStack stack) {
 		BadOre ore = getOre(stack);
 		if (ore == null) {
-			return "Unkown ore!";
+			return "Unknown ore";
 		}
 		return ore.getDisplayName(this);
 	}
