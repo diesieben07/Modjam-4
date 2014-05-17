@@ -69,7 +69,12 @@ public abstract class AbstractOre implements BadOre {
 		return false;
 	}
 
-	@Override
+    @Override
+    public int ingotStackSize() {
+        return 64;
+    }
+
+    @Override
 	public void postProcessItem(BOOreProduct item, OreForm form) { }
 
 	@Override

@@ -27,6 +27,8 @@ public interface BadOre {
 
 	boolean dropsIngotDirectly();
 
+    int ingotStackSize();
+
 	ToolInfo getToolInfo();
 
 	ArmorInfo getArmorInfo();
