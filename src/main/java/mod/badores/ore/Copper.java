@@ -8,7 +8,12 @@ import mod.badores.oremanagement.ToolInfo;
  */
 public class Copper extends AbstractOre {
 
-	@Override
+    @Override
+    public boolean hasIngot() {
+        return true;
+    }
+
+    @Override
 	public boolean hasTools() {
 		return true;
 	}
