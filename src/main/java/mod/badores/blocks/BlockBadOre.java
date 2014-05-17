@@ -163,6 +163,16 @@ public class BlockBadOre extends BOBlock {
 	}
 
     @Override
+    public boolean canHarvestBlock(EntityPlayer player, int meta) {
+        return super.canHarvestBlock(player, meta);
+    }
+
+    @Override
+    public String getHarvestTool(int metadata) {
+        return "pickaxe";
+    }
+
+    @Override
     public int getHarvestLevel(int metadata) {
         return getOre(metadata).harvestLevelRequired();
     }
