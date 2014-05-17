@@ -64,13 +64,11 @@ public class Amadeum extends AbstractOre {
 
 	@Override
 	public ArmorInfo getArmorInfo() {
-		// TODO ?
-		return new ArmorInfo(100, new int[]{1, 3, 2, 1}, 15);
+		return new ArmorInfo(10, new int[]{2, 6, 5, 2}, 20);
 	}
 
 	@Override
 	public ToolInfo getToolInfo() {
-		// TODO ?
 		return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
 	}
 

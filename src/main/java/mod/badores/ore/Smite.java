@@ -44,7 +44,7 @@ public class Smite extends AbstractOre {
 
     @Override
     public ArmorInfo getArmorInfo() {
-        return new ArmorInfo(100, new int[]{1, 3, 2, 1}, 15);
+        return new ArmorInfo(8, new int[]{2, 5, 4, 2}, 8);
     }
 
     @Override
