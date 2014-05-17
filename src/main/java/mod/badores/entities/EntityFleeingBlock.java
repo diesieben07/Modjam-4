@@ -84,9 +84,7 @@ public class EntityFleeingBlock extends EntityCreature {
 	}
 
 	@Override
-	public void setCurrentItemOrArmor(int var1, ItemStack var2) {
-
-	}
+	public void setCurrentItemOrArmor(int var1, ItemStack var2) { }
 
     @Override
 	public ItemStack[] getLastActiveItems() {

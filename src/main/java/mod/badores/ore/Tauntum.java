@@ -4,8 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.oremanagement.*;
 import mod.badores.util.JavaUtils;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class Tauntum extends AbstractOre {
                 if (entity instanceof EntityLiving) {
                     EntityLiving entityLiving = (EntityLiving) entity;
 
-                    String living = EntityAccessor.getLivingSound(entityLiving);
+                    String living = BadOresEntityAccessor.getLivingSound(entityLiving);
 
                     if (living != null)
                         mobSounds.add(living);

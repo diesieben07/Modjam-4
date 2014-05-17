@@ -30,6 +30,7 @@ public class Fleesonsite extends AbstractOre {
             fleeingBlock.setRevengeTarget(player);
             fleeingBlock.setTarget(player);
             world.spawnEntityInWorld(fleeingBlock);
+			fleeingBlock.playLivingSound();
 		}
 	}
 
