@@ -19,6 +19,11 @@ public class Kakkarite extends AbstractOre {
 	}
 
     @Override
+    public boolean hasIngot() {
+        return true;
+    }
+
+    @Override
     public boolean dropsIngotDirectly() {
         return true;
     }
