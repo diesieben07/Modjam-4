@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 /**
  * @author diesieben07
  */
@@ -31,6 +33,16 @@ public class Meteorite extends AbstractOre {
 				world.spawnEntityInWorld(entity);
 			}
 		}
+	}
+
+	@Override
+	protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+		return 90;
+	}
+
+	@Override
+	protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+		return 256;
 	}
 
 	@Override
