@@ -60,11 +60,10 @@ public class EntityFleeingBlock extends EntityCreature {
 	public void onUpdate() {
 		super.onUpdate();
 
-		if (worldObj.getClosestPlayer(posX, posY, posZ, 10.0) == null) {
-			if (!worldObj.isRemote) {
-				worldObj.setBlock(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), block, blockMeta, 3);
-				setDead();
-			}
+		if (!worldObj.isRemote && worldObj.getClosestPlayer(posX, posY, posZ, 10.0) == null) {
+			worldObj.setBlock(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), block, blockMeta, 3);
+			worldObj.playSoundAtEntity(this, "mob.chicken.plop", 1, 0.5f);
+			setDead();
 		}
 	}
 
