@@ -1,5 +1,6 @@
 package mod.badores.entities;
 
+import mod.badores.BadOres;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -92,7 +93,22 @@ public class EntityFleeingBlock extends EntityCreature {
 		return new ItemStack[0];
 	}
 
-	@Override
+    @Override
+    protected String getLivingSound() {
+        return BadOres.MOD_ID + ":mob.fleesonsite.say";
+    }
+
+    @Override
+    protected String getHurtSound() {
+        return BadOres.MOD_ID + ":mob.fleesonsite.hit";
+    }
+
+    @Override
+    protected String getDeathSound() {
+        return BadOres.MOD_ID + ":mob.fleesonsite.death";
+    }
+
+    @Override
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readEntityFromNBT(par1NBTTagCompound);
 

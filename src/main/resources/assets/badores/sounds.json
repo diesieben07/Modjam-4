@@ -1,0 +1,22 @@
+{
+    "mob.fleesonsite.say": {
+            "category": "neutral",
+            "sounds": [
+              "fleesonsite1",
+              "fleesonsite2",
+              "fleesonsite3"
+            ]
+    },
+    "mob.fleesonsite.hit": {
+               "category": "neutral",
+               "sounds": [
+                 "fleesonsiteHurt"
+               ]
+    },
+    "mob.fleesonsite.death": {
+               "category": "neutral",
+               "sounds": [
+                 "fleesonsiteDeath"
+               ]
+    }
+}
