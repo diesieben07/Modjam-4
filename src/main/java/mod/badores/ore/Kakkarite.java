@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,13 +31,19 @@ public class Kakkarite extends AbstractOre {
 
     @Override
     public int ingotStackSize() {
-        return 9000;
+        return 64;
     }
 
     @Override
 	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
-        ItemStack stack = ItemBOIngot.createIngot(this);
-        stack.stackSize = 9001;
-        return Arrays.asList(stack);
+        ArrayList<ItemStack> stacks = new ArrayList<ItemStack>();
+        int items = 9001;
+        while (items > 0)
+        {
+            ItemStack stack = ItemBOIngot.createIngot(this);
+            stack.stackSize = Math.min(64, items);
+            items -= stack.stackSize;
+        }
+        return stacks;
 	}
 }

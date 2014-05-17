@@ -14,9 +14,15 @@
                ]
     },
     "mob.fleesonsite.death": {
-               "category": "neutral",
-               "sounds": [
-                 "fleesonsiteDeath"
-               ]
+                    "category": "neutral",
+                    "sounds": [
+                      "fleesonsiteDeath"
+                    ]
+    },
+    "pandaemonium.mine": {
+        "category": "block",
+        "sounds": [
+          "pandaemonium1"
+        ]
     }
 }

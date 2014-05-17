@@ -44,6 +44,11 @@ public class Idlikeabite extends AbstractOre {
     }
 
     @Override
+    public int harvestLevelRequired() {
+        return 1;
+    }
+
+    @Override
 	public String getName() {
 		return "idlikeabite";
 	}

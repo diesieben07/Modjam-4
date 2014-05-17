@@ -254,4 +254,9 @@ public abstract class AbstractOre implements BadOre {
     public void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side) {
 
     }
+
+    @Override
+    public int harvestLevelRequired() {
+        return 2;
+    }
 }

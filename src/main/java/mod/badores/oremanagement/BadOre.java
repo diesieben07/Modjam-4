@@ -80,4 +80,6 @@ public interface BadOre {
 	boolean shouldSelectionRayTrace();
 
 	float getSmeltingXP();
+
+    int harvestLevelRequired();
 }
