@@ -1,13 +1,11 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.oremanagement.BlockInfo;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,8 +24,8 @@ public class Wantarite extends AbstractOre {
 	}
 
 	@Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
-		return Arrays.asList();
+	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+		// no drops
 	}
 
 	@Override

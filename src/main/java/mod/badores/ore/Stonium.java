@@ -1,11 +1,9 @@
 package mod.badores.ore;
 
-import mod.badores.oremanagement.BlockInfo;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +38,7 @@ public class Stonium extends AbstractOre {
     }
 
     @Override
-	public List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune) {
-		return Arrays.asList(new ItemStack(Blocks.stone));
+	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+		drops.add(new ItemStack(Blocks.stone));
 	}
 }

@@ -57,7 +57,7 @@ public interface BadOre {
 
 	String getArmorIconName(ArmorType type);
 
-	List<ItemStack> getDroppedItems(World world, int x, int y, int z, int meta, int fortune);
+	void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops);
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
 
