@@ -71,10 +71,10 @@ public class BlockBadOre extends BOBlock {
 	}
 
 	@Override
-	public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
-		super.onBlockHarvested(world, x, y, z, meta, player);
+	public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int metadata) {
+		super.harvestBlock(world, player, x, y, z, metadata);
 		// side is always server
-		getOre(meta).onHarvest(player, world, x, y, z, Side.SERVER);
+		getOre(metadata).onHarvest(player, world, x, y, z, Side.SERVER);
 	}
 
 	// evil hack, kids don't try this at home
