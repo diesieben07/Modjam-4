@@ -130,7 +130,7 @@ public class BadOres {
 		GameRegistry.registerItem(marmiteBread, "marmiteBread", MOD_ID);
 
         EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 64, 3, true);
-        EntityRegistry.registerModEntity(EntityNosleeptonite.class, "nosleeptonite", 0, this, 64, 3, true);
+        EntityRegistry.registerModEntity(EntityNosleeptonite.class, "nosleeptonite", 1, this, 64, 3, true);
 
 		proxy.preInit(event, config);
 		config.save();

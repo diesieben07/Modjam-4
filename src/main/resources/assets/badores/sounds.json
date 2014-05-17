@@ -8,16 +8,22 @@
             ]
     },
     "mob.fleesonsite.hit": {
-               "category": "neutral",
-               "sounds": [
-                 "fleesonsiteHurt"
-               ]
+           "category": "neutral",
+           "sounds": [
+             "fleesonsiteHurt"
+           ]
     },
     "mob.fleesonsite.death": {
-                    "category": "neutral",
-                    "sounds": [
-                      "fleesonsiteDeath"
-                    ]
+            "category": "neutral",
+            "sounds": [
+              "fleesonsiteDeath"
+            ]
+    },
+    "mob.nosleeptonite.death": {
+            "category": "neutral",
+            "sounds": [
+              "nosleeptoniteDeath"
+            ]
     },
     "pandaemonium.mine": {
         "category": "block",
