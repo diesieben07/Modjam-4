@@ -22,6 +22,11 @@ public class Marmite extends AbstractOre {
 	}
 
     @Override
+    public int harvestLevelRequired() {
+        return 1;
+    }
+
+    @Override
     protected int genMin(Random random, World world, int chunkX, int chunkZ) {
         return 64;
     }

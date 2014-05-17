@@ -162,4 +162,8 @@ public class BlockBadOre extends BOBlock {
 		return null;
 	}
 
+    @Override
+    public int getHarvestLevel(int metadata) {
+        return getOre(metadata).harvestLevelRequired();
+    }
 }
