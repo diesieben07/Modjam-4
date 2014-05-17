@@ -25,7 +25,7 @@ public class Copper extends AbstractOre {
 
 	@Override
 	public ArmorInfo getArmorInfo() {
-		return new ArmorInfo(100, new int[]{1, 3, 2, 1}, 15);
+		return new ArmorInfo(8, new int[]{1, 4, 3, 1}, 10);
 	}
 
 	@Override

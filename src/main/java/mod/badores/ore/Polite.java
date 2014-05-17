@@ -70,7 +70,7 @@ public class Polite extends AbstractOre {
 
     @Override
     public ArmorInfo getArmorInfo() {
-        return new ArmorInfo(100, new int[]{1, 3, 2, 1}, 15);
+        return new ArmorInfo(8, new int[]{2, 4, 3, 1}, 8);
     }
 
     @Override
