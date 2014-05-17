@@ -22,7 +22,8 @@
     "pandaemonium.mine": {
         "category": "block",
         "sounds": [
-          "pandaemonium1"
+          "pandaemonium1",
+          "pandaemonium2"
         ]
     }
 }
