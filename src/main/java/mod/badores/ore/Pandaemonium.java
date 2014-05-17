@@ -69,6 +69,19 @@ public class Pandaemonium extends AbstractOre {
                     setBlockSafe(world, MathHelper.floor_float(curX), MathHelper.floor_float(curY), MathHelper.floor_float(curZ), Blocks.netherrack, 0, 3);
                 }
             }
+
+            int fireRange = rand.nextInt(8);
+            float fireChance = rand.nextFloat() * rand.nextFloat();
+            for (int xP = -fireRange; xP <= fireRange; xP++)
+                for (int yP = -fireRange; yP <= fireRange; yP++)
+                    for (int zP = -fireRange; zP <= fireRange; zP++)
+                    {
+                        if (rand.nextFloat() < fireChance)
+                        {
+                            if (Blocks.fire.canPlaceBlockAt(world, x + xP, y + yP, z + zP))
+                                setBlockSafe(world, x + xP, y + yP, z + zP, Blocks.fire, 0, 3);
+                        }
+                    }
         }
     }
 
