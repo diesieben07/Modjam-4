@@ -1,9 +1,13 @@
 package mod.badores.ore;
 
 import mod.badores.items.BOOreProduct;
+import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.OreForm;
+import mod.badores.oremanagement.OreSubName;
 import mod.badores.oremanagement.ToolInfo;
+import mod.badores.util.I18n;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 /**
@@ -19,6 +23,20 @@ public class Lookslikediamondium extends AbstractOre {
 	@Override
 	public boolean hasIngot() {
 		return true;
+	}
+
+	@Override
+	public String getDisplayName() {
+		return I18n.translate(Blocks.diamond_ore.getUnlocalizedName() + ".name");
+	}
+
+	@Override
+	public String getDisplayName(OreSubName name) {
+		if (name instanceof ItemBOIngot) {
+			return I18n.translate(Items.diamond.getUnlocalizedName() + ".name");
+		} else {
+			return super.getDisplayName(name);
+		}
 	}
 
 	@Override
