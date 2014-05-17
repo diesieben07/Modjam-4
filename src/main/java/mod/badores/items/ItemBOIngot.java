@@ -112,4 +112,8 @@ public class ItemBOIngot extends BOItem implements OreSubName {
 		AbstractOre.invokeInventoryTick(getOre(stack), OreForm.INGOT, stack, slot, world, player);
 	}
 
+    @Override
+    public int getItemStackLimit(ItemStack stack) {
+        return getOre(stack).ingotStackSize();
+    }
 }

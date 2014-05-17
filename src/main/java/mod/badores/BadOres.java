@@ -115,7 +115,8 @@ public class BadOres {
         oreManager.registerOre(new Paintitwhite());
 		oreManager.registerOre(new Iwontfite());
 		oreManager.registerOre(new Lookslikediamondium());
-		oreManager.registerOre(new Tauntum());
+        oreManager.registerOre(new Tauntum());
+        oreManager.registerOre(new Kakkarite());
 
 
 		ingot = new ItemBOIngot();
