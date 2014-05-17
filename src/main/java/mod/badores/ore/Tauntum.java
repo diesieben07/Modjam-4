@@ -1,7 +1,6 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.oremanagement.*;
 import mod.badores.util.JavaUtils;
 import net.minecraft.entity.*;
 import net.minecraft.world.World;
@@ -56,8 +55,8 @@ public class Tauntum extends AbstractOre {
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
-		super.tick(world, x, y, z, blockInfo, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side) {
+		super.tick(world, x, y, z, random, side);
 
 		if (side.isServer()) {
 			playRandomSound(world, x, y, z, random);

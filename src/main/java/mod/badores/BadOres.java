@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.entities.EntityFleeingBlock;
+import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.event.BOEventHandler;
 import mod.badores.event.TickEvents;
 import mod.badores.items.ItemBOIngot;
@@ -118,7 +119,7 @@ public class BadOres {
         oreManager.registerOre(new Tauntum());
         oreManager.registerOre(new Kakkarite());
         oreManager.registerOre(new Pandaemonium());
-
+        oreManager.registerOre(new Nosleeptonite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
@@ -128,7 +129,8 @@ public class BadOres {
 		marmiteBread = new ItemFood(6, 0.8F, false).setUnlocalizedName("marmiteBread").setTextureName(MOD_ID + ":marmiteBread");
 		GameRegistry.registerItem(marmiteBread, "marmiteBread", MOD_ID);
 
-		EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 64, 3, true);
+        EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 64, 3, true);
+        EntityRegistry.registerModEntity(EntityNosleeptonite.class, "nosleeptonite", 0, this, 64, 3, true);
 
 		proxy.preInit(event, config);
 		config.save();

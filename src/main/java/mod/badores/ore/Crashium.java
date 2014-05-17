@@ -6,7 +6,6 @@ import mod.badores.event.TickEvents;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,7 +24,7 @@ public class Crashium extends AbstractOre {
 	}
 
 	@Override
-	public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Block block, Side side) {
+	public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side) {
 		doCrash(player, side);
 	}
 

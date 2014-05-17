@@ -120,6 +120,7 @@ badores.lookslikediamondium=Diamond
 badores.tauntum=Tauntum
 badores.kakkarite=Kakkarite
 badores.pandaemonium=Pandaemonium
+badores.nosleeptonite=Nosleeptonite
 
 badores.website=Website
 badores.website.fail=Oops, failed to open a website!
@@ -137,6 +138,7 @@ badores.leggings=%s Leggings
 badores.boots=%s Boots
 
 entity.badores.fleeingBlock.name=Fleeing Block
+entity.badores.nosleeptonite.name=Nosleeptonite
 
 death.attack.badores.wannafite=%1$s wants to fite!
 death.attack.badores.killium=%1$s mined the wrong ore!

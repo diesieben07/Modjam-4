@@ -129,7 +129,7 @@ public class BlockBadOre extends BOBlock {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random random) {
 		BadOre ore = getOre(world.getBlockMetadata(x, y, z));
-		ore.tick(world, x, y, z, BadOres.oreManager.getBlockInfo(ore), random, Sides.logical(world));
+		ore.tick(world, x, y, z, random, Sides.logical(world));
 	}
 
 	@Override

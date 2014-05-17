@@ -32,9 +32,13 @@ public abstract class AbstractOre implements BadOre {
 
 	protected final Random rand = new Random();
 
+    public BlockInfo blockInfo() {
+        return BadOres.oreManager.getBlockInfo(this);
+    }
+
 	public static void invokeOnMine(BadOre ore, ToolType type, EntityLivingBase living, Block block, World world, int x, int y, int z) {
 		if (living instanceof EntityPlayer) {
-			ore.onToolMine(type, ((EntityPlayer) living), world, x, y, z, block, Sides.logical(world));
+			ore.onToolMine(type, ((EntityPlayer) living), world, x, y, z, Sides.logical(world));
 		}
 	}
 
@@ -218,10 +222,10 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
+	public void tick(World world, int x, int y, int z, Random random, Side side) {
 		int tickRate = initialTickRate();
 		if (tickRate >= 0)
-			world.scheduleBlockUpdate(x, y, z, blockInfo.block, tickRate);
+			world.scheduleBlockUpdate(x, y, z, blockInfo().block, tickRate);
 	}
 
 	@Override
@@ -240,7 +244,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Block block, Side side) { }
+	public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side) { }
 
 	@Override
 	public void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side) { }

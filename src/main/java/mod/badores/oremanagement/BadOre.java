@@ -2,7 +2,6 @@ package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.items.BOOreProduct;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +40,7 @@ public interface BadOre {
 
 	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
 
-	void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Block block, Side side);
+	void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side);
 
 	void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side);
 
@@ -71,7 +70,7 @@ public interface BadOre {
 
 	int initialTickRate();
 
-	void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side);
+	void tick(World world, int x, int y, int z, Random random, Side side);
 
 	float getHardness(World world, int x, int y, int z);
 
