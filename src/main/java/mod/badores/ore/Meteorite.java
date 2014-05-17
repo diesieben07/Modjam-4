@@ -35,6 +35,7 @@ public class Meteorite extends AbstractOre {
 		}
 	}
 
+
 	@Override
 	protected int genMin(Random random, World world, int chunkX, int chunkZ) {
 		return 90;
