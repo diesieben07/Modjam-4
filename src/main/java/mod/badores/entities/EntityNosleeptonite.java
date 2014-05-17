@@ -54,7 +54,7 @@ public class EntityNosleeptonite extends EntityMob {
 		super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
 	}
 

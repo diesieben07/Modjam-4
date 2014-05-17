@@ -10,6 +10,7 @@ package mod.badores.client.rendering;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelNoSleepTonite extends ModelBase {
     //fields
@@ -109,5 +110,21 @@ public class ModelNoSleepTonite extends ModelBase {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        super.setRotationAngles(par1, par2, par3, par4, par5, par6, par7Entity);
+
+        mouthbottom.rotateAngleX = MathHelper.cos(par1 * 0.04F) * 50.0F * par2;
+        mouthtop.rotateAngleX = -mouthbottom.rotateAngleX;
+        bottom.rotateAngleX = mouthbottom.rotateAngleX;
+        teethbottom1.rotateAngleX = mouthbottom.rotateAngleX;
+        teethbottom2.rotateAngleX = mouthbottom.rotateAngleX;
+        teethbottom3.rotateAngleX = mouthbottom.rotateAngleX;
+        top.rotateAngleX = mouthtop.rotateAngleX;
+        teethtop1.rotateAngleX = mouthtop.rotateAngleX;
+        teethtop2.rotateAngleX = mouthtop.rotateAngleX;
+        teethtop3.rotateAngleX = mouthtop.rotateAngleX;
     }
 }

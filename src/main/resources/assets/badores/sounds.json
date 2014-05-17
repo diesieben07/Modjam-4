@@ -25,6 +25,24 @@
               "nosleeptoniteDeath"
             ]
     },
+    "mob.nosleeptonite.hit": {
+            "category": "neutral",
+            "sounds": [
+              "nosleeptoniteHurt"
+            ]
+    },
+    "mob.nosleeptonite.say": {
+            "category": "neutral",
+            "sounds": [
+              "nosleeptoniteIdle"
+            ]
+    },
+    "nosleeptonite.idle": {
+            "category": "neutral",
+            "sounds": [
+              {name: "nosleeptonite1", "stream": true}
+            ]
+    },
     "pandaemonium.mine": {
         "category": "block",
         "sounds": [

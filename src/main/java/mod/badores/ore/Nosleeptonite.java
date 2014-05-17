@@ -28,7 +28,7 @@ public class Nosleeptonite extends AbstractOre {
 
     @Override
     public int initialTickRate() {
-        return 1000;
+        return 10;
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Nosleeptonite extends AbstractOre {
 		super.tick(world, x, y, z, random, side);
 
         if (side.isServer() && rand.nextInt(10) == 0) {
+            world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":nosleeptonite.idle", 1.0f, 1.0f);
         }
 	}
 
