@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.BlockInfo;
+import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -22,6 +23,12 @@ import java.util.Random;
  * @author diesieben07
  */
 public class Pandaemonium extends AbstractOre {
+
+    public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits)
+    {
+        if (world.getBlock(x, y, z).getBlockHardness(world, x, y, z) >= 0f)
+            world.setBlock(x, y, z, block, meta, notifyBits);
+    }
 
     @Override
     public int initialTickRate() {
@@ -58,7 +65,7 @@ public class Pandaemonium extends AbstractOre {
                     float curY = y + 0.5f + yP * iteration;
                     float curZ = z + 0.5f + zP * iteration;
 
-                    world.setBlock(MathHelper.floor_float(curX), MathHelper.floor_float(curY), MathHelper.floor_float(curZ), Blocks.netherrack);
+                    setBlockSafe(world, MathHelper.floor_float(curX), MathHelper.floor_float(curY), MathHelper.floor_float(curZ), Blocks.netherrack, 0, 3);
                 }
             }
         }
@@ -78,6 +85,16 @@ public class Pandaemonium extends AbstractOre {
 
     private List<Item> getAllItems() {
         return Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
+    }
+
+    @Override
+    protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+        return 0;
+    }
+
+    @Override
+    protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+        return 10;
     }
 
     @Override
