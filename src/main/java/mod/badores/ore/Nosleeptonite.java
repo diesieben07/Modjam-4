@@ -28,7 +28,7 @@ public class Nosleeptonite extends AbstractOre {
 
     @Override
     public int initialTickRate() {
-        return 10;
+        return 1000;
     }
 
     @Override
