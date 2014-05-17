@@ -49,6 +49,11 @@ public class Idlikeabite extends AbstractOre {
     }
 
     @Override
+    public String toolRequired() {
+        return "shovel";
+    }
+
+    @Override
 	public String getName() {
 		return "idlikeabite";
 	}

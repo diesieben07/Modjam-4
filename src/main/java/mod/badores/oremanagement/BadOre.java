@@ -82,4 +82,6 @@ public interface BadOre {
 	float getSmeltingXP();
 
     int harvestLevelRequired();
+
+    String toolRequired();
 }
