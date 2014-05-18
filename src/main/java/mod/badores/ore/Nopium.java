@@ -31,8 +31,7 @@ public class Nopium extends AbstractOre {
 
 	@Override
 	public ToolInfo getToolInfo() {
-		// TODO ?
-		return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
+		return new ToolInfo(2, 800, 0.5F, 1.0F, 0);
 	}
 
 	@Override

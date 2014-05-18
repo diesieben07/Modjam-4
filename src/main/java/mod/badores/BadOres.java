@@ -77,7 +77,7 @@ public class BadOres {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 
-		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
+		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true);
 
 		oreManager = new OreManager();
 
