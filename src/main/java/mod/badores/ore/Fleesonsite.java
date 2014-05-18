@@ -20,42 +20,45 @@ import java.util.Random;
 public class Fleesonsite extends AbstractOre {
 
     @Override
-    public boolean canTick() {
-        return true;
+    public boolean canTick(boolean isIngotBlock) {
+        return !isIngotBlock;
     }
 
     @Override
 	public int initialTickRate(boolean isIngotBlock) {
-		return 40;
+		return isIngotBlock ? -1 : 40;
 	}
 
 	@Override
 	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
 		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
-        EntityPlayer player = world.getClosestPlayer(x + 0.5, y + 0.5, z + 0.5, 6.0);
-		if (player != null) {
-            BlockInfo blockInfo = blockInfo();
-			world.setBlockToAir(x, y, z);
-			EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
-			fleeingBlock.setPosition(x + 0.5, y, z + 0.5);
-            fleeingBlock.setRevengeTarget(player);
-            fleeingBlock.setTarget(player);
-            world.spawnEntityInWorld(fleeingBlock);
-			fleeingBlock.playLivingSound();
-		}
+        if (!isIngotBlock) {
+            EntityPlayer player = world.getClosestPlayer(x + 0.5, y + 0.5, z + 0.5, 6.0);
+            if (player != null) {
+                BlockInfo blockInfo = blockInfo();
+                world.setBlockToAir(x, y, z);
+                EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
+                fleeingBlock.setPosition(x + 0.5, y, z + 0.5);
+                fleeingBlock.setRevengeTarget(player);
+                fleeingBlock.setTarget(player);
+                world.spawnEntityInWorld(fleeingBlock);
+                fleeingBlock.playLivingSound();
+            }
+        }
 	}
 
 	@Override
 	public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
-		if (side.isServer()) {
+		if (side.isServer() && !(form == OreForm.INGOT_BLOCK || form == OreForm.INGOT)) {
 			jumpRandomly(player.inventory, slot, stack);
 		}
 	}
 
 	@Override
 	public void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack) {
-		jumpRandomly(slot.inventory, slot.getSlotIndex(), stack);
+		if (!(form == OreForm.INGOT_BLOCK || form == OreForm.INGOT))
+            jumpRandomly(slot.inventory, slot.getSlotIndex(), stack);
 	}
 
 	private void jumpRandomly(IInventory inv, int slot, ItemStack stack) {
@@ -74,7 +77,12 @@ public class Fleesonsite extends AbstractOre {
 		}
 	}
 
-	@Override
+    @Override
+    public boolean hasIngot() {
+        return true;
+    }
+
+    @Override
 	public String getName() {
 		return "fleesonsite";
 	}

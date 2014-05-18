@@ -73,7 +73,7 @@ public interface BadOre extends OreBookPage {
 
 	int lightLevel(boolean isIngotBlock);
 
-    boolean canTick();
+    boolean canTick(boolean isIngotBlock);
 
 	int initialTickRate(boolean isIngotBlock);
 

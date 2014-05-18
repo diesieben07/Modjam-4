@@ -32,7 +32,7 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-    public boolean canTick() {
+    public boolean canTick(boolean isIngotBlock) {
         return true;
     }
 

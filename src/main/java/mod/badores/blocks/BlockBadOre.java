@@ -217,18 +217,18 @@ public class BlockBadOre extends BOBlock implements ITileEntityProvider {
         return getOre(metadata).harvestLevelRequired(isIngotBlock(metadata));
     }
 
-    public boolean needsTE(BadOre ore) {
-        return ore.canTick();
+    public boolean needsTE(int meta) {
+        return getOre(meta).canTick(isIngotBlock(meta));
     }
 
     @Override
     public boolean hasTileEntity(int metadata) {
-        return needsTE(getOre(metadata));
+        return needsTE(metadata);
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        if (needsTE(getOre(meta)))
+        if (needsTE(meta))
             return new TileEntityBadOre();
 
         return null;

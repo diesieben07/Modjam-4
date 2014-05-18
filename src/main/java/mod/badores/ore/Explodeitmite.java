@@ -18,7 +18,7 @@ public class Explodeitmite extends AbstractOre {
 	}
 
     @Override
-    public boolean canTick() {
+    public boolean canTick(boolean isIngotBlock) {
         return true;
     }
 

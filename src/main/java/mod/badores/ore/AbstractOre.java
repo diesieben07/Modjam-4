@@ -237,7 +237,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
     @Override
-    public boolean canTick() {
+    public boolean canTick(boolean isIngotBlock) {
         return false;
     }
 
