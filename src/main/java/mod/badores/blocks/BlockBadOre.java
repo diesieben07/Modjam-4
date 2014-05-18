@@ -151,7 +151,7 @@ public class BlockBadOre extends BOBlock {
 			if (ore != null) {
 				oreIcons[i] = iconRegister.registerIcon(ore.getIconName());
 				if (ore.hasIngot() && ore.hasIngotBlock()) {
-					ingotBlockIcons[i] = iconRegister.registerIcon(BadOres.MOD_ID + ":" + ore.getName() + ".ingotBlock");
+					ingotBlockIcons[i] = iconRegister.registerIcon(ore.getIngotBlockIcon());
 				}
 			}
 		}
