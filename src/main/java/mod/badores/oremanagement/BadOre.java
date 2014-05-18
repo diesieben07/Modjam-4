@@ -98,4 +98,6 @@ public interface BadOre extends OreBookPage {
 
     String toolRequired(boolean isIngotBlock);
 
+	boolean requiredForAll();
+
 }

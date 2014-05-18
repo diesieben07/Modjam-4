@@ -16,4 +16,9 @@ public class Unobtainium extends AbstractOre {
 	public String getName() {
 		return "unobtainium";
 	}
+
+	@Override
+	public boolean requiredForAll() {
+		return false;
+	}
 }

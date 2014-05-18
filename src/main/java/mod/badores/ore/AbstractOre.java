@@ -2,6 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.blocks.BlockTickProvider;
 import mod.badores.items.BOOreProduct;
@@ -18,11 +19,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
@@ -33,9 +38,45 @@ import java.util.Random;
  */
 public abstract class AbstractOre implements BadOre {
 
+	private static final String NBT_KEY = "badores.oreCollect";
 	protected final Random rand = new Random();
 
-    public BlockInfo blockInfo() {
+	public static void triggerHarvestAchievement(EntityPlayer player, BadOre ore) {
+		String toAdd = ore.getName();
+
+		NBTTagCompound data = player.getEntityData();
+		NBTTagCompound persisted;
+		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
+				data.setTag(EntityPlayer.PERSISTED_NBT_TAG, (persisted = new NBTTagCompound()));
+		} else {
+			persisted = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		}
+
+		NBTTagList list;
+		if (!persisted.hasKey(NBT_KEY)) {
+			persisted.setTag(NBT_KEY, (list = new NBTTagList()));
+		} else {
+			list = persisted.getTagList(NBT_KEY, Constants.NBT.TAG_STRING);
+		}
+
+		boolean add = true;
+		for (int i = 0, len = list.tagCount(); i < len; ++i) {
+			String oreName = list.getStringTagAt(i);
+			if (oreName.equals(toAdd)) {
+				add = false;
+				break;
+			}
+		}
+		if (add) {
+			list.appendTag(new NBTTagString(toAdd));
+		}
+
+		if (list.tagCount() == BadOres.oreManager.getRequiredCount()) {
+			player.triggerAchievement(BOAchievementList.allOres);
+		}
+	}
+
+	public BlockInfo blockInfo() {
         return BadOres.oreManager.getBlockInfo(this);
     }
 
@@ -308,5 +349,10 @@ public abstract class AbstractOre implements BadOre {
 	@Override
 	public String getDescriptionText() {
 		return I18n.translate("badores." + getName() + ".description");
+	}
+
+	@Override
+	public boolean requiredForAll() {
+		return true;
 	}
 }
