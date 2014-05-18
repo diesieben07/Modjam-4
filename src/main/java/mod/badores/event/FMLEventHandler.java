@@ -7,17 +7,17 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import mod.badores.BadOres;
 import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
-import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.items.BadOreItem;
 import mod.badores.items.ItemBOIngot;
 import net.minecraft.client.Minecraft;
+import mod.badores.items.ItemBlockBadOre;
+import mod.badores.ore.Shiftium;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.Iterator;
 import java.util.List;
@@ -107,8 +107,15 @@ public enum FMLEventHandler {
     @SubscribeEvent
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
         ItemStack barelyGeneriteBO = BlockBadOre.createOre(BadOres.oreManager.getOreByName("barelyGenerite"));
-        if (barelyGeneriteBO.isItemEqual(event.pickedUp.getEntityItem()))
+	    ItemStack stack = event.pickedUp.getEntityItem();
+	    if (barelyGeneriteBO.isItemEqual(stack))
             event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
+
+	    if (stack.getItem() instanceof ItemBlockBadOre) {
+		    if (((BlockBadOre) ((ItemBlockBadOre) stack.getItem()).field_150939_a).getOre(stack) instanceof Shiftium) {
+			    event.player.triggerAchievement(BOAchievementList.getShiftium);
+		    }
+	    }
     }
 
     @SubscribeEvent

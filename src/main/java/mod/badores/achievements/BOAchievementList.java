@@ -20,6 +20,7 @@ public class BOAchievementList {
     public static Achievement killedNosleeptonite;
 	public static Achievement allOres;
     public static Achievement minedKillium;
+	public static Achievement getShiftium;
     public static Achievement madeMarmiteBread;
     public static Achievement minedZombieunite;
     public static Achievement smeltedFleesonsite;
@@ -46,8 +47,9 @@ public class BOAchievementList {
         madeMarmiteBread = new Achievement("achievement.madeMarmiteBread", "madeMarmiteBread", 6, 1, new ItemStack(BadOres.marmiteBread), null).registerStat();
         minedZombieunite = new Achievement("achievement.minedZombieunite", "minedZombieunite", 1, 4, getOreStack("zombieunite"), null).registerStat();
         smeltedFleesonsite = new Achievement("achievement.smeltedFleesonsite", "smeltedFleesonsite", -2, 1, getIngotStack("fleesonsite"), null).registerStat();
+	    getShiftium = new Achievement("achievement.getShifitium", "getShiftium", -4, 1, getOreStack("shiftium"), null).registerStat();
 
-	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite, smeltedFleesonsite);
+	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite, smeltedFleesonsite, getShiftium);
 	    AchievementPage.registerAchievementPage(page);
     }
 }
