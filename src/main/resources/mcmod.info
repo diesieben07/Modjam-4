@@ -1,11 +1,11 @@
 [
 {
   "modid": "badores",
-  "name": "Crappy Ores (?)",
+  "name": "Bad Ores",
   "description": "Adding tons of Ores, potentially maybe not useful.",
   "version": "",
   "credits": "",
-  "logoFile": "/gfx/buildcraft/logo.png",
+  "logoFile": "",
   "mcversion": "",
   "url":  "",
   "updateUrl": "",
