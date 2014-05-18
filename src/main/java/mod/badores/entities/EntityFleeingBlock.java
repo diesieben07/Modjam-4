@@ -24,6 +24,8 @@ public class EntityFleeingBlock extends EntityCreature {
 	public EntityFleeingBlock(World par1World) {
 		super(par1World);
 
+        experienceValue = 0;
+
 		setSize(1.0f, 1.0f);
         this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.33D));
