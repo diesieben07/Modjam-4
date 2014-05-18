@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.BlockTicker;
 import mod.badores.items.ItemBlockBadOre;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
