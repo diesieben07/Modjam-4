@@ -51,6 +51,7 @@ public class Nopium extends AbstractOre {
 
 	private void dropRandomly(ItemStack stack, int slot, EntityPlayer player, Side side) {
 		if (side.isServer() && rand.nextInt(200) == 0) {
+			player.func_146097_a(stack, false, true);
 			player.inventory.setInventorySlotContents(slot, null);
 		}
 	}
