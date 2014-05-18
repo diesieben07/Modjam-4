@@ -87,4 +87,6 @@ public interface BadOre {
     int harvestLevelRequired();
 
     String toolRequired();
+
+	String getDescriptionText();
 }

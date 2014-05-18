@@ -271,4 +271,8 @@ public abstract class AbstractOre implements BadOre {
         return "pickaxe";
     }
 
+	@Override
+	public String getDescriptionText() {
+		return "This ore is missing a description! Please add it! :( Lorem Ipsum dolor sit amet.";
+	}
 }

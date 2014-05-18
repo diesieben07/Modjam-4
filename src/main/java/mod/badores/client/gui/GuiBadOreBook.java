@@ -80,6 +80,7 @@ public class GuiBadOreBook extends GuiScreen {
 		itemRender.renderItemAndEffectIntoGUI(fontRendererObj, mc.renderEngine, stack, bookXStart + 40, 14);
 
 		fontRendererObj.drawString("§n" + ore.getDisplayName(), bookXStart + 40 + 4 + 16, 17, 0x000000);
+		fontRendererObj.drawSplitString(ore.getDescriptionText(), bookXStart + 40, 17 + 15, 115, 0x000000);
 
 		super.drawScreen(mouseX, mouseY, renderPartials);
 	}
