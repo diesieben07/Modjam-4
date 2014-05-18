@@ -7,7 +7,10 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.BlockTicker;
+import mod.badores.achievements.BOAchievementList;
+import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.BadOreItem;
+import mod.badores.oremanagement.BlockInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -99,6 +102,13 @@ public enum FMLEventHandler {
 			}
 		}
 	}
+
+    @SubscribeEvent
+    public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
+        ItemStack barelyGeneritesBI = BlockBadOre.createIngotBlock(BadOres.oreManager.getOreByName("barelyGenerites"));
+        if (barelyGeneritesBI.isItemEqual(event.crafting))
+            event.player.triggerAchievement(BOAchievementList.buildBarelyGeneritesBlock);
+    }
 
 	private class Task {
 
