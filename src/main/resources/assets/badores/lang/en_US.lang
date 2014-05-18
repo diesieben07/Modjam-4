@@ -50,6 +50,7 @@ badores.polite.tool.7=Thanks for letting me mine this block!
 badores.polite.tool.8=Thank you for your continued use!
 
 badores.crashium=Crashium
+badores.crashium.description=This ore has ascended to a higher form of existence. Our trivial matters concern it not, and it has dedicated itself to solving the problems of anti-determinism in the abstract varidimensional multiverse. Good luck simulating that in Minecraft.
 badores.crashium.nocrash.count=5
 badores.crashium.nocrash.0=Poof!
 badores.crashium.nocrash.1=Brzzz...
@@ -80,6 +81,7 @@ badores.crashium.crash.9=Hiding Herobrine...
 badores.crashium.crash.10=Swapping out Flux Capacitor...
 
 badores.misleadium=Misleadium
+badores.misleadium.description=This mineral has widely been reported to give false information to the miner to get spared from harm. The name is misleading, though. While you think the information to be wrong, the item does exist - until you look.
 badores.misleadium.baseMessage.count=7
 badores.misleadium.baseMessage.0=There is some %s at %sx, %sy, %sz!
 badores.misleadium.baseMessage.1=Go to %2$sx, %3$sy, %4$sz and you will find %1$s!
@@ -90,12 +92,11 @@ badores.misleadium.baseMessage.5=Please don't smelt me! Get the %s at %sx, %sy, 
 badores.misleadium.baseMessage.6=How about you go to %2$sx, %3$sy, %4$sz? There is %1$s there!!
 
 badores.wannafite=Wannafite
-badores.wannafite.description=Looking just like a regular ore on first sight and totally harmless Wannafite can become a real danger while mining. Making tools from this Ore is possible but not recommended.
-
-
+badores.wannafite.description=This ore seems to be reluctant to be hit in the head with a pickaxe, thrown into the hot fires of a furnace, and then repeatedly being hammered down into the shape of a tool. It has learned to fight back.
 badores.breakium=Breakium
+badores.breakium.description=Theoretically, Breakium is just a normal ore that is found below the surface. However, past mining experiments have revealed it to be cursed - All pickaxes get a broken shaft, a crack in the metal, or just straight-up disappear when mining. Handle with care.
 badores.stonium=Stonium
-badores.stonium=Stonium
+badores.stonium.description=What are you looking this up for. It's just stone. What, are you expecting every rock to look exactly the same?
 badores.crappium=Crappium
 badores.enderite=Enderite
 badores.lite=Lite
