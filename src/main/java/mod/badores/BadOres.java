@@ -157,6 +157,9 @@ public class BadOres {
 		ItemStack marmiteIngot = new ItemStack(ingot);
 		ItemBOIngot.setOre(marmiteIngot, oreManager.getOreByName("marmite"));
 		GameRegistry.addShapelessRecipe(new ItemStack(marmiteBread), Items.bread, marmiteIngot);
+
+        ItemStack explodeitmiteOre = oreManager.getBlockInfo(oreManager.getOreByName("explodeitmite")).asStack();
+        GameRegistry.addSmelting(explodeitmiteOre, new ItemStack(Items.gunpowder), 2);
 	}
 
 	@Mod.EventHandler
