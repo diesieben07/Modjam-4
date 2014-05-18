@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.achievements.BOAchievementList;
 import mod.badores.oremanagement.OreForm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,8 +17,11 @@ public class Killium extends AbstractOre {
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (rand.nextInt(5) == 0)
-			kill(miner);
+		if (rand.nextInt(5) == 0) {
+            kill(miner);
+        } else {
+            miner.triggerAchievement(BOAchievementList.minedKillium);
+        }
 	}
 
 	private void kill(EntityPlayer miner) {
