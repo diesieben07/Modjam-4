@@ -7,9 +7,14 @@ import java.util.Random;
 /**
  * @author diesieben07
  */
-public class IncrediblyRarium extends AbstractOre {
+public class BarelyGenerites extends AbstractOre {
 
-	@Override
+    @Override
+    public boolean hasIngot() {
+        return true;
+    }
+
+    @Override
 	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
 		return r.nextInt(10000) == 0 ? 1 : 0;
 	}
@@ -21,6 +26,6 @@ public class IncrediblyRarium extends AbstractOre {
 
 	@Override
 	public String getName() {
-		return "incrediblyRarium";
+		return "barelyGenerites";
 	}
 }
