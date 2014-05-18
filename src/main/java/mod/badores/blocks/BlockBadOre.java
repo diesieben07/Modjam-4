@@ -120,7 +120,7 @@ public class BlockBadOre extends BOBlock {
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		dropMeta = metadata;
 		ArrayList<ItemStack> result = Lists.newArrayList();
-		getOre(metadata).addDroppedItems(world, x, y, z, metadata, fortune, result, isIngotBlock(metadata));
+		getOre(metadata).addDrops(world, x, y, z, metadata, fortune, result, isIngotBlock(metadata));
 		return result;
 	}
 

@@ -29,7 +29,7 @@ public class Polite extends AbstractOre {
 
     @Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (side.isServer()) {
+		if (!isIngotBlock && side.isServer()) {
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.mined"), (EntityPlayerMP) miner);
 		}
 	}
