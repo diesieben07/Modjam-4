@@ -121,6 +121,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
+	public String getIngotBlockIcon() {
+		return BadOres.MOD_ID + ":" + getName() + ".ingotBlock";
+	}
+
+	@Override
 	public String getDisplayName() {
 		return I18n.translateBO(getName());
 	}

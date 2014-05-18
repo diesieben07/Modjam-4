@@ -70,6 +70,11 @@ public class Lookslikediamondium extends AbstractOre {
 	}
 
 	@Override
+	public String getIngotBlockIcon() {
+		return "minecraft:diamond_block";
+	}
+
+	@Override
 	public void postProcessItem(BOOreProduct item, OreForm form) {
 		switch (form) {
 			case AXE:
