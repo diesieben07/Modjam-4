@@ -90,6 +90,9 @@ badores.misleadium.baseMessage.5=Please don't smelt me! Get the %s at %sx, %sy, 
 badores.misleadium.baseMessage.6=How about you go to %2$sx, %3$sy, %4$sz? There is %1$s there!!
 
 badores.wannafite=Wannafite
+badores.wannafite.description=Looking just like a regular ore on first sight and totally harmless Wannafite can become a real danger while mining. Making tools from this Ore is possible but not recommended.
+
+
 badores.breakium=Breakium
 badores.stonium=Stonium
 badores.stonium=Stonium
