@@ -45,7 +45,17 @@ public class Paintitwhite extends AbstractOre {
     }
 
     @Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+    protected int veinSize() {
+        return 5;
+    }
+
+    @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return 2 + r.nextInt(5);
+    }
+
+    @Override
+	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		drops.add(new ItemStack(Items.dye, 1, 15));
 	}
 }

@@ -2,11 +2,29 @@ package mod.badores.ore;
 
 import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ToolInfo;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * @author diesieben07
  */
 public class Copper extends AbstractOre {
+
+    @Override
+    protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+        return 20;
+    }
+
+    @Override
+    protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+        return 100;
+    }
+
+    @Override
+    protected int veinSize() {
+        return 7;
+    }
 
     @Override
     public boolean hasIngot() {

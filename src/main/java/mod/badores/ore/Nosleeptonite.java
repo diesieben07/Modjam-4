@@ -27,6 +27,16 @@ public class Nosleeptonite extends AbstractOre {
     }
 
     @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(40) == 0 ? 1 : 0;
+    }
+
+    @Override
+    protected int veinSize() {
+        return 1;
+    }
+
+    @Override
     public int initialTickRate(boolean isIngotBlock) {
         return 1000;
     }

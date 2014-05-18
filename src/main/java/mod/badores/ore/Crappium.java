@@ -2,13 +2,36 @@ package mod.badores.ore;
 
 import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ToolInfo;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * @author diesieben07
  */
 public class Crappium extends AbstractOre {
 
-	@Override
+    @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(8);
+    }
+
+    @Override
+    protected int genMin(Random random, World world, int chunkX, int chunkZ) {
+        return 40;
+    }
+
+    @Override
+    protected int genMax(Random random, World world, int chunkX, int chunkZ) {
+        return 120;
+    }
+
+    @Override
+    protected int veinSize() {
+        return 8;
+    }
+
+    @Override
 	public boolean hasIngot() {
 		return true;
 	}

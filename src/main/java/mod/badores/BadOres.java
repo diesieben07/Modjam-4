@@ -160,6 +160,9 @@ public class BadOres {
 
         ItemStack explodeitmiteOre = oreManager.getBlockInfo(oreManager.getOreByName("explodeitmite")).asStack();
         GameRegistry.addSmelting(explodeitmiteOre, new ItemStack(Items.gunpowder), 2);
+
+        ItemStack liteOre = oreManager.getBlockInfo(oreManager.getOreByName("lite")).asStack();
+        GameRegistry.addSmelting(liteOre, new ItemStack(Items.glowstone_dust), 2);
 	}
 
 	@Mod.EventHandler
