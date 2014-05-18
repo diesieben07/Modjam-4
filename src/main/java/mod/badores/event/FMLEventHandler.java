@@ -9,6 +9,7 @@ import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.items.BadOreItem;
+import mod.badores.items.ItemBOIngot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -108,6 +109,13 @@ public enum FMLEventHandler {
         ItemStack barelyGeneriteBO = BlockBadOre.createOre(BadOres.oreManager.getOreByName("barelyGenerite"));
         if (barelyGeneriteBO.isItemEqual(event.pickedUp.getEntityItem()))
             event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
+    }
+
+    @SubscribeEvent
+    public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
+        ItemStack fleesonsiteIngotStack = ItemBOIngot.createIngot(BadOres.oreManager.getOreByName("fleesonsite"));
+        if (fleesonsiteIngotStack.isItemEqual(event.smelting))
+            event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
     }
 
 	private class Task {

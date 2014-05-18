@@ -2,6 +2,7 @@ package mod.badores.achievements;
 
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
+import mod.badores.items.ItemBOIngot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -21,6 +22,11 @@ public class BOAchievementList {
     public static Achievement minedKillium;
     public static Achievement madeMarmiteBread;
     public static Achievement minedZombieunite;
+    public static Achievement smeltedFleesonsite;
+
+    private static ItemStack getIngotStack(String oreID) {
+        return ItemBOIngot.createIngot(BadOres.oreManager.getOreByName(oreID));
+    }
 
     private static ItemStack getOreStack(String oreID) {
         return BadOres.oreManager.getBlockInfo(BadOres.oreManager.getOreByName(oreID)).asStack();
@@ -38,9 +44,10 @@ public class BOAchievementList {
 	    allOres = new Achievement("achievement.allBadOres", "allBadOres", 4, 4, new ItemStack(BadOres.badOreBook), null).registerStat();
         minedKillium = new Achievement("achievement.minedKillium", "minedKillium", 4, -1, getOreStack("killium"), null).registerStat();
         madeMarmiteBread = new Achievement("achievement.madeMarmiteBread", "madeMarmiteBread", 6, 1, new ItemStack(BadOres.marmiteBread), null).registerStat();
-        minedZombieunite = new Achievement("achievement.minedZombieunite", "minedZombieunite", 6, 6, getOreStack("zombieunite"), null).registerStat();
+        minedZombieunite = new Achievement("achievement.minedZombieunite", "minedZombieunite", 1, 4, getOreStack("zombieunite"), null).registerStat();
+        smeltedFleesonsite = new Achievement("achievement.smeltedFleesonsite", "smeltedFleesonsite", -2, 1, getIngotStack("fleesonsite"), null).registerStat();
 
-	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite);
+	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite, smeltedFleesonsite);
 	    AchievementPage.registerAchievementPage(page);
     }
 }
