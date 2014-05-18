@@ -4,11 +4,14 @@ import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
 
 /**
  * Created by Lukas Tenbrink on 18.05.2014.
  */
 public class BOAchievementList {
+
+	public static AchievementPage page;
 
     public static Achievement buildBarelyGeneriteBlock;
 	public static Achievement iwontfiteDamage;
@@ -22,7 +25,10 @@ public class BOAchievementList {
     }
 
     public static void init() {
-        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 4, 8, getOreBlockStack("barelyGenerite"), null).registerStat();
+        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 0, 0, getOreBlockStack("barelyGenerite"), null).registerStat();
 	    iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 5, 8, getOreStack("iwontfite"), null).registerStat();
+
+	    page = new AchievementPage(BadOres.NAME, buildBarelyGeneriteBlock, iwontfiteDamage);
+	    AchievementPage.registerAchievementPage(page);
     }
 }
