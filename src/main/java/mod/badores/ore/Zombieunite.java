@@ -1,6 +1,9 @@
 package mod.badores.ore;
 
+import cpw.mods.fml.relauncher.Side;
+import mod.badores.achievements.BOAchievementList;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -24,7 +27,12 @@ public class Zombieunite extends AbstractOre {
 		return numZombies < 10 ? -18000000.0F : 3f;
 	}
 
-	@Override
+    @Override
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        miner.triggerAchievement(BOAchievementList.minedZombieunite);
+    }
+
+    @Override
 	public String getName() {
 		return "zombieunite";
 	}
