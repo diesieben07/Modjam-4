@@ -107,6 +107,7 @@ public class GuiBadOreBook extends GuiScreen {
 				OreBookPage page = pages.get(i);
 				if (Character.toLowerCase(page.getDisplayName().charAt(0)) == c) {
 					pageIndex = i;
+					updateButtonState();
 					break;
 				}
 			}
