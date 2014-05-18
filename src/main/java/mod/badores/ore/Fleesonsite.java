@@ -11,6 +11,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -35,15 +36,34 @@ public class Fleesonsite extends AbstractOre {
 
         EntityPlayer player = world.getClosestPlayer(x + 0.5, y + 0.5, z + 0.5, 6.0);
 		if (player != null) {
-            BlockInfo blockInfo = blockInfo();
-			world.setBlockToAir(x, y, z);
-			EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
-			fleeingBlock.setPosition(x + 0.5, y, z + 0.5);
-            fleeingBlock.setRevengeTarget(player);
-            fleeingBlock.setTarget(player);
-            world.spawnEntityInWorld(fleeingBlock);
-			fleeingBlock.playLivingSound();
+			flee(world, x, y, z, player);
 		}
+	}
+
+	@Override
+	public boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side) {
+		if (side.isServer()) {
+			flee(world, x, y, z, player);
+		}
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side side) {
+		if (side.isServer()) {
+			flee(world, x, y, z, player);
+		}
+	}
+
+	private void flee(World world, int x, int y, int z, EntityPlayer player) {
+		BlockInfo blockInfo = blockInfo();
+		world.setBlockToAir(x, y, z);
+		EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
+		fleeingBlock.setPosition(x + 0.5, y, z + 0.5);
+		fleeingBlock.setRevengeTarget(player);
+		fleeingBlock.setTarget(player);
+		world.spawnEntityInWorld(fleeingBlock);
+		fleeingBlock.playLivingSound();
 	}
 
 	@Override

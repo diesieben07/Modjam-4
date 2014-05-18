@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 import java.util.Random;
@@ -54,6 +55,10 @@ public interface BadOre extends OreBookPage {
     void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side);
 
 	void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack);
+
+	void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side logical);
+
+	boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side);
 
 	String getIconName();
 

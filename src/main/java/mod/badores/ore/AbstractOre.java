@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 import java.util.Random;
@@ -285,6 +286,14 @@ public abstract class AbstractOre implements BadOre {
 
 	@Override
 	public void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack) { }
+
+	@Override
+	public boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side) {
+		return false;
+	}
+
+	@Override
+	public void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side logical) { }
 
 	@Override
     public int harvestLevelRequired(boolean isIngotBlock) {

@@ -22,6 +22,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,19 @@ public class BlockBadOre extends BOBlock implements ITileEntityProvider {
 		}
 	}
 
-    @Override
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		int meta = world.getBlockMetadata(x, y, z);
+		return getOre(meta).onRightClick(world, x, y, z, ForgeDirection.getOrientation(side), player, isIngotBlock(meta), Sides.logical(world));
+	}
+
+	@Override
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+		int meta = world.getBlockMetadata(x, y, z);
+		getOre(meta).onLeftClick(world, x, y, z, player, isIngotBlock(meta), Sides.logical(world));
+	}
+
+	@Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
         return BadOres.oreManager.getBlockInfo(getOre(world.getBlockMetadata(x, y, z))).asStack();
     }
