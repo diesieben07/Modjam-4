@@ -97,6 +97,14 @@ public enum FMLEventHandler {
             event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
     }
 
+    @SubscribeEvent
+    public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
+        ItemStack barelyGeneriteBO = BlockBadOre.createOre(BadOres.oreManager.getOreByName("barelyGenerite"));
+        if (barelyGeneriteBO.isItemEqual(event.pickedUp.getEntityItem()))
+            event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
+    }
+
+
 	private class Task {
 
 		final Runnable r;

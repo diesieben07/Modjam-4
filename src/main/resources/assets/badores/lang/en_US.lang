@@ -196,5 +196,8 @@ entity.badores.nosleeptonite.name=Nosleeptonite
 death.attack.badores.wannafite=%1$s wants to fite!
 death.attack.badores.killium=%1$s mined the wrong ore!
 
+achievement.barelyGeneriteFound=Finally found it!
+achievement.barelyGeneriteFound.desc=Find the famed Barelygenerite
+
 achievement.buildBarelyGeneriteBlock=Spent too much time
-achievement.buildBarelyGeneriteBlock.desc=Find enough BarelyGenerite to make a full block
+achievement.buildBarelyGeneriteBlock.desc=Find enough Barelygenerite to make a full block

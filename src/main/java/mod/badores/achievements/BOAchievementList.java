@@ -10,6 +10,7 @@ import net.minecraft.stats.Achievement;
  */
 public class BOAchievementList {
 
+    public static Achievement barelyGeneriteFound;
     public static Achievement buildBarelyGeneriteBlock;
 
     private static ItemStack getOreStack(String oreID) {
@@ -21,6 +22,7 @@ public class BOAchievementList {
     }
 
     public static void init() {
-        buildBarelyGeneriteBlock = (new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 4, 8, getOreBlockStack("barelyGenerite"), null)).registerStat();
+        barelyGeneriteFound = (new Achievement("achievement.barelyGeneriteFound", "barelyGeneriteFound", 4, 8, getOreStack("barelyGenerite"), null)).registerStat();
+        buildBarelyGeneriteBlock = (new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 7, 8, getOreBlockStack("barelyGenerite"), barelyGeneriteFound)).registerStat();
     }
 }
