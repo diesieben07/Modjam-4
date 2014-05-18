@@ -3,7 +3,9 @@ package mod.badores.client.gui;
 import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 import mod.badores.BadOres;
+import mod.badores.ore.Doesntevenexistium;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.BlockInfo;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
@@ -28,6 +30,9 @@ public class GuiBadOreBook extends GuiScreen {
 	private final List<BadOre> sortedOres;
 
 	public GuiBadOreBook() {
+        List<BadOre> allOres = BadOres.oreManager.getAllOres();
+        allOres.add(new Doesntevenexistium());
+
 		sortedOres = Ordering.from(String.CASE_INSENSITIVE_ORDER)
 				.onResultOf(new Function<BadOre, String>() {
 					@Override
@@ -35,7 +40,7 @@ public class GuiBadOreBook extends GuiScreen {
 						return input.getDisplayName();
 					}
 				})
-				.immutableSortedCopy(BadOres.oreManager.getAllOres());
+				.immutableSortedCopy(allOres);
 	}
 
 	@Override
@@ -76,8 +81,12 @@ public class GuiBadOreBook extends GuiScreen {
 		drawTexturedModalRect(bookXStart, 2, 0, 0, 192, 192);
 
 		BadOre ore = sortedOres.get(page);
-		ItemStack stack = BadOres.oreManager.getBlockInfo(ore).asStack();
-		itemRender.renderItemAndEffectIntoGUI(fontRendererObj, mc.renderEngine, stack, bookXStart + 40, 14);
+        BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(ore);
+        if (blockInfo != null)
+        {
+            ItemStack stack = blockInfo.asStack();
+            itemRender.renderItemAndEffectIntoGUI(fontRendererObj, mc.renderEngine, stack, bookXStart + 40, 14);
+        }
 
 		fontRendererObj.drawString("§n" + ore.getDisplayName(), bookXStart + 40 + 4 + 16, 17, 0x000000);
 		fontRendererObj.drawSplitString(ore.getDescriptionText(), bookXStart + 40, 17 + 15, 115, 0x000000);
