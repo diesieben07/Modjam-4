@@ -31,8 +31,6 @@ import java.util.Map;
  */
 public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 
-	public static final String NBT_KEY = "badores.ingotOreID";
-
 	private Map<BadOre, IIcon> icons = Maps.newHashMap();
 
 	public ItemBOIngot() {
