@@ -2,10 +2,8 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.BlockTicker;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.blocks.BlockTickProvider;
-import mod.badores.blocks.TickingBlock;
 import mod.badores.items.BOOreProduct;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;

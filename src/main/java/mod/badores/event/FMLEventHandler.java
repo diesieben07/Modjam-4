@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.BlockTicker;
 import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.BadOreItem;
@@ -32,16 +30,6 @@ public enum FMLEventHandler {
 
 	public void schedule(Runnable task, int ticks) {
 		tasks.add(new Task(task, ticks));
-	}
-
-	@SubscribeEvent
-	public void worldTick(TickEvent.WorldTickEvent event) {
-		if (event.side == Side.SERVER) {
-			BlockTicker ticker = BlockTicker.get(event.world);
-			if (ticker != null) {
-				ticker.tick(event.world);
-			}
-		}
 	}
 
 	@SubscribeEvent
