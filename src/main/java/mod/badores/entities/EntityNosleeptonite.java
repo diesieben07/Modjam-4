@@ -4,10 +4,8 @@ import mod.badores.BadOres;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,21 +15,23 @@ import net.minecraft.world.World;
 /**
  * Created by Lukas Tenbrink on 15.05.2014.
  */
-public class EntityFleeingBlock extends EntityCreature {
+public class EntityNosleeptonite extends EntityMob {
 	public Block block;
 	public int blockMeta;
 
-	public EntityFleeingBlock(World par1World) {
+	public EntityNosleeptonite(World par1World) {
 		super(par1World);
 
 		setSize(1.0f, 1.0f);
         this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIPanic(this, 1.33D));
-        this.tasks.addTask(2, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.8D, 1.33D));
-		this.tasks.addTask(10, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+		this.tasks.addTask(2, new EntityAIWander(this, 0.8D));
+
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
-	public EntityFleeingBlock(World par1World, Block block, int blockMeta) {
+	public EntityNosleeptonite(World par1World, Block block, int blockMeta) {
 		this(par1World);
 
 		this.block = block;
@@ -52,22 +52,10 @@ public class EntityFleeingBlock extends EntityCreature {
     @Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
-	}
-
-	@Override
-	public void onUpdate() {
-		super.onUpdate();
-
-		if (!worldObj.isRemote && ticksExisted % 10 == 0) {
-            if (worldObj.getClosestPlayer(posX, posY, posZ, 10.0) == null)
-            {
-                worldObj.setBlock(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), block, blockMeta, 3);
-                worldObj.playSoundAtEntity(this, "mob.chicken.plop", 1, 0.5f);
-                setDead();
-            }
-		}
 	}
 
     @Override
@@ -95,17 +83,17 @@ public class EntityFleeingBlock extends EntityCreature {
 
     @Override
     protected String getLivingSound() {
-        return BadOres.MOD_ID + ":mob.fleesonsite.say";
+        return BadOres.MOD_ID + ":mob.nosleeptonite.say";
     }
 
     @Override
     protected String getHurtSound() {
-        return BadOres.MOD_ID + ":mob.fleesonsite.hit";
+        return BadOres.MOD_ID + ":mob.nosleeptonite.hit";
     }
 
     @Override
     protected String getDeathSound() {
-        return BadOres.MOD_ID + ":mob.fleesonsite.death";
+        return BadOres.MOD_ID + ":mob.nosleeptonite.death";
     }
 
     @Override

@@ -24,11 +24,12 @@ public class Fleesonsite extends AbstractOre {
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
-		super.tick(world, x, y, z, blockInfo, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side) {
+		super.tick(world, x, y, z, random, side);
 
         EntityPlayer player = world.getClosestPlayer(x + 0.5, y + 0.5, z + 0.5, 6.0);
 		if (player != null) {
+            BlockInfo blockInfo = blockInfo();
 			world.setBlockToAir(x, y, z);
 			EntityFleeingBlock fleeingBlock = new EntityFleeingBlock(world, blockInfo.block, blockInfo.metadata);
 			fleeingBlock.setPosition(x + 0.5, y, z + 0.5);

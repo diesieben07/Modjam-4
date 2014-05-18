@@ -7,7 +7,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
 import mod.badores.client.gui.GuiBadOreBook;
 import mod.badores.client.rendering.RenderFleeingBlock;
+import mod.badores.client.rendering.RenderNosleeptonite;
 import mod.badores.entities.EntityFleeingBlock;
+import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.util.I18n;
 import net.minecraft.client.Minecraft;
@@ -32,6 +34,7 @@ public class BOClientProxy implements BOProxy {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+        RenderingRegistry.registerEntityRenderingHandler(EntityNosleeptonite.class, new RenderNosleeptonite());
         RenderingRegistry.registerEntityRenderingHandler(EntityFleeingBlock.class, new RenderFleeingBlock());
 	}
 

@@ -2,7 +2,6 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.oremanagement.BlockInfo;
 import mod.badores.util.JavaUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -37,15 +36,15 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-    public void tick(World world, int x, int y, int z, BlockInfo blockInfo, Random random, Side side) {
+    public void tick(World world, int x, int y, int z, Random random, Side side) {
         if (side.isServer() && rand.nextInt(10) == 0)
-            world.playSound(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f, false);
+            world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f);
     }
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
         if (side.isServer()) {
-            world.playSound(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f, false);
+            world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f);
 
             int pigmen = rand.nextInt(4);
             for (int i = 0; i < pigmen; i++) {

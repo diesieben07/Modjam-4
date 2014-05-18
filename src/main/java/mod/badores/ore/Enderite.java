@@ -5,8 +5,6 @@ import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -55,7 +53,7 @@ public class Enderite extends AbstractOre {
 	}
 
     @Override
-    public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Block block, Side side) {
+    public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side) {
         if (side.isServer() && rand.nextInt(5) == 0) {
             teleportTo(world, player, findRandomSpot(world, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ)));
         }
