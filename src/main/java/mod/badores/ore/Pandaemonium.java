@@ -2,6 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.blocks.BlockTickProvider;
 import mod.badores.util.JavaUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -31,12 +32,17 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
+    public boolean canTick() {
+        return true;
+    }
+
+    @Override
     public int initialTickRate(boolean isIngotBlock) {
         return 1000;
     }
 
     @Override
-    public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+    public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
         if (side.isServer() && rand.nextInt(10) == 0)
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f);
     }

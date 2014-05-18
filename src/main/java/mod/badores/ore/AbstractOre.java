@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.BlockTicker;
 import mod.badores.blocks.BlockBadOre;
+import mod.badores.blocks.BlockTickProvider;
 import mod.badores.blocks.TickingBlock;
 import mod.badores.items.BOOreProduct;
 import mod.badores.items.ItemBOIngot;
@@ -237,16 +238,21 @@ public abstract class AbstractOre implements BadOre {
 		return 0;
 	}
 
-	@Override
+    @Override
+    public boolean canTick() {
+        return false;
+    }
+
+    @Override
 	public int initialTickRate(boolean isIngotBlock) {
 		return -1;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
 		int tickRate = initialTickRate(isIngotBlock);
 		if (tickRate >= 0)
-			BlockTicker.schedule(world, x, y, z, (TickingBlock) blockInfo().block, tickRate);
+            tickProvider.scheduleTick(tickRate);
 	}
 
 	@Override

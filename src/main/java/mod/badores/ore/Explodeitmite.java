@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.blocks.BlockTickProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -16,14 +17,19 @@ public class Explodeitmite extends AbstractOre {
 		return r.nextInt(10) == 0 ? 1 : 0;
 	}
 
-	@Override
+    @Override
+    public boolean canTick() {
+        return true;
+    }
+
+    @Override
 	public int initialTickRate(boolean isIngotBlock) {
 		return 10000;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
-		super.tick(world, x, y, z, random, side, isIngotBlock);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
+		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
 		if (side.isServer()) {
 			if (rand.nextInt(4) == 0)

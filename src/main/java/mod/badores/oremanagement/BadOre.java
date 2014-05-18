@@ -1,6 +1,7 @@
 package mod.badores.oremanagement;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.blocks.BlockTickProvider;
 import mod.badores.items.BOOreProduct;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -72,9 +73,11 @@ public interface BadOre extends OreBookPage {
 
 	int lightLevel(boolean isIngotBlock);
 
+    boolean canTick();
+
 	int initialTickRate(boolean isIngotBlock);
 
-	void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock);
+	void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider);
 
 	float getHardness(World world, int x, int y, int z, boolean isIngotBlock);
 

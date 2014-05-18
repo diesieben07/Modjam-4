@@ -9,6 +9,7 @@ import mod.badores.items.ItemBlockBadOre;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.util.Sides;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -30,7 +32,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * @author diesieben07
  */
-public class BlockBadOre extends BOBlock implements TickingBlock {
+public class BlockBadOre extends BOBlock implements ITileEntityProvider {
 
 	public static final int MAX_ORES_PER_BLOCK = 8;
 	private static final int ORE_MASK = 0b0111;
@@ -106,7 +108,7 @@ public class BlockBadOre extends BOBlock implements TickingBlock {
 		return getOre(stack.getItemDamage());
 	}
 
-	@Override
+    @Override
 	public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int metadata) {
 		super.harvestBlock(world, player, x, y, z, metadata);
 		// side is always server
@@ -158,18 +160,15 @@ public class BlockBadOre extends BOBlock implements TickingBlock {
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z) {
-		int meta = world.getBlockMetadata(x, y, z);
-		getOre(meta).tick(world, x, y, z, world.rand, Sides.logical(world), isIngotBlock(meta));
-	}
-
-	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
-		int tickRate = getOre(meta).initialTickRate(isIngotBlock(meta));
-		if (tickRate >= 0)
-			BlockTicker.schedule(world, x, y, z, this, tickRate);
-	}
+        int tickRate = getOre(meta).initialTickRate(isIngotBlock(meta));
+
+        if (tickRate >= 0) {
+            TileEntity tileEntity = world.getTileEntity(x, y, z);
+            ((TileEntityBadOre) tileEntity).scheduleTick(tickRate);
+        }
+    }
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
@@ -217,5 +216,22 @@ public class BlockBadOre extends BOBlock implements TickingBlock {
     @Override
     public int getHarvestLevel(int metadata) {
         return getOre(metadata).harvestLevelRequired(isIngotBlock(metadata));
+    }
+
+    public boolean needsTE(BadOre ore) {
+        return ore.canTick();
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return needsTE(getOre(metadata));
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+        if (needsTE(getOre(meta)))
+            return new TileEntityBadOre();
+
+        return null;
     }
 }

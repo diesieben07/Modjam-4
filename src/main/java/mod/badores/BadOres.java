@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.achievements.BOAchievementList;
+import mod.badores.blocks.TileEntityBadOre;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.event.FMLEventHandler;
@@ -134,6 +135,8 @@ public class BadOres {
 
         EntityRegistry.registerModEntity(EntityFleeingBlock.class, "fleeingBlock", 0, this, 64, 3, true);
         EntityRegistry.registerModEntity(EntityNosleeptonite.class, "nosleeptonite", 1, this, 64, 3, true);
+
+        GameRegistry.registerTileEntity(TileEntityBadOre.class, "badOre");
 
 		proxy.preInit(event, config);
 		config.save();
