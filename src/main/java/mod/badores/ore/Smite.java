@@ -1,7 +1,6 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.BadOres;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;
 import mod.badores.util.I18n;
@@ -75,7 +74,7 @@ public class Smite extends AbstractOre {
 
     private void spawnLightning(World world, Entity entity)
     {
-        world.addWeatherEffect(new EntityLightningBolt(world, entity.posX, world.getPrecipitationHeight(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY)), entity.posZ));
+        world.addWeatherEffect(new EntityLightningBolt(world, entity.posX, world.getPrecipitationHeight(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posZ)), entity.posZ));
     }
 
     @Override
