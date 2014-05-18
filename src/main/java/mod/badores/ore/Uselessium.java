@@ -10,7 +10,12 @@ public class Uselessium extends AbstractOre {
 		return true;
 	}
 
-	@Override
+    @Override
+    public boolean hasIngotBlock() {
+        return false;
+    }
+
+    @Override
 	public String getName() {
 		return "uselessium";
 	}
