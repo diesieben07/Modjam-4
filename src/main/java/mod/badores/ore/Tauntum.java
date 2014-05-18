@@ -17,6 +17,11 @@ public class Tauntum extends AbstractOre {
 
     private static List<String> mobSounds;
 
+    @Override
+    protected int veinSize() {
+        return 3;
+    }
+
     public static List<String> getAllMobSounds(World world)
     {
         if (mobSounds == null)
