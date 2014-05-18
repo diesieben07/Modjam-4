@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * @author diesieben07
  */
-public class BarelyGenerites extends AbstractOre {
+public class BarelyGenerite extends AbstractOre {
 
     @Override
     public boolean hasIngot() {
@@ -26,6 +26,6 @@ public class BarelyGenerites extends AbstractOre {
 
 	@Override
 	public String getName() {
-		return "barelyGenerites";
+		return "barelyGenerite";
 	}
 }
