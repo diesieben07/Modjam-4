@@ -2,7 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
-import mod.badores.event.TickEvents;
+import mod.badores.event.FMLEventHandler;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
@@ -38,13 +38,13 @@ public class Crashium extends AbstractOre {
 			final EntityPlayerMP player = ((EntityPlayerMP) miner);
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), player);
 
-			TickEvents.INSTANCE.schedule(new Runnable() {
+			FMLEventHandler.INSTANCE.schedule(new Runnable() {
 				@Override
 				public void run() {
 					if (rand.nextInt(CRASH_PROBABILITY) == 0) {
 						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), player);
 						if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
-							TickEvents.INSTANCE.schedule(new Runnable() {
+							FMLEventHandler.INSTANCE.schedule(new Runnable() {
 								@Override
 								public void run() {
 									throw new RuntimeException("Crashium!");

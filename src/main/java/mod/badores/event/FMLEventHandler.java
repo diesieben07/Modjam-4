@@ -2,12 +2,16 @@ package mod.badores.event;
 
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import mod.badores.BadOres;
 import mod.badores.items.BadOreItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.List;
 /**
  * @author diesieben07
  */
-public enum TickEvents {
+public enum FMLEventHandler {
 
 	INSTANCE;
 
@@ -41,6 +45,24 @@ public enum TickEvents {
 				t.r.run();
 			}
 			sn.clear();
+		}
+	}
+
+	private static final String NBT_KEY = "badores.firstjoin";
+
+	@SubscribeEvent
+	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+		NBTTagCompound data = event.player.getEntityData();
+		NBTTagCompound persistent;
+		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
+			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, (persistent = new NBTTagCompound()));
+		} else {
+			persistent = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		}
+
+		if (!persistent.hasKey(NBT_KEY)) {
+			persistent.setBoolean(NBT_KEY, true);
+			event.player.inventory.addItemStackToInventory(new ItemStack(BadOres.badOreBook));
 		}
 	}
 

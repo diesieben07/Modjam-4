@@ -11,7 +11,9 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 /**
  * Created by Lukas Tenbrink on 16.05.2014.
  */
-public class BOEventHandler {
+public enum ForgeEventHandler {
+
+	INSTANCE;
 
 	@SubscribeEvent
     public void onEntityAttacked(LivingAttackEvent event)
@@ -29,4 +31,5 @@ public class BOEventHandler {
             }
         }
     }
+
 }

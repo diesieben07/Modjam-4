@@ -13,8 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.entities.EntityNosleeptonite;
-import mod.badores.event.BOEventHandler;
-import mod.badores.event.TickEvents;
+import mod.badores.event.FMLEventHandler;
+import mod.badores.event.ForgeEventHandler;
 import mod.badores.items.BadOreBook;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
@@ -78,8 +78,6 @@ public class BadOres {
 		config.load();
 
 		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
-
-		MinecraftForge.EVENT_BUS.register(new BOEventHandler());
 
 		oreManager = new OreManager();
 
@@ -147,7 +145,8 @@ public class BadOres {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
 		network.registerMessage(PacketRandomTranslation.Handle.class, PacketRandomTranslation.class, 0, Side.CLIENT);
 
-		FMLCommonHandler.instance().bus().register(TickEvents.INSTANCE);
+		FMLCommonHandler.instance().bus().register(FMLEventHandler.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(ForgeEventHandler.INSTANCE);
 
 		proxy.init(event);
 
