@@ -18,6 +18,7 @@ public class BOAchievementList {
     public static Achievement iwontfiteDamage;
     public static Achievement killedNosleeptonite;
     public static Achievement minedKillium;
+    public static Achievement madeMarmiteBread;
 
     private static ItemStack getOreStack(String oreID) {
         return BadOres.oreManager.getBlockInfo(BadOres.oreManager.getOreByName(oreID)).asStack();
@@ -33,8 +34,9 @@ public class BOAchievementList {
         iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 0, 0, getOreStack("iwontfite"), null).registerStat();
         killedNosleeptonite = new Achievement("achievement.killedNosleeptonite", "killedNosleeptonite", 2, -2, getOreStack("nosleeptonite"), null).registerStat();
         minedKillium = new Achievement("achievement.minedKillium", "minedKillium", 4, -1, getOreStack("killium"), null).registerStat();
+        madeMarmiteBread = new Achievement("achievement.madeMarmiteBread", "madeMarmiteBread", 6, 1, new ItemStack(BadOres.marmiteBread), null).registerStat();
 
-	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, minedKillium);
+	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, minedKillium, madeMarmiteBread);
 	    AchievementPage.registerAchievementPage(page);
     }
 }

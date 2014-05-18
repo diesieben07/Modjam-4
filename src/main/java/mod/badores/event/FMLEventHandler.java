@@ -98,6 +98,8 @@ public enum FMLEventHandler {
         ItemStack barelyGeneriteBI = BlockBadOre.createIngotBlock(BadOres.oreManager.getOreByName("barelyGenerite"));
         if (barelyGeneriteBI.isItemEqual(event.crafting))
             event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
+        if (barelyGeneriteBI.getItem() == BadOres.marmiteBread)
+            event.player.triggerAchievement(BOAchievementList.madeMarmiteBread);
     }
 
     @SubscribeEvent
