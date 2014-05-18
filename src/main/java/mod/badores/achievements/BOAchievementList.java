@@ -11,6 +11,7 @@ import net.minecraft.stats.Achievement;
 public class BOAchievementList {
 
     public static Achievement buildBarelyGeneriteBlock;
+	public static Achievement iwontfiteDamage;
 
     private static ItemStack getOreStack(String oreID) {
         return BadOres.oreManager.getBlockInfo(BadOres.oreManager.getOreByName(oreID)).asStack();
@@ -21,6 +22,7 @@ public class BOAchievementList {
     }
 
     public static void init() {
-        buildBarelyGeneriteBlock = (new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 4, 8, getOreBlockStack("barelyGenerite"), null)).registerStat();
+        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 4, 8, getOreBlockStack("barelyGenerite"), null).registerStat();
+	    iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 5, 8, getOreStack("iwontfite"), null).registerStat();
     }
 }

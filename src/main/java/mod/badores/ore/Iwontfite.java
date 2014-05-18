@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.ItemBlockBadOre;
 import net.minecraft.entity.Entity;
@@ -32,7 +33,10 @@ public class Iwontfite extends AbstractOre {
 		for (int i = 0; i < len; ++i) {
 			ItemStack stack = inv.getStackInSlot(i);
 			if (stack != null && stack.getItem() instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlock) stack.getItem()).field_150939_a).getOre(stack) == this) {
-				event.ammount = 0;
+				event.ammount = rand.nextInt(1000) == 0 ? 1 : 0;
+				if (event.ammount != 0) {
+					((EntityPlayer) entity).triggerAchievement(BOAchievementList.iwontfiteDamage);
+				}
 				break;
 			}
 		}
