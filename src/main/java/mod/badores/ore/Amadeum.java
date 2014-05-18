@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.blocks.BlockTickProvider;
 import mod.badores.oremanagement.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,12 @@ public class Amadeum extends AbstractOre {
 		return r.nextInt(100) == 0 ? 1 : 0;
 	}
 
-	@Override
+    @Override
+    public boolean canTick() {
+        return true;
+    }
+
+    @Override
 	public int initialTickRate(boolean isIngotBlock) {
 		return rand.nextInt(6) + 18;
 	}
@@ -28,8 +34,8 @@ public class Amadeum extends AbstractOre {
 	};
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
-		super.tick(world, x, y, z, random, side, isIngotBlock);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
+		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
 		if (side.isServer()) {
 			randomSound(world, x, y, z, random);

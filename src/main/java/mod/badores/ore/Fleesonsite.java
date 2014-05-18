@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.blocks.BlockTickProvider;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.oremanagement.BlockInfo;
 import mod.badores.oremanagement.OreForm;
@@ -18,14 +19,19 @@ import java.util.Random;
  */
 public class Fleesonsite extends AbstractOre {
 
-	@Override
+    @Override
+    public boolean canTick() {
+        return true;
+    }
+
+    @Override
 	public int initialTickRate(boolean isIngotBlock) {
 		return 40;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
-		super.tick(world, x, y, z, random, side, isIngotBlock);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
+		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
         EntityPlayer player = world.getClosestPlayer(x + 0.5, y + 0.5, z + 0.5, 6.0);
 		if (player != null) {
