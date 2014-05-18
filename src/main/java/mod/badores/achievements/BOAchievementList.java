@@ -12,6 +12,7 @@ public class BOAchievementList {
 
     public static Achievement barelyGeneriteFound;
     public static Achievement buildBarelyGeneriteBlock;
+	public static Achievement iwontfiteDamage;
 
     private static ItemStack getOreStack(String oreID) {
         return BadOres.oreManager.getBlockInfo(BadOres.oreManager.getOreByName(oreID)).asStack();
@@ -23,6 +24,7 @@ public class BOAchievementList {
 
     public static void init() {
         barelyGeneriteFound = (new Achievement("achievement.barelyGeneriteFound", "barelyGeneriteFound", 4, 8, getOreStack("barelyGenerite"), null)).registerStat();
-        buildBarelyGeneriteBlock = (new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 7, 8, getOreBlockStack("barelyGenerite"), barelyGeneriteFound)).registerStat();
+        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 7, 8, getOreBlockStack("barelyGenerite"), barelyGeneriteFound).registerStat();
+	    iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 5, 8, getOreStack("iwontfite"), null).registerStat();
     }
 }
