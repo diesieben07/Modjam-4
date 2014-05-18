@@ -124,7 +124,7 @@ public class BadOres {
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
 
-		badOreBook = new BadOreBook();
+		badOreBook = new BadOreBook().setUnlocalizedName("badOreBook").setTextureName(MOD_ID + ":badOreBook");
 		GameRegistry.registerItem(badOreBook, "badOreBook");
 
 		oreManager.createGameElements();

@@ -12,13 +12,22 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
+import java.util.Random;
 
 /**
  * @author diesieben07
  */
 public class Polite extends AbstractOre {
 
-	@Override
+    @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        BiomeGenBase biome = w.getBiomeGenForCoords(chunkX, chunkX);
+        return biome.getTempCategory() == BiomeGenBase.TempCategory.COLD ? r.nextInt(4) + 4 : 0;
+    }
+
+    @Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
 		if (side.isServer()) {
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.mined"), (EntityPlayerMP) miner);

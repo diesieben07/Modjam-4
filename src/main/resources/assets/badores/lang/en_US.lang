@@ -1,8 +1,10 @@
 itemGroup.badores=Bad Ores
 
 item.marmiteBread.name=Marmite Bread
+item.badOreBook.name=Book of Ums and Ites
 
 badores.polite=Polite
+badores.polite.description=First discovered in the west pole, this ore was labeled 'Polite'. It seems to live a blithesome life underground, often found huddled together in groups. Still, it seems to enjoy being brought into new forms, and has no problem being worked into armor or tools.
 badores.polite.mined.count=13
 badores.polite.mined.0=Thanks for mining me!
 badores.polite.mined.1=That was very kind of you.
