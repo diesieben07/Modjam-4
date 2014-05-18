@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Keyboard;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,14 +26,14 @@ public class GuiBadOreBook extends GuiScreen {
 	private static final int BUTTON_NEXT = 0;
 	private static final int BUTTON_PREV = 1;
 
-	private int page = 0;
+	private int pageIndex = 0;
 	private GuiButtonChangePage nextPage;
 	private GuiButtonChangePage prevPage;
 
-	private final List<OreBookPage> sortedOres;
+	private final List<OreBookPage> pages;
 
 	public GuiBadOreBook() {
-		sortedOres = Ordering.from(String.CASE_INSENSITIVE_ORDER)
+		pages = Ordering.from(String.CASE_INSENSITIVE_ORDER)
 				.onResultOf(new Function<OreBookPage, String>() {
 					@Override
 					public String apply(OreBookPage input) {
@@ -59,18 +60,18 @@ public class GuiBadOreBook extends GuiScreen {
 	protected void actionPerformed(GuiButton button) {
 		switch (button.id) {
 			case BUTTON_NEXT:
-				++page;
+				++pageIndex;
 				break;
 			case BUTTON_PREV:
-				--page;
+				--pageIndex;
 				break;
 		}
 		updateButtonState();
 	}
 
 	private void updateButtonState() {
-		nextPage.visible = page < sortedOres.size() - 1;
-		prevPage.visible = page > 0;
+		nextPage.visible = pageIndex < pages.size() - 1;
+		prevPage.visible = pageIndex > 0;
 	}
 
 	@Override
@@ -79,7 +80,7 @@ public class GuiBadOreBook extends GuiScreen {
 		mc.renderEngine.bindTexture(texture);
 		drawTexturedModalRect(bookXStart, 2, 0, 0, 192, 192);
 
-		OreBookPage page = sortedOres.get(this.page);
+		OreBookPage page = pages.get(this.pageIndex);
         if (page instanceof BadOre) {
 	        ItemStack stack = BadOres.oreManager.getBlockInfo((BadOre) page).asStack();
             itemRender.renderItemAndEffectIntoGUI(fontRendererObj, mc.renderEngine, stack, bookXStart + 40, 14);
@@ -94,5 +95,21 @@ public class GuiBadOreBook extends GuiScreen {
 	@Override
 	public boolean doesGuiPauseGame() {
 		return false;
+	}
+
+	@Override
+	protected void keyTyped(char c, int key) {
+		char lowerCase = Character.toLowerCase(c);
+		if (key == Keyboard.KEY_ESCAPE) {
+			mc.displayGuiScreen(null);
+		} else if (Character.getType(lowerCase) == Character.LOWERCASE_LETTER) {
+			for (int i = 0, len = pages.size(); i < len; ++i) {
+				OreBookPage page = pages.get(i);
+				if (Character.toLowerCase(page.getDisplayName().charAt(0)) == c) {
+					pageIndex = i;
+					break;
+				}
+			}
+		}
 	}
 }
