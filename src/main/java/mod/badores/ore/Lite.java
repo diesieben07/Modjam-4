@@ -21,7 +21,7 @@ public class Lite extends AbstractOre {
 
     @Override
 	public int lightLevel(boolean isIngotBlock) {
-		return 4;
+		return 10;
 	}
 
 	@Override
