@@ -91,7 +91,7 @@ public class Fleesonsite extends AbstractOre {
 				if (++count == 15) {
 					return;
 				}
-			} while (targetSlot == slot || !slot.getHasStack() || !slot.isItemValid(stack));
+			} while (targetSlot == slot || slot.getHasStack() || !slot.isItemValid(stack));
 			slot.putStack(null);
 			targetSlot.putStack(stack);
 		}
