@@ -3,14 +3,15 @@ package mod.badores.ore;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.event.FMLEventHandler;
+import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
-import mod.badores.oremanagement.ArmorInfo;
-import mod.badores.oremanagement.ArmorType;
-import mod.badores.oremanagement.ToolInfo;
-import mod.badores.oremanagement.ToolType;
+import mod.badores.oremanagement.*;
+import mod.badores.util.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -86,6 +87,14 @@ public class Crashium extends AbstractOre {
     @Override
     public ArmorInfo getArmorInfo() {
         return new ArmorInfo(8, new int[]{2, 7, 5, 2}, 9);
+    }
+
+    @Override
+    public String getDisplayName(OreSubName name) {
+        if (name instanceof ItemBOIngot)
+            return I18n.translate(getName() + ".ingot.name");
+        else
+            return super.getDisplayName(name);
     }
 
     @Override

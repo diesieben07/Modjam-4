@@ -1,10 +1,10 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.oremanagement.ArmorInfo;
-import mod.badores.oremanagement.ArmorType;
-import mod.badores.oremanagement.ToolInfo;
-import mod.badores.oremanagement.ToolType;
+import mod.badores.BadOres;
+import mod.badores.items.ItemBOIngot;
+import mod.badores.oremanagement.*;
+import mod.badores.util.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -49,6 +49,14 @@ public class Smite extends AbstractOre {
     @Override
     public ToolInfo getToolInfo() {
         return new ToolInfo(0, 100, 2.0F, 1.0F, 15);
+    }
+
+    @Override
+    public String getDisplayName(OreSubName name) {
+        if (name instanceof ItemBOIngot)
+            return I18n.translate(getName() + ".ingot.name");
+        else
+            return super.getDisplayName(name);
     }
 
     @Override
