@@ -7,13 +7,16 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import mod.badores.BadOres;
 import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
+import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.items.BadOreItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.Iterator;
 import java.util.List;
@@ -103,7 +106,6 @@ public enum FMLEventHandler {
         if (barelyGeneriteBO.isItemEqual(event.pickedUp.getEntityItem()))
             event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
     }
-
 
 	private class Task {
 
