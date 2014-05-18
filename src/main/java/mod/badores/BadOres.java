@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.achievements.BOAchievementList;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.event.FMLEventHandler;
@@ -151,6 +152,7 @@ public class BadOres {
 		proxy.init(event);
 
 		addCrafting();
+        BOAchievementList.init();
 	}
 
 	private void addCrafting() {

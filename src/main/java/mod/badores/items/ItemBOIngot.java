@@ -18,6 +18,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -45,17 +46,14 @@ public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 	}
 
 	public static BadOre getOre(ItemStack stack) {
-		if (stack.stackTagCompound != null) {
-			return BadOres.oreManager.getOreByName(stack.stackTagCompound.getString(NBT_KEY));
+		if (stack.hasTagCompound()) {
+			return BadOres.oreManager.getOreByName(stack.getTagCompound().getString(NBT_KEY));
 		}
 		return null;
 	}
 
 	public static void setOre(ItemStack stack, BadOre ore) {
-		if (stack.stackTagCompound == null) {
-			stack.stackTagCompound = new NBTTagCompound();
-		}
-		stack.stackTagCompound.setString(NBT_KEY, ore.getName());
+        stack.setTagInfo(NBT_KEY, new NBTTagString(ore.getName()));
 	}
 
 	@Override
