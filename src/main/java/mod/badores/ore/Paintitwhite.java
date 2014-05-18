@@ -45,7 +45,7 @@ public class Paintitwhite extends AbstractOre {
     }
 
     @Override
-	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
 		drops.add(new ItemStack(Items.dye, 1, 15));
 	}
 }

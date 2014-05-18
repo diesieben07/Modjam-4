@@ -32,7 +32,7 @@ public class Kakkarite extends AbstractOre {
     }
 
     @Override
-	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
 	    int items = 9001;
 	    while (items > 0) {
 		    ItemStack stack = ItemBOIngot.createIngot(this);

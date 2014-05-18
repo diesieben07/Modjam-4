@@ -44,7 +44,7 @@ public class Stonium extends AbstractOre {
     }
 
     @Override
-	public void getDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
 		drops.add(new ItemStack(Blocks.stone));
 	}
 

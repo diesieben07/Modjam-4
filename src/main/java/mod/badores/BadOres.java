@@ -120,6 +120,7 @@ public class BadOres {
         oreManager.registerOre(new Kakkarite());
         oreManager.registerOre(new Pandaemonium());
         oreManager.registerOre(new Nosleeptonite());
+        oreManager.registerOre(new Appetite());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");

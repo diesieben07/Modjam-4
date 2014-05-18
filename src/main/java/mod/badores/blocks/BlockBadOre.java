@@ -85,7 +85,7 @@ public class BlockBadOre extends BOBlock {
 		dropMeta = metadata;
 		ArrayList<ItemStack> result = Lists.newArrayList();
 		BadOre ore = getOre(metadata);
-		ore.getDroppedItems(world, x, y, z, metadata, fortune, result);
+		ore.addDroppedItemsToList(world, x, y, z, metadata, fortune, result);
 		return result;
 	}
 
