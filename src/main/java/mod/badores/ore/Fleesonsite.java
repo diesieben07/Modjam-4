@@ -22,7 +22,7 @@ public class Fleesonsite extends AbstractOre {
 
     @Override
     public boolean canTick(boolean isIngotBlock) {
-        return !isIngotBlock;
+        return true;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Fleesonsite extends AbstractOre {
 
 	@Override
 	public boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side) {
-		if (side.isServer()) {
+		if (side.isServer() && !isIngotBlock) {
 			flee(world, x, y, z, player);
 		}
 		return true;
@@ -52,7 +52,7 @@ public class Fleesonsite extends AbstractOre {
 
 	@Override
 	public void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side side) {
-		if (side.isServer()) {
+		if (side.isServer() && !isIngotBlock) {
 			flee(world, x, y, z, player);
 		}
 	}
