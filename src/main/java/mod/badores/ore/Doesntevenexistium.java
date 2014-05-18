@@ -17,6 +17,6 @@ public enum Doesntevenexistium implements OreBookPage {
 
 	@Override
 	public String getDescriptionText() {
-		return I18n.translate("badores.doesnteventexistium.description");
+		return I18n.translate("badores.doesntevenexistium.description");
 	}
 }
