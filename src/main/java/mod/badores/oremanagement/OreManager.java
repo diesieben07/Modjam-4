@@ -80,6 +80,10 @@ public final class OreManager {
 		GameRegistry.addRecipe(BlockBadOre.createIngotBlock(ore),
 				"XXX", "XXX", "XXX",
 				'X', ItemBOIngot.createIngot(ore));
+
+		ItemStack ingots = ItemBOIngot.createIngot(ore);
+		ingots.stackSize = 9;
+		GameRegistry.addShapelessRecipe(ingots, BlockBadOre.createIngotBlock(ore));
 	}
 
 	private void addSmelting(BadOre ore, BlockInfo block) {

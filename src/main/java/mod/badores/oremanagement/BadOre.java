@@ -64,7 +64,7 @@ public interface BadOre extends OreBookPage {
 
 	String getArmorIconName(ArmorType type);
 
-	void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock);
+	void addDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock);
 
 	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock);
 
