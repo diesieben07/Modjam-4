@@ -4,11 +4,14 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mod.badores.BadOres;
+import mod.badores.blocks.BlockBadOre;
 import mod.badores.ore.AbstractOre;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.BlockInfo;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.oremanagement.OreSubName;
 import mod.badores.util.I18n;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -17,7 +20,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -38,6 +40,21 @@ public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 		setCreativeTab(BadOres.creativeTab);
 	}
 
+	private static int getOreMeta(BadOre ore) {
+		BlockInfo info = BadOres.oreManager.getBlockInfo(ore);
+		int blockId = Block.getIdFromBlock(info.block);
+		int meta = info.metadata;
+		return (blockId & 0xfff) | (meta & 0xf) << 12;
+	}
+
+	private static BadOre getOre(int meta) {
+		Block block = Block.getBlockById(meta & 0xfff);
+		if (!(block instanceof BlockBadOre)) {
+			return null;
+		}
+		return ((BlockBadOre) block).getOre((meta >> 12) & 0xf);
+	}
+
 	public static ItemStack createIngot(BadOre ore) {
 		ItemStack stack = new ItemStack(BadOres.ingot, 1, 0);
 		setOre(stack, ore);
@@ -45,17 +62,11 @@ public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 	}
 
 	public static BadOre getOre(ItemStack stack) {
-		if (stack.stackTagCompound != null) {
-			return BadOres.oreManager.getOreByName(stack.stackTagCompound.getString(NBT_KEY));
-		}
-		return null;
+		return getOre(stack.getItemDamage());
 	}
 
 	public static void setOre(ItemStack stack, BadOre ore) {
-		if (stack.stackTagCompound == null) {
-			stack.stackTagCompound = new NBTTagCompound();
-		}
-		stack.stackTagCompound.setString(NBT_KEY, ore.getName());
+		stack.setItemDamage(getOreMeta(ore));
 	}
 
 	@Override
