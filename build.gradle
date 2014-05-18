@@ -66,6 +66,9 @@ processResources
     }
 }
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
