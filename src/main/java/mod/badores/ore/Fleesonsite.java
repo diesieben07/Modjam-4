@@ -5,9 +5,9 @@ import mod.badores.blocks.BlockTickProvider;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.oremanagement.BlockInfo;
 import mod.badores.oremanagement.OreForm;
+import mod.badores.util.JavaUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -49,28 +49,28 @@ public class Fleesonsite extends AbstractOre {
 	@Override
 	public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
 		if (side.isServer()) {
-			jumpRandomly(player.inventory, slot, stack);
+			jumpRandomly(player.inventoryContainer, player.inventoryContainer.getSlotFromInventory(player.inventory, slot));
 		}
 	}
 
 	@Override
 	public void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack) {
-		jumpRandomly(slot.inventory, slot.getSlotIndex(), stack);
+		jumpRandomly(container, slot);
 	}
 
-	private void jumpRandomly(IInventory inv, int slot, ItemStack stack) {
+	private void jumpRandomly(Container c, Slot slot) {
+		ItemStack stack = slot.getStack();
 		if (rand.nextInt(150) == 0) {
-			int targetSlot;
+			Slot targetSlot;
 			int count = 0;
 			do {
-				targetSlot = rand.nextInt(inv.getSizeInventory());
+				targetSlot = (Slot) JavaUtils.selectRandom(rand, c.inventorySlots);
 				if (++count == 15) {
 					return;
 				}
-			} while (targetSlot == slot || inv.getStackInSlot(targetSlot) != null || !inv.isItemValidForSlot(targetSlot, stack));
-			inv.setInventorySlotContents(targetSlot, stack);
-			inv.setInventorySlotContents(slot, null);
-			inv.markDirty();
+			} while (targetSlot == slot || !slot.getHasStack() || !slot.isItemValid(stack));
+			slot.putStack(null);
+			targetSlot.putStack(stack);
 		}
 	}
 
