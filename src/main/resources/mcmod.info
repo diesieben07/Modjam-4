@@ -1,0 +1,19 @@
+[
+{
+  "modid": "badores",
+  "name": "Crappy Ores (?)",
+  "description": "Adding tons of Ores, potentially maybe not useful.",
+  "version": "",
+  "credits": "",
+  "logoFile": "/gfx/buildcraft/logo.png",
+  "mcversion": "",
+  "url":  "",
+  "updateUrl": "",
+  "authorList": [ "Ivorius", "TripleHeadedSheep", "diesieben07" ],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": [
+         "Forge"
+    ]
+}
+]

@@ -22,7 +22,7 @@ import java.util.Random;
  */
 public class Pandaemonium extends AbstractOre {
 
-	public static final List<Item> items = Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
+	private final List<Item> items = Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
 
 	public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits)
     {
