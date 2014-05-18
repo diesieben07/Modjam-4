@@ -4,7 +4,9 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.BlockTicker;
 import mod.badores.items.BadOreItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -31,8 +33,18 @@ public enum FMLEventHandler {
 	}
 
 	@SubscribeEvent
+	public void worldTick(TickEvent.WorldTickEvent event) {
+		if (event.side == Side.SERVER) {
+			BlockTicker ticker = BlockTicker.get(event.world);
+			if (ticker != null) {
+				ticker.tick(event.world);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void onTick(TickEvent.ServerTickEvent event) {
-		if (event.type == TickEvent.Type.SERVER && tasks.size() > 0) {
+		if (tasks.size() > 0) {
 			List<Task> sn = scheduledNow;
 			for (Iterator<Task> it = tasks.iterator(); it.hasNext(); ) {
 				Task t = it.next();

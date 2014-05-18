@@ -2,7 +2,9 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.BlockTicker;
 import mod.badores.blocks.BlockBadOre;
+import mod.badores.blocks.TickingBlock;
 import mod.badores.items.BOOreProduct;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;
@@ -244,7 +246,7 @@ public abstract class AbstractOre implements BadOre {
 	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
 		int tickRate = initialTickRate(isIngotBlock);
 		if (tickRate >= 0)
-			world.scheduleBlockUpdate(x, y, z, blockInfo().block, tickRate);
+			BlockTicker.schedule(world, x, y, z, (TickingBlock) blockInfo().block, tickRate);
 	}
 
 	@Override

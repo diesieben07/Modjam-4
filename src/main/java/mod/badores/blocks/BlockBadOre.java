@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.BlockTicker;
 import mod.badores.items.ItemBlockBadOre;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
@@ -23,14 +24,13 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * @author diesieben07
  */
-public class BlockBadOre extends BOBlock {
+public class BlockBadOre extends BOBlock implements TickingBlock {
 
 	public static final int MAX_ORES_PER_BLOCK = 8;
 	private static final int ORE_MASK = 0b0111;
@@ -158,17 +158,17 @@ public class BlockBadOre extends BOBlock {
 	}
 
 	@Override
+	public void tick(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		getOre(meta).tick(world, x, y, z, world.rand, Sides.logical(world), isIngotBlock(meta));
+	}
+
+	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
 		int tickRate = getOre(meta).initialTickRate(isIngotBlock(meta));
 		if (tickRate >= 0)
-			world.scheduleBlockUpdate(x, y, z, this, tickRate);
-	}
-
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random random) {
-		int meta = world.getBlockMetadata(x, y, z);
-		getOre(meta).tick(world, x, y, z, random, Sides.logical(world), isIngotBlock(meta));
+			BlockTicker.schedule(world, x, y, z, this, tickRate);
 	}
 
 	@Override
