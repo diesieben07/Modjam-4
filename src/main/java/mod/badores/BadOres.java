@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author diesieben07
  */
-@Mod(modid = BadOres.MOD_ID, name = "BadOres", version = BadOres.VERSION)
+@Mod(modid = BadOres.MOD_ID, name = "BadOres", version = BadOres.VERSION, dependencies = "required-after:Forge@[10.12.1.1082,)")
 public class BadOres {
 
 	public static final String MOD_ID = "badores";
