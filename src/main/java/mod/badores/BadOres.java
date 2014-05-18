@@ -95,7 +95,7 @@ public class BadOres {
 		oreManager.registerOre(new Misleadium());
 		oreManager.registerOre(new Ghostium());
 		oreManager.registerOre(new Amadeum());
-		oreManager.registerOre(new BarelyGenerites());
+		oreManager.registerOre(new BarelyGenerite());
 		oreManager.registerOre(new Unobtainium());
 		oreManager.registerOre(new Copper());
 		oreManager.registerOre(new Uselessium());

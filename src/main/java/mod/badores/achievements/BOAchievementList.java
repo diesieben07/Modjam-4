@@ -2,7 +2,6 @@ package mod.badores.achievements;
 
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 
@@ -11,7 +10,7 @@ import net.minecraft.stats.Achievement;
  */
 public class BOAchievementList {
 
-    public static Achievement buildBarelyGeneritesBlock;
+    public static Achievement buildBarelyGeneriteBlock;
 
     private static ItemStack getOreStack(String oreID) {
         return BadOres.oreManager.getBlockInfo(BadOres.oreManager.getOreByName(oreID)).asStack();
@@ -22,6 +21,6 @@ public class BOAchievementList {
     }
 
     public static void init() {
-        buildBarelyGeneritesBlock = (new Achievement("achievement.buildBarelyGeneritesBlock", "buildBarelyGeneritesBlock", 4, 8, getOreBlockStack("barelyGenerites"), null)).registerStat();
+        buildBarelyGeneriteBlock = (new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 4, 8, getOreBlockStack("barelyGenerite"), null)).registerStat();
     }
 }
