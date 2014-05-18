@@ -8,8 +8,11 @@ import mod.badores.blocks.TickingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.BOWorldAccessProxy;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.Constants;
 
@@ -23,6 +26,7 @@ public class BlockTicker extends WorldSavedData {
 	public static final String IDENTIFIER = "badores.blockticks";
 
 	private final TLongObjectMap<ScheduledTick> ticks = new TLongObjectHashMap<>();
+	final TLongObjectMap<ScheduledTick> chunkImmediateTicks = new TLongObjectHashMap<>();
 
 	public BlockTicker() {
 		super(IDENTIFIER);
@@ -68,41 +72,58 @@ public class BlockTicker extends WorldSavedData {
 		tickers.remove(world);
 	}
 
+	public static void loadChunk(Chunk chunk) {
+		BlockTicker ticker = get(chunk.worldObj);
+		ticker.tick0(chunk.worldObj, ticker.chunkImmediateTicks.remove(ChunkCoordIntPair.chunkXZ2Int(chunk.xPosition, chunk.zPosition)));
+	}
+
 	public void tick(World world) {
 		ScheduledTick tick = ticks.remove(world.getTotalWorldTime());
+		tick0(world, tick);
+	}
+
+	private void tick0(World world, ScheduledTick tick) {
 		while (tick != null) {
-			tick.tick(world);
+			tick.tick(this, world);
 			tick = tick.next;
 		}
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		ticks.clear();
-
-		NBTTagList list = nbt.getTagList("ticks", Constants.NBT.TAG_COMPOUND);
-		int len = list.tagCount();
-		for (int i = 0; i < len; ++i) {
-			NBTTagCompound tag = list.getCompoundTagAt(i);
-			long when = tag.getLong("w");
-			ScheduledTick tick = ScheduledTick.read(tag.getTagList("t", Constants.NBT.TAG_COMPOUND));
-			ticks.put(when, tick);
-		}
+		unserialize(ticks, nbt.getTagList("ticks", Constants.NBT.TAG_COMPOUND));
+		unserialize(chunkImmediateTicks, nbt.getTagList("immediate", Constants.NBT.TAG_COMPOUND));
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
+		nbt.setTag("ticks", serialize(ticks));
+		nbt.setTag("immediate", serialize(chunkImmediateTicks));
+	}
+
+	private static void unserialize(TLongObjectMap<ScheduledTick> map, NBTTagList list) {
+		map.clear();
+		int len = list.tagCount();
+		for (int i = 0; i < len; ++i) {
+			NBTTagCompound tag = list.getCompoundTagAt(i);
+			long key = tag.getLong("k");
+			ScheduledTick tick = ScheduledTick.read(tag.getTagList("t", Constants.NBT.TAG_COMPOUND));
+			map.put(key, tick);
+		}
+	}
+
+	private static NBTTagList serialize(TLongObjectMap<ScheduledTick> map) {
 		NBTTagList list = new NBTTagList();
-		for (TLongObjectIterator<ScheduledTick> it = ticks.iterator(); it.hasNext();) {
+		for (TLongObjectIterator<ScheduledTick> it = map.iterator(); it.hasNext();) {
 			it.advance();
 			NBTTagCompound tag = new NBTTagCompound();
-			tag.setLong("w", it.key());
+			tag.setLong("k", it.key());
 			NBTTagList tickList = new NBTTagList();
 			it.value().write(tickList);
 			tag.setTag("t", tickList);
 			list.appendTag(tag);
 		}
-		nbt.setTag("ticks", list);
+		return list;
 	}
 
 	private static class ScheduledTick {
@@ -118,9 +139,15 @@ public class BlockTicker extends WorldSavedData {
 			this.z = z;
 		}
 
-		public void tick(World world) {
-			if (world.getBlock(x, y, z) == block) {
-				block.tick(world, x, y, z);
+		public void tick(BlockTicker ticker, World world) {
+			int chunkX = x >> 4;
+			int chunkZ = z >> 4;
+			if (!BOWorldAccessProxy.chunkExists(world, chunkX, chunkZ)) {
+				ticker.chunkImmediateTicks.put(ChunkCoordIntPair.chunkXZ2Int(chunkX, chunkZ), this);
+			} else {
+				if (world.getBlock(x, y, z) == block) {
+					block.tick(world, x, y, z);
+				}
 			}
 		}
 

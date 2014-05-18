@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
 /**
@@ -33,6 +34,13 @@ public enum ForgeEventHandler {
             }
         }
     }
+
+	@SubscribeEvent
+	public void onChunkLoad(ChunkEvent.Load event) {
+		if (!event.world.isRemote) {
+			BlockTicker.loadChunk(event.getChunk());
+		}
+	}
 
 	@SubscribeEvent
 	public void onWorldUnload(WorldEvent.Unload event) {
