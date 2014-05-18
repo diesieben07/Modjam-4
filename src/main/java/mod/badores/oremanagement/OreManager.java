@@ -29,6 +29,8 @@ public final class OreManager {
 	private final BiMap<BlockInfo, BadOre> ores = HashBiMap.create();
 	private final Map<String, BadOre> oreNames = Maps.newHashMap();
 
+	private int requiredCount = 0;
+
 	private ItemBOIngot currentIngot;
 	private int currentIngotMeta;
 
@@ -69,11 +71,19 @@ public final class OreManager {
 				generateArmor(ore, craftingInput);
 			}
 
+			if (ore.requiredForAll()) {
+				requiredCount++;
+			}
+
 			if (++currentMetadata == BlockBadOre.MAX_ORES_PER_BLOCK) {
 				currentBlock = null;
 				currentMetadata = 0;
 			}
 		}
+	}
+
+	public int getRequiredCount() {
+		return requiredCount;
 	}
 
 	private void addIngotBlockRecipe(BadOre ore) {

@@ -1,6 +1,7 @@
 package mod.badores.entities;
 
 import mod.badores.BadOres;
+import mod.badores.ore.AbstractOre;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -72,7 +74,15 @@ public class EntityFleeingBlock extends EntityCreature {
 		}
 	}
 
-    @Override
+	@Override
+	public void onDeath(DamageSource source) {
+		super.onDeath(source);
+		if (source.getEntity() instanceof EntityPlayer) {
+			AbstractOre.triggerHarvestAchievement(((EntityPlayer) source.getEntity()), BadOres.oreManager.getOreByName("fleesonsite"));
+		}
+	}
+
+	@Override
     protected void dropFewItems(boolean par1, int par2) {
         entityDropItem(new ItemStack(block, 1, blockMeta), 0.5f);
     }

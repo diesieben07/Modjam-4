@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBlockBadOre;
+import mod.badores.ore.AbstractOre;
 import mod.badores.oremanagement.BadOre;
 import mod.badores.oremanagement.OreForm;
 import mod.badores.util.Sides;
@@ -120,11 +121,15 @@ public class BlockBadOre extends BOBlock implements ITileEntityProvider {
 		return getOre(stack.getItemDamage());
 	}
 
-    @Override
+	@Override
 	public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int metadata) {
 		super.harvestBlock(world, player, x, y, z, metadata);
+
+	    BadOre ore = getOre(metadata);
+	    AbstractOre.triggerHarvestAchievement(player, ore);
+
 		// side is always server
-		getOre(metadata).onHarvest(player, world, x, y, z, Side.SERVER, isIngotBlock(metadata));
+		ore.onHarvest(player, world, x, y, z, Side.SERVER, isIngotBlock(metadata));
 	}
 
 	// evil hack, kids don't try this at home
