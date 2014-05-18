@@ -23,7 +23,7 @@ public enum OreForm {
 	}
 
 	public boolean isTool() {
-		return !isArmor() && this != ORE && this != INGOT;
+		return this == PICKAXE || this == AXE || this == SHOVEL || this == HOE || this == SWORD;
 	}
 
 	public static OreForm fromArmor(ArmorType armorType) {
