@@ -50,13 +50,13 @@ public class Tauntum extends AbstractOre {
 	}
 
 	@Override
-	public int initialTickRate() {
+	public int initialTickRate(boolean isIngotBlock) {
 		return rand.nextInt(400) + 40;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side) {
-		super.tick(world, x, y, z, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+		super.tick(world, x, y, z, random, side, isIngotBlock);
 
 		if (side.isServer()) {
 			playRandomSound(world, x, y, z, random);

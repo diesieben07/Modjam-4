@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 public class Unobtainium extends AbstractOre {
 
 	@Override
-	public float getHardness(World world, int x, int y, int z) {
+	public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
 		return -18000000.0F;
 	}
 

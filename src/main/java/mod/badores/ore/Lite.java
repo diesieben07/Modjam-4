@@ -6,7 +6,7 @@ package mod.badores.ore;
 public class Lite extends AbstractOre {
 
 	@Override
-	public int lightLevel() {
+	public int lightLevel(boolean isIngotBlock) {
 		return 15;
 	}
 

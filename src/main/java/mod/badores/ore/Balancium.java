@@ -27,7 +27,7 @@ public class Balancium extends AbstractOre {
     }
 
     @Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 	    int num = rand.nextInt(50) + 5;
 		for (int i = 0; i < num; i++) {
 			Item item = JavaUtils.selectRandom(rand, items);

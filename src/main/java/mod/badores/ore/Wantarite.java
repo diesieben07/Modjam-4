@@ -14,7 +14,7 @@ import java.util.List;
 public class Wantarite extends AbstractOre {
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
 			EntityPig pig = new EntityPig(world);
 			pig.setPosition(x + 0.5, y + 0.5, z + 0.5);
@@ -24,7 +24,7 @@ public class Wantarite extends AbstractOre {
 	}
 
 	@Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		// no drops
 	}
 

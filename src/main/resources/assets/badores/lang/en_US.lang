@@ -167,6 +167,7 @@ badores.website.description=This ore has discovered a way to break the 4th wall 
 badores.website.fail=Oops, failed to open a website!
 
 badores.ingot=%s Ingot
+badores.ingotBlock=Block of %s
 badores.pickaxe=%s Pickaxe
 badores.axe=%s Axe
 badores.shovel=%s Shovel

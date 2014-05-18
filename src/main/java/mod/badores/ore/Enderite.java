@@ -46,7 +46,7 @@ public class Enderite extends AbstractOre {
     }
 
     @Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
             teleportTo(world, miner, findRandomSpot(world, x, y, z));
 		}

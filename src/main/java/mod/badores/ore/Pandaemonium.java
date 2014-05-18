@@ -31,18 +31,18 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-    public int initialTickRate() {
+    public int initialTickRate(boolean isIngotBlock) {
         return 1000;
     }
 
     @Override
-    public void tick(World world, int x, int y, int z, Random random, Side side) {
+    public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
         if (side.isServer() && rand.nextInt(10) == 0)
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f);
     }
 
     @Override
-    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (side.isServer()) {
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":pandaemonium.mine", 1.0f, 1.0f);
 
@@ -85,7 +85,7 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-    public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+    public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 	    int num = rand.nextInt(3);
         for (int i = 0; i < num; i++) {
             Item item = JavaUtils.selectRandom(rand, items);

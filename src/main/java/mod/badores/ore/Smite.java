@@ -8,7 +8,6 @@ import mod.badores.oremanagement.ToolType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -20,7 +19,7 @@ import net.minecraft.world.World;
 public class Smite extends AbstractOre {
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
             if (rand.nextInt(3) == 0)
                 spawnLightning(world, miner);

@@ -17,13 +17,13 @@ public class Explodeitmite extends AbstractOre {
 	}
 
 	@Override
-	public int initialTickRate() {
+	public int initialTickRate(boolean isIngotBlock) {
 		return 10000;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side) {
-		super.tick(world, x, y, z, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+		super.tick(world, x, y, z, random, side, isIngotBlock);
 
 		if (side.isServer()) {
 			if (rand.nextInt(4) == 0)
@@ -32,7 +32,7 @@ public class Explodeitmite extends AbstractOre {
 	}
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (side.isServer()) {
             if (rand.nextInt(4) == 0)
                 world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, true);
@@ -40,12 +40,12 @@ public class Explodeitmite extends AbstractOre {
 	}
 
 	@Override
-	public float getHardness(World world, int x, int y, int z) {
+	public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
 		return 8.0f;
 	}
 
 	@Override
-	public float getExplosionResistance(World world, int x, int y, int z) {
+	public float getExplosionResistance(World world, int x, int y, int z, boolean isIngotBlock) {
 		return 10.0f;
 	}
 

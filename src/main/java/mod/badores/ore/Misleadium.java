@@ -24,7 +24,7 @@ public class Misleadium extends AbstractOre {
 	private List<ItemStack> cache;
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
 			// TODO is there a better way?
 			int numItems = Item.itemRegistry.getKeys().size();

@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.items.ItemBlockBadOre;
 import mod.badores.oremanagement.BadOre;
+import mod.badores.oremanagement.OreForm;
 import mod.badores.util.Sides;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,15 +25,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 /**
  * @author diesieben07
  */
 public class BlockBadOre extends BOBlock {
 
-	private static int instanceCounter = 0;
-	private BadOre[] ores = new BadOre[16];
+	public static final int MAX_ORES_PER_BLOCK = 8;
+	private static final int ORE_MASK = 0b0111;
+	private static final int INGOT_BLOCK = 0b1000;
 
-	private IIcon[] icons = new IIcon[16];
+	private static int instanceCounter = 0;
+	private BadOre[] ores = new BadOre[MAX_ORES_PER_BLOCK];
+
+	private IIcon[] oreIcons = new IIcon[MAX_ORES_PER_BLOCK];
+	private IIcon[] ingotBlockIcons = new IIcon[MAX_ORES_PER_BLOCK];
 
 	public BlockBadOre() {
 		super(Material.rock);
@@ -43,12 +51,31 @@ public class BlockBadOre extends BOBlock {
 		GameRegistry.registerBlock(this, ItemBlockBadOre.class, "badOre" + (instanceCounter++));
 	}
 
+	public static ItemStack createOre(BadOre ore) {
+		return BadOres.oreManager.getBlockInfo(ore).asStack();
+	}
+
+	public static ItemStack createIngotBlock(BadOre ore) {
+		checkArgument(ore.hasIngot() && ore.hasIngotBlock());
+		ItemStack stack = BadOres.oreManager.getBlockInfo(ore).asStack();
+		stack.setItemDamage(stack.getItemDamage() | INGOT_BLOCK);
+		return stack;
+	}
+
+	public static OreForm getOreForm(ItemStack stack) {
+		return isIngotBlock(stack) ? OreForm.INGOT_BLOCK : OreForm.ORE;
+	}
+
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		for (int i = 0; i < ores.length; ++i) {
-			if (ores[i] != null) {
-				//noinspection unchecked
-				list.add(new ItemStack(item, 1, i));
+		@SuppressWarnings("unchecked")
+		List<ItemStack> stacks = list;
+		for (BadOre ore : ores) {
+			if (ore != null) {
+				stacks.add(createOre(ore));
+				if (ore.hasIngotBlock()) {
+					stacks.add(createIngotBlock(ore));
+				}
 			}
 		}
 	}
@@ -58,12 +85,21 @@ public class BlockBadOre extends BOBlock {
         return BadOres.oreManager.getBlockInfo(getOre(world.getBlockMetadata(x, y, z))).asStack();
     }
 
+	public static boolean isIngotBlock(ItemStack stack) {
+		return isIngotBlock(stack.getItemDamage());
+	}
+
+	public static boolean isIngotBlock(int meta) {
+		return (meta & INGOT_BLOCK) != 0;
+	}
+
     public void addOre(int metadata, BadOre ore) {
 		ores[metadata] = ore;
 	}
 
 	public BadOre getOre(int metadata) {
-		return metadata < ores.length ? ores[metadata] : ores[0];
+		BadOre ore = ores[(metadata & ORE_MASK)];
+		return ore == null ? ores[0] : ore;
 	}
 
 	public BadOre getOre(ItemStack stack) {
@@ -74,7 +110,7 @@ public class BlockBadOre extends BOBlock {
 	public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int metadata) {
 		super.harvestBlock(world, player, x, y, z, metadata);
 		// side is always server
-		getOre(metadata).onHarvest(player, world, x, y, z, Side.SERVER);
+		getOre(metadata).onHarvest(player, world, x, y, z, Side.SERVER, isIngotBlock(metadata));
 	}
 
 	// evil hack, kids don't try this at home
@@ -84,14 +120,14 @@ public class BlockBadOre extends BOBlock {
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		dropMeta = metadata;
 		ArrayList<ItemStack> result = Lists.newArrayList();
-		BadOre ore = getOre(metadata);
-		ore.addDroppedItemsToList(world, x, y, z, metadata, fortune, result);
+		getOre(metadata).addDroppedItems(world, x, y, z, metadata, fortune, result, isIngotBlock(metadata));
 		return result;
 	}
 
 	@Override
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
-		getOre(world.getBlockMetadata(x, y, z)).onRemove(player, world, x, y, z, Sides.logical(world));
+		int meta = world.getBlockMetadata(x, y, z);
+		getOre(meta).onRemove(player, world, x, y, z, Sides.logical(world), isIngotBlock(meta));
 		return super.removedByPlayer(world, player, x, y, z);
 	}
 
@@ -99,10 +135,10 @@ public class BlockBadOre extends BOBlock {
 	protected void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack) {
 		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
 			float f = 0.7F;
-			double eX = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
-			double eY = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
-			double eZ = (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
-			world.spawnEntityInWorld(getOre(dropMeta).createDropEntity(world, x + eX, y + eY, z + eZ, stack));
+			double eX = x + (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			double eY = y + (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			double eZ = z + (world.rand.nextFloat() * f) + (1.0F - f) * 0.5D;
+			world.spawnEntityInWorld(getOre(dropMeta).createDropEntity(world, eX, eY, eZ, stack, isIngotBlock(dropMeta)));
 		}
 	}
 
@@ -111,69 +147,75 @@ public class BlockBadOre extends BOBlock {
 		blockIcon = iconRegister.registerIcon(BadOres.MOD_ID + ":" + "oreGeneric");
 
 		for (int i = 0; i < ores.length; ++i) {
-			if (ores[i] != null) {
-				icons[i] = iconRegister.registerIcon(ores[i].getIconName());
+			BadOre ore = ores[i];
+			if (ore != null) {
+				oreIcons[i] = iconRegister.registerIcon(ore.getIconName());
+				if (ore.hasIngot() && ore.hasIngotBlock()) {
+					ingotBlockIcons[i] = iconRegister.registerIcon(BadOres.MOD_ID + ":" + ore.getName() + ".ingotBlock");
+				}
 			}
 		}
 	}
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		BadOre ore = getOre(world.getBlockMetadata(x, y, z));
-
-		int tickRate = ore.initialTickRate();
+		int meta = world.getBlockMetadata(x, y, z);
+		int tickRate = getOre(meta).initialTickRate(isIngotBlock(meta));
 		if (tickRate >= 0)
 			world.scheduleBlockUpdate(x, y, z, this, tickRate);
 	}
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random random) {
-		BadOre ore = getOre(world.getBlockMetadata(x, y, z));
-		ore.tick(world, x, y, z, random, Sides.logical(world));
+		int meta = world.getBlockMetadata(x, y, z);
+		getOre(meta).tick(world, x, y, z, random, Sides.logical(world), isIngotBlock(meta));
 	}
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		return getOre(world.getBlockMetadata(x, y, z)).getHardness(world, x, y, z);
+		int meta = world.getBlockMetadata(x, y, z);
+		BadOre ore = getOre(meta);
+		return ore.getHardness(world, x, y, z, isIngotBlock(meta));
 	}
 
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		if (icons[meta] != null)
-			return icons[meta];
-
-		return super.getIcon(side, meta);
+		IIcon i;
+		if (isIngotBlock(meta)) {
+			i =  ingotBlockIcons[meta & ORE_MASK];
+		} else {
+			i = oreIcons[meta & ORE_MASK];
+		}
+		return i == null ? blockIcon : i;
 	}
 
 	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
-		return getOre(world.getBlockMetadata(x, y, z)).lightLevel();
+		int meta = world.getBlockMetadata(x, y, z);
+		return getOre(meta).lightLevel(isIngotBlock(meta));
 	}
 
 	@Override
 	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-		return getOre(world.getBlockMetadata(x, y, z)).getExplosionResistance(world, x, y, z);
+		int meta = world.getBlockMetadata(x, y, z);
+		return getOre(meta).getExplosionResistance(world, x, y, z, isIngotBlock(meta));
 	}
 
 	@Override
 	public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 ray, Vec3 ray2) {
-		if (getOre(world.getBlockMetadata(x, y, z)).shouldSelectionRayTrace())
+		int meta = world.getBlockMetadata(x, y, z);
+		if (getOre(meta).shouldSelectionRayTrace(isIngotBlock(meta)))
 			return super.collisionRayTrace(world, x, y, z, ray, ray2);
 		return null;
 	}
 
     @Override
-    public boolean canHarvestBlock(EntityPlayer player, int meta) {
-        return super.canHarvestBlock(player, meta);
-    }
-
-    @Override
     public String getHarvestTool(int metadata) {
-        return getOre(metadata).toolRequired();
+        return getOre(metadata).toolRequired(isIngotBlock(metadata));
     }
 
     @Override
     public int getHarvestLevel(int metadata) {
-        return getOre(metadata).harvestLevelRequired();
+        return getOre(metadata).harvestLevelRequired(isIngotBlock(metadata));
     }
 }

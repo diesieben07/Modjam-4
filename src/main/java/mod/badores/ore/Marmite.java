@@ -22,12 +22,12 @@ public class Marmite extends AbstractOre {
 	}
 
     @Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return 0;
     }
 
     @Override
-    public String toolRequired() {
+    public String toolRequired(boolean isIngotBlock) {
         return "shovel";
     }
 

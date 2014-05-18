@@ -70,6 +70,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
+	public boolean hasIngotBlock() {
+		return hasIngot();
+	}
+
+	@Override
 	public boolean dropsIngotDirectly() {
 		return false;
 	}
@@ -98,11 +103,11 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 	}
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 	}
 
 	@Override
@@ -132,7 +137,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		if (dropsIngotDirectly()) {
 			drops.add(ItemBOIngot.createIngot(this));
 		} else {
@@ -141,7 +146,7 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack) {
+	public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock) {
 		EntityItem entity = new EntityItem(world, x, y, z, stack);
 		entity.delayBeforeCanPickup = 10;
 		return entity;
@@ -212,34 +217,34 @@ public abstract class AbstractOre implements BadOre {
 	}
 
 	@Override
-	public int lightLevel() {
+	public int lightLevel(boolean isIngotBlock) {
 		return 0;
 	}
 
 	@Override
-	public int initialTickRate() {
+	public int initialTickRate(boolean isIngotBlock) {
 		return -1;
 	}
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side) {
-		int tickRate = initialTickRate();
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+		int tickRate = initialTickRate(isIngotBlock);
 		if (tickRate >= 0)
 			world.scheduleBlockUpdate(x, y, z, blockInfo().block, tickRate);
 	}
 
 	@Override
-	public float getHardness(World world, int x, int y, int z) {
+	public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
 		return 3.0f;
 	}
 
 	@Override
-	public float getExplosionResistance(World world, int x, int y, int z) {
-		return getHardness(world, x, y, z) / 5.0f;
+	public float getExplosionResistance(World world, int x, int y, int z, boolean isIngotBlock) {
+		return getHardness(world, x, y, z, isIngotBlock) / 5.0f;
 	}
 
 	@Override
-	public boolean shouldSelectionRayTrace() {
+	public boolean shouldSelectionRayTrace(boolean isIngotBlock) {
 		return true;
 	}
 
@@ -262,12 +267,12 @@ public abstract class AbstractOre implements BadOre {
 	public void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack) { }
 
 	@Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return 2;
     }
 
     @Override
-    public String toolRequired() {
+    public String toolRequired(boolean isIngotBlock) {
         return "pickaxe";
     }
 

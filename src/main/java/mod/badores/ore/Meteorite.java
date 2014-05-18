@@ -17,7 +17,7 @@ public class Meteorite extends AbstractOre {
 	public static final int METEORITE_SPAWN_SIDE = 50;
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
 			int number = rand.nextInt(20) + 3;
 			Block fallingBlock = rand.nextBoolean() ? Blocks.stone : Blocks.netherrack;

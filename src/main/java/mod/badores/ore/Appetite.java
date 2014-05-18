@@ -1,8 +1,6 @@
 package mod.badores.ore;
 
-import com.google.common.collect.ImmutableList;
 import cpw.mods.fml.relauncher.Side;
-import mod.badores.oremanagement.OreForm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,18 +16,18 @@ import java.util.Random;
 public class Appetite extends AbstractOre {
 
     @Override
-    public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+    public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 
     }
 
     @Override
-    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer())
 			miner.getFoodStats().addStats(4, 0.2f);
 	}
 
     @Override
-    public float getHardness(World world, int x, int y, int z) {
+    public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
         return 0.5f;
     }
 
@@ -49,12 +47,12 @@ public class Appetite extends AbstractOre {
     }
 
     @Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return -1;
     }
 
     @Override
-    public String toolRequired() {
+    public String toolRequired(boolean isIngotBlock) {
         return "shovel";
     }
 

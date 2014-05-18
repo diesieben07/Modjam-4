@@ -26,6 +26,8 @@ public interface BadOre extends OreBookPage {
 
 	boolean hasIngot();
 
+	boolean hasIngotBlock();
+
 	boolean dropsIngotDirectly();
 
     int ingotStackSize();
@@ -36,9 +38,9 @@ public interface BadOre extends OreBookPage {
 
 	void postProcessItem(BOOreProduct item, OreForm form);
 
-	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side);
+	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
 
-	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side);
+	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
 
 	void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side);
 
@@ -60,30 +62,30 @@ public interface BadOre extends OreBookPage {
 
 	String getArmorIconName(ArmorType type);
 
-	void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops);
+	void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock);
 
-	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack);
+	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock);
 
 	void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
 
-	int lightLevel();
+	int lightLevel(boolean isIngotBlock);
 
-	int initialTickRate();
+	int initialTickRate(boolean isIngotBlock);
 
-	void tick(World world, int x, int y, int z, Random random, Side side);
+	void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock);
 
-	float getHardness(World world, int x, int y, int z);
+	float getHardness(World world, int x, int y, int z, boolean isIngotBlock);
 
 	String getDisplayName(OreSubName name);
 
-	float getExplosionResistance(World world, int x, int y, int z);
+	float getExplosionResistance(World world, int x, int y, int z, boolean isIngotBlock);
 
-	boolean shouldSelectionRayTrace();
+	boolean shouldSelectionRayTrace(boolean isIngotBlock);
 
 	float getSmeltingXP();
 
-    int harvestLevelRequired();
+    int harvestLevelRequired(boolean isIngotBlock);
 
-    String toolRequired();
+    String toolRequired(boolean isIngotBlock);
 
 }

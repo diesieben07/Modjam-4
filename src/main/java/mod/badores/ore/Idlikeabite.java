@@ -16,7 +16,7 @@ import java.util.Random;
 public class Idlikeabite extends AbstractOre {
 
 	@Override
-    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer())
 			miner.getFoodStats().addExhaustion(rand.nextFloat() * 40.0f);
 	}
@@ -44,12 +44,12 @@ public class Idlikeabite extends AbstractOre {
     }
 
     @Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return 1;
     }
 
     @Override
-    public String toolRequired() {
+    public String toolRequired(boolean isIngotBlock) {
         return "shovel";
     }
 

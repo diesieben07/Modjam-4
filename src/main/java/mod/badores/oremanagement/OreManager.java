@@ -57,6 +57,10 @@ public final class OreManager {
 				addSmelting(ore, blockInfo);
 			}
 
+			if (ore.hasIngot() && ore.hasIngotBlock()) {
+				addIngotBlockRecipe(ore);
+			}
+
 			if (ore.hasTools()) {
 				generateTools(ore, craftingInput);
 			}
@@ -65,11 +69,17 @@ public final class OreManager {
 				generateArmor(ore, craftingInput);
 			}
 
-			if (++currentMetadata == 16) {
+			if (++currentMetadata == BlockBadOre.MAX_ORES_PER_BLOCK) {
 				currentBlock = null;
 				currentMetadata = 0;
 			}
 		}
+	}
+
+	private void addIngotBlockRecipe(BadOre ore) {
+		GameRegistry.addRecipe(BlockBadOre.createIngotBlock(ore),
+				"XXX", "XXX", "XXX",
+				'X', ItemBOIngot.createIngot(ore));
 	}
 
 	private void addSmelting(BadOre ore, BlockInfo block) {

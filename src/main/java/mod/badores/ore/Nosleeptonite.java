@@ -27,13 +27,13 @@ public class Nosleeptonite extends AbstractOre {
     }
 
     @Override
-    public int initialTickRate() {
+    public int initialTickRate(boolean isIngotBlock) {
         return 1000;
     }
 
     @Override
-	public void tick(World world, int x, int y, int z, Random random, Side side) {
-		super.tick(world, x, y, z, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+		super.tick(world, x, y, z, random, side, isIngotBlock);
 
         if (side.isServer() && rand.nextInt(10) == 0) {
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":nosleeptonite.idle", 1.0f, 1.0f);
@@ -41,7 +41,7 @@ public class Nosleeptonite extends AbstractOre {
 	}
 
     @Override
-    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (side.isServer()) {
             BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(this);
             EntityNosleeptonite blockEntity = new EntityNosleeptonite(world, blockInfo.block, blockInfo.metadata);

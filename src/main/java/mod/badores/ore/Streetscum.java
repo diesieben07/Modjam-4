@@ -13,7 +13,7 @@ import java.util.List;
 public class Streetscum extends AbstractOre {
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
 			List<Integer> availableItems = new ArrayList<Integer>();
 			for (int i = 0; i < miner.inventory.getSizeInventory(); i++) {

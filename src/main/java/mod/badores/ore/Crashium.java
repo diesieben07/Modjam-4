@@ -19,7 +19,7 @@ public class Crashium extends AbstractOre {
 	public static final int CRASH_PROBABILITY = 5;
 
 	@Override
-	public void onRemove(final EntityPlayer miner, final World world, int x, int y, int z, Side side) {
+	public void onRemove(final EntityPlayer miner, final World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		doCrash(miner, side);
 	}
 

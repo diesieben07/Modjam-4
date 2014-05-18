@@ -19,7 +19,7 @@ public class Amadeum extends AbstractOre {
 	}
 
 	@Override
-	public int initialTickRate() {
+	public int initialTickRate(boolean isIngotBlock) {
 		return rand.nextInt(6) + 18;
 	}
 
@@ -28,8 +28,8 @@ public class Amadeum extends AbstractOre {
 	};
 
 	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side) {
-		super.tick(world, x, y, z, random, side);
+	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock) {
+		super.tick(world, x, y, z, random, side, isIngotBlock);
 
 		if (side.isServer()) {
 			randomSound(world, x, y, z, random);

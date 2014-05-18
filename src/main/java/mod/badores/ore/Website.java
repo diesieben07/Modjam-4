@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class Website extends AbstractOre {
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isClient()) {
 			BadOres.proxy.openRandomWebsite();
 		}

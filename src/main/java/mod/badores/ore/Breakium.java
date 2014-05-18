@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class Breakium extends AbstractOre {
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		ItemStack equip = miner.getCurrentEquippedItem();
 		if (equip != null) {
 			miner.renderBrokenItemStack(equip);

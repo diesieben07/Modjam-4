@@ -13,7 +13,7 @@ public class Killium extends AbstractOre {
 	private static final DamageSource killiumDamage = new DamageSource("badores.killium").setDamageBypassesArmor().setDamageIsAbsolute();
 
 	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (rand.nextInt(5) == 0)
 			miner.attackEntityFrom(killiumDamage, 10000.0f);
 	}

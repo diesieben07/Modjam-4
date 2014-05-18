@@ -25,12 +25,12 @@ public class Paintitwhite extends AbstractOre {
     }
 
     @Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return 0;
     }
 
     @Override
-    public String toolRequired() {
+    public String toolRequired(boolean isIngotBlock) {
         return "shovel";
     }
 
@@ -45,7 +45,7 @@ public class Paintitwhite extends AbstractOre {
     }
 
     @Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		drops.add(new ItemStack(Items.dye, 1, 15));
 	}
 }

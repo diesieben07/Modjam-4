@@ -6,7 +6,7 @@ package mod.badores.ore;
 public class  Shiftium extends AbstractOre {
 
 	@Override
-	public boolean shouldSelectionRayTrace() {
+	public boolean shouldSelectionRayTrace(boolean isIngotBlock) {
 		return false;
 	}
 

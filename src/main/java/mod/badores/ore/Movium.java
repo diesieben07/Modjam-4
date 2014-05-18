@@ -16,7 +16,7 @@ import java.util.List;
 public class Movium extends AbstractOre {
 
 	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side) {
+	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
 		if (side.isServer()) {
 			ForgeDirection dir = JavaUtils.selectRandom(rand, ForgeDirection.VALID_DIRECTIONS);
 			int tX = x + dir.offsetX;
@@ -28,7 +28,7 @@ public class Movium extends AbstractOre {
 	}
 
 	@Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		// no drops
 	}
 

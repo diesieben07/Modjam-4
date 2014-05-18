@@ -6,6 +6,7 @@ package mod.badores.oremanagement;
 public enum OreForm {
 
 	ORE,
+	INGOT_BLOCK,
 	INGOT,
 	HELMET,
 	CHESTPLATE,

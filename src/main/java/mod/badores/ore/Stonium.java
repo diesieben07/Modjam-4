@@ -34,17 +34,17 @@ public class Stonium extends AbstractOre {
     }
 
     @Override
-    public int harvestLevelRequired() {
+    public int harvestLevelRequired(boolean isIngotBlock) {
         return 0;
     }
 
     @Override
-    public float getHardness(World world, int x, int y, int z) {
+    public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
         return 1.0f;
     }
 
     @Override
-	public void addDroppedItemsToList(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+	public void addDroppedItems(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock) {
 		drops.add(new ItemStack(Blocks.stone));
 	}
 
