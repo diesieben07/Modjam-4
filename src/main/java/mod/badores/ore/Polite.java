@@ -72,8 +72,7 @@ public class Polite extends AbstractOre {
 
     @Override
     public ToolInfo getToolInfo() {
-        // TODO: different values?
-        return new ToolInfo(2, 250, 6.0F, 2.0F, 14);
+        return new ToolInfo(1, 200, 5.0F, 2.0F, 15);
     }
 
     @Override
