@@ -4,11 +4,15 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.event.FMLEventHandler;
 import mod.badores.network.PacketRandomTranslation;
+import mod.badores.oremanagement.ArmorInfo;
+import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 /**
@@ -74,7 +78,28 @@ public class Crashium extends AbstractOre {
 		return new ToolInfo(2, 250, 8.0F, 2.0F, 8);
 	}
 
-	@Override
+    @Override
+    public boolean hasArmor() {
+        return true;
+    }
+
+    @Override
+    public ArmorInfo getArmorInfo() {
+        return new ArmorInfo(8, new int[]{2, 7, 5, 2}, 9);
+    }
+
+    @Override
+    public void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side) {
+        doCrash(player, side);
+    }
+
+    @Override
+    public void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack) {
+        if (rand.nextInt(800) == 0)
+            doCrash(player, side);
+    }
+
+    @Override
 	public String getName() {
 		return "crashium";
 	}
