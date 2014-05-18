@@ -1,6 +1,9 @@
 package mod.badores.ore;
 
+import mod.badores.BadOres;
 import mod.badores.items.ItemBOIngot;
+import mod.badores.oremanagement.OreSubName;
+import mod.badores.util.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -24,6 +27,14 @@ public class Kakkarite extends AbstractOre {
     @Override
     public boolean dropsIngotDirectly() {
         return true;
+    }
+
+    @Override
+    public String getDisplayName(OreSubName name) {
+        if (name instanceof ItemBOIngot)
+            return I18n.translate(getName() + ".ingot.name");
+        else
+            return super.getDisplayName(name);
     }
 
     @Override
