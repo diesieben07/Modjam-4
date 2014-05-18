@@ -20,4 +20,6 @@ public interface BOProxy {
 	void openRandomWebsite();
 
 	void handleRandomTranslation(PacketRandomTranslation message);
+
+	void openBook();
 }

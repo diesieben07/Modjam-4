@@ -36,4 +36,7 @@ public class BOServerProxy implements BOProxy {
 	public void handleRandomTranslation(PacketRandomTranslation message) {
 
 	}
+
+	@Override
+	public void openBook() { }
 }

@@ -14,6 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.event.BOEventHandler;
 import mod.badores.event.TickEvents;
+import mod.badores.items.BadOreBook;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.ore.*;
@@ -26,6 +27,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
@@ -63,11 +65,10 @@ public class BadOres {
 	public static OreManager oreManager;
 
 	public static ItemBOIngot ingot;
-
 	public static Item marmiteBread;
+	public static Item badOreBook;
 
 	public static SimpleNetworkWrapper network;
-    public static BOEventHandler eventHandler;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -77,8 +78,7 @@ public class BadOres {
 
 		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true); // TODO implement
 
-        eventHandler = new BOEventHandler();
-        eventHandler.register();
+		MinecraftForge.EVENT_BUS.register(new BOEventHandler());
 
 		oreManager = new OreManager();
 
@@ -122,6 +122,9 @@ public class BadOres {
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
+
+		badOreBook = new BadOreBook();
+		GameRegistry.registerItem(badOreBook, "badOreBook");
 
 		oreManager.createGameElements();
 

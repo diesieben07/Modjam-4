@@ -6,19 +6,14 @@ import mod.badores.util.Sides;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
 /**
  * Created by Lukas Tenbrink on 16.05.2014.
  */
 public class BOEventHandler {
-    public void register()
-    {
-        MinecraftForge.EVENT_BUS.register(this);
-    }
 
-    @SubscribeEvent
+	@SubscribeEvent
     public void onEntityAttacked(LivingAttackEvent event)
     {
         if (event.entityLiving instanceof EntityPlayer)

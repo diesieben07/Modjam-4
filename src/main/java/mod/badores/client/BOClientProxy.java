@@ -5,6 +5,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
+import mod.badores.client.gui.GuiBadOreBook;
 import mod.badores.client.rendering.RenderFleeingBlock;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.network.PacketRandomTranslation;
@@ -66,5 +67,10 @@ public class BOClientProxy implements BOProxy {
 		int count = Integer.parseInt(I18n.translate(message.baseKey + ".count"));
 		int n = mc.theWorld.rand.nextInt(count);
 		mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n, message.data));
+	}
+
+	@Override
+	public void openBook() {
+		Minecraft.getMinecraft().displayGuiScreen(new GuiBadOreBook());
 	}
 }
