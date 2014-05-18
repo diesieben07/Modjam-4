@@ -137,7 +137,7 @@ public final class OreManager {
 	}
 
 	public List<BadOre> getAllOres() {
-		return allOres.subList(0, allOres.size());
+		return allOres;
 	}
 
 	public BlockInfo getBlockInfo(BadOre ore) {

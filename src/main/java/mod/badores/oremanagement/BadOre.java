@@ -18,7 +18,7 @@ import java.util.Random;
 /**
  * @author diesieben07
  */
-public interface BadOre {
+public interface BadOre extends OreBookPage {
 
 	boolean hasTools();
 
@@ -52,9 +52,9 @@ public interface BadOre {
 
 	void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack);
 
-    String getName();
-
 	String getIconName();
+
+	String getName();
 
 	String getIngotIconName();
 
@@ -74,8 +74,6 @@ public interface BadOre {
 
 	float getHardness(World world, int x, int y, int z);
 
-	String getDisplayName();
-
 	String getDisplayName(OreSubName name);
 
 	float getExplosionResistance(World world, int x, int y, int z);
@@ -88,5 +86,4 @@ public interface BadOre {
 
     String toolRequired();
 
-	String getDescriptionText();
 }

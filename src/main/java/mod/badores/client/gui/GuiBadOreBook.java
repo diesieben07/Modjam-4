@@ -1,16 +1,18 @@
 package mod.badores.client.gui;
 
 import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Ordering;
 import mod.badores.BadOres;
 import mod.badores.ore.Doesntevenexistium;
 import mod.badores.oremanagement.BadOre;
-import mod.badores.oremanagement.BlockInfo;
+import mod.badores.oremanagement.OreBookPage;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,20 +29,17 @@ public class GuiBadOreBook extends GuiScreen {
 	private GuiButtonChangePage nextPage;
 	private GuiButtonChangePage prevPage;
 
-	private final List<BadOre> sortedOres;
+	private final List<OreBookPage> sortedOres;
 
 	public GuiBadOreBook() {
-        List<BadOre> allOres = BadOres.oreManager.getAllOres();
-        allOres.add(new Doesntevenexistium());
-
 		sortedOres = Ordering.from(String.CASE_INSENSITIVE_ORDER)
-				.onResultOf(new Function<BadOre, String>() {
+				.onResultOf(new Function<OreBookPage, String>() {
 					@Override
-					public String apply(BadOre input) {
+					public String apply(OreBookPage input) {
 						return input.getDisplayName();
 					}
 				})
-				.immutableSortedCopy(allOres);
+				.immutableSortedCopy(Iterables.concat(BadOres.oreManager.getAllOres(), Arrays.asList(Doesntevenexistium.INSTANCE)));
 	}
 
 	@Override
@@ -80,16 +79,14 @@ public class GuiBadOreBook extends GuiScreen {
 		mc.renderEngine.bindTexture(texture);
 		drawTexturedModalRect(bookXStart, 2, 0, 0, 192, 192);
 
-		BadOre ore = sortedOres.get(page);
-        BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(ore);
-        if (blockInfo != null)
-        {
-            ItemStack stack = blockInfo.asStack();
+		OreBookPage page = sortedOres.get(this.page);
+        if (page instanceof BadOre) {
+	        ItemStack stack = BadOres.oreManager.getBlockInfo((BadOre) page).asStack();
             itemRender.renderItemAndEffectIntoGUI(fontRendererObj, mc.renderEngine, stack, bookXStart + 40, 14);
         }
 
-		fontRendererObj.drawString("§n" + ore.getDisplayName(), bookXStart + 40 + 4 + 16, 17, 0x000000);
-		fontRendererObj.drawSplitString(ore.getDescriptionText(), bookXStart + 40, 17 + 15, 115, 0x000000);
+		fontRendererObj.drawString("§n" + page.getDisplayName(), bookXStart + 40 + 4 + 16, 17, 0x000000);
+		fontRendererObj.drawSplitString(page.getDescriptionText(), bookXStart + 40, 17 + 15, 115, 0x000000);
 
 		super.drawScreen(mouseX, mouseY, renderPartials);
 	}
