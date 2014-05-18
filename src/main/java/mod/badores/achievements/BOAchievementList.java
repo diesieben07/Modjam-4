@@ -26,11 +26,11 @@ public class BOAchievementList {
     }
 
     public static void init() {
-        barelyGeneriteFound = (new Achievement("achievement.barelyGeneriteFound", "barelyGeneriteFound", 4, 8, getOreStack("barelyGenerite"), null)).registerStat();
-        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 7, 8, getOreBlockStack("barelyGenerite"), barelyGeneriteFound).registerStat();
-	    iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 5, 8, getOreStack("iwontfite"), null).registerStat();
+        barelyGeneriteFound = (new Achievement("achievement.barelyGeneriteFound", "barelyGeneriteFound", 0, 2, getOreStack("barelyGenerite"), null)).registerStat();
+        buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 3, 2, getOreBlockStack("barelyGenerite"), barelyGeneriteFound).registerStat();
+	    iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 0, 0, getOreStack("iwontfite"), null).registerStat();
 
-	    page = new AchievementPage(BadOres.NAME, buildBarelyGeneriteBlock, iwontfiteDamage);
+	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage);
 	    AchievementPage.registerAchievementPage(page);
     }
 }
