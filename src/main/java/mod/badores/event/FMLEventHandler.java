@@ -11,6 +11,7 @@ import mod.badores.items.BadOreItem;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.items.ItemBlockBadOre;
 import mod.badores.ore.BarelyGenerite;
+import mod.badores.ore.Fleesonsite;
 import mod.badores.ore.Shiftium;
 import mod.badores.oremanagement.BadOre;
 import net.minecraft.entity.player.EntityPlayer;
@@ -123,9 +124,9 @@ public enum FMLEventHandler {
 
     @SubscribeEvent
     public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
-        ItemStack fleesonsiteIngotStack = ItemBOIngot.createIngot(BadOres.oreManager.getOreByName("fleesonsite"));
-        if (fleesonsiteIngotStack.isItemEqual(event.smelting))
-            event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
+        if (ItemBOIngot.getOre(event.smelting) instanceof Fleesonsite) {
+	        event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
+        }
     }
 
 	private class Task {
