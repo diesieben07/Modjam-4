@@ -45,7 +45,7 @@ public class ItemBOIngot extends BOItem implements OreSubName, BadOreItem {
 		return (blockId & 0xfff) | (meta & 0xf) << 12;
 	}
 
-	private static BadOre getOre(int meta) {
+	public static BadOre getOre(int meta) {
 		Block block = Block.getBlockById(meta & 0xfff);
 		if (!(block instanceof BlockBadOre)) {
 			return null;

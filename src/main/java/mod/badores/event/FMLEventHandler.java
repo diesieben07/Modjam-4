@@ -9,9 +9,10 @@ import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.items.BadOreItem;
 import mod.badores.items.ItemBOIngot;
-import net.minecraft.client.Minecraft;
 import mod.badores.items.ItemBlockBadOre;
+import mod.badores.ore.BarelyGenerite;
 import mod.badores.ore.Shiftium;
+import mod.badores.oremanagement.BadOre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -96,24 +97,26 @@ public enum FMLEventHandler {
 
     @SubscribeEvent
     public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
-        ItemStack barelyGeneriteBI = BlockBadOre.createIngotBlock(BadOres.oreManager.getOreByName("barelyGenerite"));
-        if (barelyGeneriteBI.isItemEqual(event.crafting))
-            event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
+	    if (event.crafting == null) return;
 
-        if (barelyGeneriteBI.getItem() == BadOres.marmiteBread)
-            event.player.triggerAchievement(BOAchievementList.madeMarmiteBread);
+	    Item item = event.crafting.getItem();
+
+	    if (item instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlockBadOre) item).field_150939_a).getOre(event.crafting) instanceof BarelyGenerite) {
+		    event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
+	    } else if (item == BadOres.marmiteBread) {
+		    event.player.triggerAchievement(BOAchievementList.madeMarmiteBread);
+	    }
     }
 
     @SubscribeEvent
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        ItemStack barelyGeneriteBO = BlockBadOre.createOre(BadOres.oreManager.getOreByName("barelyGenerite"));
 	    ItemStack stack = event.pickedUp.getEntityItem();
-	    if (barelyGeneriteBO.isItemEqual(stack))
-            event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
-
 	    if (stack.getItem() instanceof ItemBlockBadOre) {
-		    if (((BlockBadOre) ((ItemBlockBadOre) stack.getItem()).field_150939_a).getOre(stack) instanceof Shiftium) {
+		    BadOre ore = ((BlockBadOre) ((ItemBlockBadOre) stack.getItem()).field_150939_a).getOre(stack);
+		    if (ore instanceof Shiftium) {
 			    event.player.triggerAchievement(BOAchievementList.getShiftium);
+		    } else if (ore instanceof BarelyGenerite) {
+			    event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
 		    }
 	    }
     }
