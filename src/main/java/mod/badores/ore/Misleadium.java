@@ -46,7 +46,7 @@ public class Misleadium extends AbstractOre {
 
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.misleadium.baseMessage", stack.getDisplayName(), Integer.toString(fX), Integer.toString(fY), Integer.toString(fZ)), ((EntityPlayerMP) miner));
 		}
-	}
+	} 
 
 	@Override
 	public String getName() {
