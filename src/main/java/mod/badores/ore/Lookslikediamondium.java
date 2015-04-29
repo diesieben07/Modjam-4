@@ -2,10 +2,7 @@ package mod.badores.ore;
 
 import mod.badores.items.BOOreProduct;
 import mod.badores.items.ItemBOIngot;
-import mod.badores.oremanagement.ArmorInfo;
-import mod.badores.oremanagement.OreForm;
-import mod.badores.oremanagement.OreSubName;
-import mod.badores.oremanagement.ToolInfo;
+import mod.badores.oremanagement.*;
 import mod.badores.util.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -62,6 +59,11 @@ public class Lookslikediamondium extends AbstractOre {
 	@Override
 	public ArmorInfo getArmorInfo() {
 		return new ArmorInfo(1, new int[]{1, 1, 1, 1}, 0);
+	}
+
+	@Override
+	public String getArmorIconName(ArmorType type) {
+		return String.format("textures/models/armor/%s_layer_%d%s.png", "diamond", type.getLayer(), "");
 	}
 
 	@Override
