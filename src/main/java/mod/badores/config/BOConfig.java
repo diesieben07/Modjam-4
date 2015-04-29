@@ -4,6 +4,7 @@ import mod.badores.BadOres;
 import net.minecraftforge.common.config.Configuration;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
@@ -15,7 +16,7 @@ public class BOConfig {
 
     public static final String CATEGORY_BALANCING = "balancing";
 
-    private static Set<String> disabledOreGeneration;
+    private static final Set<String> disabledOreGeneration = new HashSet<>();
 
     public static void loadConfig(String configID) {
 
