@@ -3,6 +3,9 @@ package mod.badores.config;
 import mod.badores.BadOres;
 import net.minecraftforge.common.config.Configuration;
 
+import java.util.Collections;
+import java.util.Set;
+
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 /**
@@ -12,14 +15,21 @@ public class BOConfig {
 
     public static final String CATEGORY_BALANCING = "balancing";
 
-    public static boolean enableGameBreakingFeatures;
+    private static Set<String> disabledOreGeneration;
 
     public static void loadConfig(String configID) {
 
         if (configID == null || configID.equals(CATEGORY_BALANCING)) {
-            enableGameBreakingFeatures = BadOres.config.get(CATEGORY_BALANCING, "enableGameBreakingFeatures", true).getBoolean(true);
+
+            disabledOreGeneration.clear();
+            Collections.addAll(disabledOreGeneration, BadOres.config.get(CATEGORY_BALANCING, "disabledOreGeneration", new String[0], "List of Ores that should not generate.").getStringList());
         }
 
         BadOres.proxy.loadConfig(configID);
+    }
+
+    public static boolean isOreGenerationDisabled(String oreName)
+    {
+        return disabledOreGeneration.contains(oreName);
     }
 }

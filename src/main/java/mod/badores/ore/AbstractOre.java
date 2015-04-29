@@ -5,6 +5,7 @@ import mod.badores.BadOres;
 import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.BlockBadOre;
 import mod.badores.blocks.BlockTickProvider;
+import mod.badores.config.BOConfig;
 import mod.badores.items.BOOreProduct;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;
@@ -211,21 +212,23 @@ public abstract class AbstractOre implements BadOre {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		int numVeins = veinsPerChunk(random, world, chunkX, chunkZ);
+		if (!BOConfig.isOreGenerationDisabled(getName())) {
+			int numVeins = veinsPerChunk(random, world, chunkX, chunkZ);
 
-		for (int i = 0; i < numVeins; i++) {
-			int veinSize = veinSize();
+			for (int i = 0; i < numVeins; i++) {
+				int veinSize = veinSize();
 
-			if (veinSize > 0) {
-				int min = genMin(random, world, chunkX, chunkZ);
-				int max = genMax(random, world, chunkX, chunkZ);
-				WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
+				if (veinSize > 0) {
+					int min = genMin(random, world, chunkX, chunkZ);
+					int max = genMax(random, world, chunkX, chunkZ);
+					WorldGenerator worldGenMinable = createGenerator(random, world, chunkX, chunkZ);
 
-				int x = chunkX * 16 + random.nextInt(16);
-				int y = random.nextInt(max - min + 1) + min;
-				int z = chunkZ * 16 + random.nextInt(16);
+					int x = chunkX * 16 + random.nextInt(16);
+					int y = random.nextInt(max - min + 1) + min;
+					int z = chunkZ * 16 + random.nextInt(16);
 
-				worldGenMinable.generate(world, random, x, y, z);
+					worldGenMinable.generate(world, random, x, y, z);
+				}
 			}
 		}
 	}
