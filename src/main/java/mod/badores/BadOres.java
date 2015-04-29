@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.achievements.BOAchievementList;
 import mod.badores.blocks.TileEntityBadOre;
+import mod.badores.config.BOConfig;
 import mod.badores.entities.EntityFleeingBlock;
 import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.event.FMLEventHandler;
@@ -48,6 +49,7 @@ public class BadOres {
 	public static BOProxy proxy;
 
 	public static Logger logger;
+	public static Configuration config;
 
 	public static boolean devEnv = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
@@ -77,10 +79,11 @@ public class BadOres {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
 
-		gameBreakingFeatures = config.get("balancing", "enableGameBreakingFeatures", true).getBoolean(true);
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+		BOConfig.loadConfig(null);
+		config.save();
 
 		oreManager = new OreManager();
 
@@ -139,8 +142,7 @@ public class BadOres {
 
         GameRegistry.registerTileEntity(TileEntityBadOre.class, "badOre");
 
-		proxy.preInit(event, config);
-		config.save();
+		proxy.preInit(event);
 	}
 
 	@Mod.EventHandler

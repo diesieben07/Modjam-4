@@ -11,7 +11,7 @@ import net.minecraftforge.common.config.Configuration;
  */
 public interface BOProxy {
 
-	void preInit(FMLPreInitializationEvent event, Configuration config);
+	void preInit(FMLPreInitializationEvent event);
 
 	void init(FMLInitializationEvent event);
 
@@ -22,4 +22,6 @@ public interface BOProxy {
 	void handleRandomTranslation(PacketRandomTranslation message);
 
 	void openBook();
+
+	void loadConfig(String configID);
 }

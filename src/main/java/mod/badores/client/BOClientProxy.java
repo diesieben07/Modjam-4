@@ -14,7 +14,6 @@ import mod.badores.network.PacketRandomTranslation;
 import mod.badores.util.I18n;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraftforge.common.config.Configuration;
 
 import java.awt.*;
 import java.net.URL;
@@ -28,7 +27,7 @@ import java.util.Random;
 public class BOClientProxy implements BOProxy {
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event, Configuration config) {
+	public void preInit(FMLPreInitializationEvent event) {
 
 	}
 
@@ -75,5 +74,10 @@ public class BOClientProxy implements BOProxy {
 	@Override
 	public void openBook() {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiBadOreBook());
+	}
+
+	@Override
+	public void loadConfig(String configID) {
+
 	}
 }

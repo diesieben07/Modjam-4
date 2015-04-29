@@ -5,7 +5,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mod.badores.BOProxy;
 import mod.badores.network.PacketRandomTranslation;
-import net.minecraftforge.common.config.Configuration;
 
 /**
  * @author diesieben07
@@ -13,7 +12,7 @@ import net.minecraftforge.common.config.Configuration;
 public class BOServerProxy implements BOProxy {
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event, Configuration config) {
+	public void preInit(FMLPreInitializationEvent event) {
 
 	}
 
@@ -39,4 +38,9 @@ public class BOServerProxy implements BOProxy {
 
 	@Override
 	public void openBook() { }
+
+	@Override
+	public void loadConfig(String configID) {
+
+	}
 }
