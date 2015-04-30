@@ -27,7 +27,7 @@ public class Enderite extends AbstractOre {
 
     @Override
     public ToolInfo getToolInfo() {
-        return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
+        return new ToolInfo(1, 120, 4.0F, 1.0F, 15);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Enderite extends AbstractOre {
 
     @Override
     public ArmorInfo getArmorInfo() {
-        return new ArmorInfo(17, new int[]{2, 7, 5, 2}, 20);
+        return new ArmorInfo(17, new int[]{2, 5, 4, 1}, 20);
     }
 
     @Override

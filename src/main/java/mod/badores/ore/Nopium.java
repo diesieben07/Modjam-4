@@ -36,7 +36,7 @@ public class Nopium extends AbstractOre {
 
 	@Override
 	public ArmorInfo getArmorInfo() {
-		return new ArmorInfo(15, new int[]{2, 6, 5, 2}, 25);
+		return new ArmorInfo(15, new int[]{2, 6, 5, 2}, 0);
 	}
 
 	@Override

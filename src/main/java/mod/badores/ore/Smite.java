@@ -47,7 +47,7 @@ public class Smite extends AbstractOre {
 
     @Override
     public ToolInfo getToolInfo() {
-        return new ToolInfo(0, 100, 2.0F, 1.0F, 15);
+        return new ToolInfo(2, 220, 5.0F, 2.0F, 8);
     }
 
     @Override

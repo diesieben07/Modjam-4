@@ -38,7 +38,7 @@ public class Copper extends AbstractOre {
 
 	@Override
 	public ToolInfo getToolInfo() {
-		return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
+		return new ToolInfo(1, 200, 5.0F, 1.0F, 15);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class Copper extends AbstractOre {
 
 	@Override
 	public ArmorInfo getArmorInfo() {
-		return new ArmorInfo(8, new int[]{1, 4, 3, 1}, 10);
+		return new ArmorInfo(8, new int[]{1, 4, 3, 1}, 15);
 	}
 
 	@Override

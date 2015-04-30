@@ -75,7 +75,7 @@ public class Amadeum extends AbstractOre {
 
 	@Override
 	public ToolInfo getToolInfo() {
-		return new ToolInfo(0, 1, 2.0F, 0.0F, 15);
+		return new ToolInfo(2, 250, 6.0F, 2.0F, 20);
 	}
 
 	@Override
