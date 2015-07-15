@@ -53,8 +53,6 @@ public class BadOres {
 
 	public static boolean devEnv = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
-	public static boolean gameBreakingFeatures;
-
 	public static CreativeTabs creativeTab = new CreativeTabs("badores") {
 		@Override
 		public ItemStack getIconItemStack() {

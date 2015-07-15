@@ -48,7 +48,7 @@ public class Crashium extends AbstractOre {
 				public void run() {
 					if (rand.nextInt(CRASH_PROBABILITY) == 0) {
 						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), player);
-						if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
+						if (!BadOres.devEnv) {
 							FMLEventHandler.INSTANCE.schedule(new Runnable() {
 								@Override
 								public void run() {
