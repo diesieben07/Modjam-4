@@ -38,18 +38,18 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author diesieben07
  */
-@Mod(modid = BadOres.MOD_ID, name = BadOres.NAME, version = BadOres.VERSION, dependencies = "required-after:Forge@[10.12.1.1082,)")
+@Mod(modid = BadOres.MOD_ID, name = BadOres.NAME, version = BadOres.VERSION, dependencies = "required-after:Forge@[10.13.4.1448,)")
 public class BadOres {
 
 	public static final String MOD_ID = "badores";
-	public static final String VERSION = "0.1";
+	public static final String VERSION = "0.2";
 	public static final String NAME = "BadOres";
 
 	@SidedProxy(clientSide = "mod.badores.client.BOClientProxy", serverSide = "mod.badores.server.BOServerProxy")
 	public static BOProxy proxy;
 
 	public static Logger logger;
-	public static Configuration config;
+	public static BOConfig config;
 
 	public static boolean devEnv = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
@@ -77,11 +77,6 @@ public class BadOres {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
-
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
-		BOConfig.loadConfig(null);
-		config.save();
 
 		oreManager = new OreManager();
 
@@ -123,6 +118,9 @@ public class BadOres {
         oreManager.registerOre(new Pandaemonium());
         oreManager.registerOre(new Nosleeptonite());
         oreManager.registerOre(new Appetite());
+
+		// Do this after the ores are resisted, so we can programmatically check the list of disabled ores.
+		config = new BOConfig(event.getSuggestedConfigurationFile());
 
 		ingot = new ItemBOIngot();
 		GameRegistry.registerItem(ingot, "ingot");
