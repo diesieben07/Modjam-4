@@ -7,6 +7,7 @@ import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -29,6 +30,7 @@ public class Polite extends AbstractOre {
 
     @Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (!isIngotBlock && side.isServer()) {
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.mined"), (EntityPlayerMP) miner);
 		}

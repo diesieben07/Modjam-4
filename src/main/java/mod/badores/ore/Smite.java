@@ -3,6 +3,7 @@ package mod.badores.ore;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.oremanagement.*;
+import mod.badores.util.FakePlayerDetection;
 import mod.badores.util.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,6 +20,7 @@ public class Smite extends AbstractOre {
 
 	@Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (side.isServer()) {
             if (rand.nextInt(3) == 0)
                 spawnLightning(world, miner);
