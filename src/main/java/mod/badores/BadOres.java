@@ -40,7 +40,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = BadOres.MOD_ID,
         name = BadOres.NAME,
         version = BadOres.VERSION,
-        guiFactory = "mod.badores.client.BOConfigGui$Factory")
+        guiFactory = "mod.badores.client.BOConfigGui$Factory",
+        dependencies = "required-after:Forge@[10.13.4.1448,)")
 public class BadOres {
 
     public static final String MOD_ID = "badores";
