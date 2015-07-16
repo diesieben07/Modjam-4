@@ -32,13 +32,15 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
 /**
  * @author diesieben07
  */
-@Mod(modid = BadOres.MOD_ID, name = BadOres.NAME, version = BadOres.VERSION, dependencies = "required-after:Forge@[10.13.4.1448,)")
+@Mod(modid = BadOres.MOD_ID,
+        name = BadOres.NAME,
+        version = BadOres.VERSION,
+        guiFactory = "mod.badores.client.BOConfigGui$Factory")
 public class BadOres {
 
     public static final String MOD_ID = "badores";
@@ -121,6 +123,7 @@ public class BadOres {
 
         // Do this after the ores are resisted, so we can programmatically check the list of disabled ores.
         config = new BOConfig(event.getSuggestedConfigurationFile());
+        config.sync();
 
         ingot = new ItemBOIngot();
         GameRegistry.registerItem(ingot, "ingot");

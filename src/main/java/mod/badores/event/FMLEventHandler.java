@@ -1,6 +1,7 @@
 package mod.badores.event;
 
 import com.google.common.collect.Lists;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -126,6 +127,13 @@ public enum FMLEventHandler {
     public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
         if (ItemBOIngot.getOre(event.smelting) instanceof Fleesonsite) {
             event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.modID.equals(BadOres.MOD_ID)) {
+            BadOres.config.sync();
         }
     }
 
