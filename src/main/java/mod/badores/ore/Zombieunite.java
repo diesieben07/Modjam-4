@@ -2,6 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.achievements.BOAchievementList;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -29,6 +30,7 @@ public class Zombieunite extends AbstractOre {
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
         miner.triggerAchievement(BOAchievementList.minedZombieunite);
     }
 

@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -22,6 +23,7 @@ public class Appetite extends AbstractOre {
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (side.isServer())
 			miner.getFoodStats().addStats(4, 0.2f);
 	}

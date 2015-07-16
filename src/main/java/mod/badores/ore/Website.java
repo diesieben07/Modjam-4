@@ -2,6 +2,7 @@ package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -20,6 +21,7 @@ public class Website extends AbstractOre {
 
     @Override
 	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+		if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (side.isClient()) {
 			BadOres.proxy.openRandomWebsite();
 		}

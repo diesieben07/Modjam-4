@@ -5,6 +5,7 @@ import mod.badores.oremanagement.ArmorInfo;
 import mod.badores.oremanagement.ArmorType;
 import mod.badores.oremanagement.ToolInfo;
 import mod.badores.oremanagement.ToolType;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -82,6 +83,7 @@ public class Enderite extends AbstractOre {
 
     private void teleportTo(World world, EntityLivingBase entity, ChunkCoordinates coords)
     {
+        if (entity instanceof EntityPlayer && FakePlayerDetection.isFakePlayer((EntityPlayer) entity)) return; // You can't teleport a fake player
         short short1 = 128;
 
         for (int l = 0; l < short1; ++l)

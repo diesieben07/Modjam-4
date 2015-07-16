@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
 import mod.badores.BadOres;
 import mod.badores.network.PacketRandomTranslation;
+import mod.badores.util.FakePlayerDetection;
 import mod.badores.util.JavaUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +26,7 @@ public class Misleadium extends AbstractOre {
 
 	@Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+		if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (side.isServer()) {
 			int numItems = Item.itemRegistry.getKeys().size();
 			Item item;

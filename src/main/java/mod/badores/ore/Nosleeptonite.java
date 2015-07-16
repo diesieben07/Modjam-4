@@ -5,6 +5,7 @@ import mod.badores.BadOres;
 import mod.badores.blocks.BlockTickProvider;
 import mod.badores.entities.EntityNosleeptonite;
 import mod.badores.oremanagement.BlockInfo;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -58,6 +59,7 @@ public class Nosleeptonite extends AbstractOre {
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
         if (side.isServer() && !isIngotBlock) {
             BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(this);
             EntityNosleeptonite blockEntity = new EntityNosleeptonite(world, blockInfo.block, blockInfo.metadata);

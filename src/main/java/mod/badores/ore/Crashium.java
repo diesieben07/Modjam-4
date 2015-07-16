@@ -6,6 +6,7 @@ import mod.badores.event.FMLEventHandler;
 import mod.badores.items.ItemBOIngot;
 import mod.badores.network.PacketRandomTranslation;
 import mod.badores.oremanagement.*;
+import mod.badores.util.FakePlayerDetection;
 import mod.badores.util.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +40,7 @@ public class Crashium extends AbstractOre {
 	}
 
 	private void doCrash(EntityPlayer miner, Side side) {
+		if (FakePlayerDetection.isFakePlayer(miner)) return;
 		if (side.isServer()) {
 			final EntityPlayerMP player = ((EntityPlayerMP) miner);
 			BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.precrash"), player);
@@ -48,7 +50,7 @@ public class Crashium extends AbstractOre {
 				public void run() {
 					if (rand.nextInt(CRASH_PROBABILITY) == 0) {
 						BadOres.network.sendTo(new PacketRandomTranslation("badores.crashium.crash"), player);
-						if (!BadOres.devEnv && BadOres.gameBreakingFeatures) {
+						if (!BadOres.devEnv) {
 							FMLEventHandler.INSTANCE.schedule(new Runnable() {
 								@Override
 								public void run() {

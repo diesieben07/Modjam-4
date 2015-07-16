@@ -33,7 +33,10 @@ public class Explodeitmite extends AbstractOre {
 
 		if (side.isServer()) {
 			if (rand.nextInt(4) == 0)
+			{
 				world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 2.0f + rand.nextFloat() * 3.0f, true);
+				world.setBlockToAir(x, y, z);
+			}
 		}
 	}
 

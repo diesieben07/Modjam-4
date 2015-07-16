@@ -51,7 +51,7 @@ public class Stonium extends AbstractOre {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (!BOConfig.isOreGenerationDisabled(getName())) {
+		if (!BadOres.config.isOreGenerationDisabled(this)) {
 			BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(this);
 			Block block = blockInfo.block;
 			int meta = blockInfo.metadata;

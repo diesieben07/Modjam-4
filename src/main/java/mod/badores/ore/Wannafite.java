@@ -1,6 +1,7 @@
 package mod.badores.ore;
 
 import cpw.mods.fml.relauncher.Side;
+import mod.badores.util.FakePlayerDetection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,7 @@ public class Wannafite extends AbstractOre {
 
     @Override
 	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+		if (FakePlayerDetection.isFakePlayer(miner)) return;
 		miner.attackEntityFrom(wannafiteDamage, 4);
 	}
 

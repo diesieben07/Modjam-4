@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mod.badores.BadOres;
 import mod.badores.blocks.BlockBadOre;
@@ -30,16 +31,21 @@ public final class OreManager {
 	private final Map<String, BadOre> oreNames = Maps.newHashMap();
 
 	private int requiredCount = 0;
+	private boolean initialized;
 
-	private ItemBOIngot currentIngot;
-	private int currentIngotMeta;
-
+	/**
+	 * Use this method during a mod's Pre-Initialization event.
+	 * Make sure the mod loads BEFORE badores
+	 */
 	public void registerOre(BadOre ore) {
-		checkState(allOres != null, "Attempted to register ore after startup!");
-		allOres.add(checkNotNull(ore, "ore"));
+		checkState(!initialized, "Attempted to register ore after startup!");
+		checkNotNull(ore, "ore");
+		allOres.add(ore);
+		oreNames.put(ore.getName(), ore);
 	}
 
 	public void createGameElements() {
+		initialized = true;
 		BlockBadOre currentBlock = null;
 		int currentMetadata = 0;
 
@@ -51,7 +57,6 @@ public final class OreManager {
 
 			BlockInfo blockInfo = new BlockInfo(currentBlock, currentMetadata);
 			ores.put(blockInfo, ore);
-			oreNames.put(ore.getName(), ore);
 
 			ItemStack craftingInput = getOreCraftingInput(ore, blockInfo);
 

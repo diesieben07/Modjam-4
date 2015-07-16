@@ -212,7 +212,7 @@ public abstract class AbstractOre implements BadOre {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (!BOConfig.isOreGenerationDisabled(getName())) {
+		if (!BadOres.config.isOreGenerationDisabled(this)) {
 			int numVeins = veinsPerChunk(random, world, chunkX, chunkZ);
 
 			for (int i = 0; i < numVeins; i++) {
