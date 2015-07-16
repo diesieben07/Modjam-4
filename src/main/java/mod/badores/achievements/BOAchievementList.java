@@ -12,15 +12,15 @@ import net.minecraftforge.common.AchievementPage;
  */
 public class BOAchievementList {
 
-	public static AchievementPage page;
+    public static AchievementPage page;
 
     public static Achievement barelyGeneriteFound;
     public static Achievement buildBarelyGeneriteBlock;
     public static Achievement iwontfiteDamage;
     public static Achievement killedNosleeptonite;
-	public static Achievement allOres;
+    public static Achievement allOres;
     public static Achievement minedKillium;
-	public static Achievement getShiftium;
+    public static Achievement getShiftium;
     public static Achievement madeMarmiteBread;
     public static Achievement minedZombieunite;
     public static Achievement smeltedFleesonsite;
@@ -42,14 +42,14 @@ public class BOAchievementList {
         buildBarelyGeneriteBlock = new Achievement("achievement.buildBarelyGeneriteBlock", "buildBarelyGeneriteBlock", 3, 2, getOreBlockStack("barelyGenerite"), barelyGeneriteFound).registerStat();
         iwontfiteDamage = new Achievement("achievement.iwontfiteDamage", "iwontfiteDamage", 0, 0, getOreStack("iwontfite"), null).registerStat();
         killedNosleeptonite = new Achievement("achievement.killedNosleeptonite", "killedNosleeptonite", 2, -2, getOreStack("nosleeptonite"), null).registerStat();
-	    allOres = new Achievement("achievement.allBadOres", "allBadOres", 4, 4, new ItemStack(BadOres.badOreBook), null).registerStat();
+        allOres = new Achievement("achievement.allBadOres", "allBadOres", 4, 4, new ItemStack(BadOres.badOreBook), null).registerStat();
         minedKillium = new Achievement("achievement.minedKillium", "minedKillium", 4, -1, getOreStack("killium"), null).registerStat();
         madeMarmiteBread = new Achievement("achievement.madeMarmiteBread", "madeMarmiteBread", 6, 1, new ItemStack(BadOres.marmiteBread), null).registerStat();
         minedZombieunite = new Achievement("achievement.minedZombieunite", "minedZombieunite", 1, 4, getOreStack("zombieunite"), null).registerStat();
         smeltedFleesonsite = new Achievement("achievement.smeltedFleesonsite", "smeltedFleesonsite", -2, 1, getIngotStack("fleesonsite"), null).registerStat();
-	    getShiftium = new Achievement("achievement.getShifitium", "getShiftium", -4, 1, getOreStack("shiftium"), null).registerStat();
+        getShiftium = new Achievement("achievement.getShifitium", "getShiftium", -4, 1, getOreStack("shiftium"), null).registerStat();
 
-	    page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite, smeltedFleesonsite, getShiftium);
-	    AchievementPage.registerAchievementPage(page);
+        page = new AchievementPage(BadOres.NAME, barelyGeneriteFound, buildBarelyGeneriteBlock, iwontfiteDamage, killedNosleeptonite, allOres, minedKillium, madeMarmiteBread, minedZombieunite, smeltedFleesonsite, getShiftium);
+        AchievementPage.registerAchievementPage(page);
     }
 }

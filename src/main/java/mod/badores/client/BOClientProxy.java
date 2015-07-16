@@ -26,58 +26,58 @@ import java.util.Random;
  */
 public class BOClientProxy implements BOProxy {
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void init(FMLInitializationEvent event) {
+    @Override
+    public void init(FMLInitializationEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityNosleeptonite.class, new RenderNosleeptonite());
         RenderingRegistry.registerEntityRenderingHandler(EntityFleeingBlock.class, new RenderFleeingBlock());
-	}
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
 
-	}
+    }
 
-	// TODO: figure out a way to make this truly random
-	private static final List<String> urls = Arrays.asList(
-			"http://www.minecraft.net",
-			"http://www.minecraftforge.net",
-			"http://www.google.com",
-			"http://www.minecraftforum.net",
-			"http://www.minecraftwiki.net",
-			"http://mcp.ocean-labs.de/modjam/"
-	);
+    // TODO: figure out a way to make this truly random
+    private static final List<String> urls = Arrays.asList(
+            "http://www.minecraft.net",
+            "http://www.minecraftforge.net",
+            "http://www.google.com",
+            "http://www.minecraftforum.net",
+            "http://www.minecraftwiki.net",
+            "http://mcp.ocean-labs.de/modjam/"
+    );
 
-	private static final Random r = new Random();
+    private static final Random r = new Random();
 
-	@Override
-	public void openRandomWebsite() {
-		try {
-			Desktop.getDesktop().browse(new URL(urls.get(r.nextInt(urls.size()))).toURI());
-		} catch (Exception e) {
-			Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentTranslation("badores.website.fail"));
-		}
-	}
+    @Override
+    public void openRandomWebsite() {
+        try {
+            Desktop.getDesktop().browse(new URL(urls.get(r.nextInt(urls.size()))).toURI());
+        } catch (Exception e) {
+            Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentTranslation("badores.website.fail"));
+        }
+    }
 
-	@Override
-	public void handleRandomTranslation(PacketRandomTranslation message) {
-		Minecraft mc = Minecraft.getMinecraft();
-		int count = Integer.parseInt(I18n.translate(message.baseKey + ".count"));
-		int n = mc.theWorld.rand.nextInt(count);
-		mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n, message.data));
-	}
+    @Override
+    public void handleRandomTranslation(PacketRandomTranslation message) {
+        Minecraft mc = Minecraft.getMinecraft();
+        int count = Integer.parseInt(I18n.translate(message.baseKey + ".count"));
+        int n = mc.theWorld.rand.nextInt(count);
+        mc.thePlayer.addChatComponentMessage(new ChatComponentTranslation(message.baseKey + '.' + n, message.data));
+    }
 
-	@Override
-	public void openBook() {
-		Minecraft.getMinecraft().displayGuiScreen(new GuiBadOreBook());
-	}
+    @Override
+    public void openBook() {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiBadOreBook());
+    }
 
-	@Override
-	public void loadConfig(String configID) {
+    @Override
+    public void loadConfig(String configID) {
 
-	}
+    }
 }

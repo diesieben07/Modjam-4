@@ -13,24 +13,24 @@ import java.util.List;
  */
 public class Wantarite extends AbstractOre {
 
-	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (side.isServer()) {
-			EntityPig pig = new EntityPig(world);
-			pig.setPosition(x + 0.5, y + 0.5, z + 0.5);
-			pig.setSaddled(true);
-			world.spawnEntityInWorld(pig);
-		}
-	}
+    @Override
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (side.isServer()) {
+            EntityPig pig = new EntityPig(world);
+            pig.setPosition(x + 0.5, y + 0.5, z + 0.5);
+            pig.setSaddled(true);
+            world.spawnEntityInWorld(pig);
+        }
+    }
 
-	@Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-		// no drops
-	}
+    @Override
+    public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+        // no drops
+    }
 
-	@Override
-	public String getName() {
-		return "wantarite";
-	}
+    @Override
+    public String getName() {
+        return "wantarite";
+    }
 
 }

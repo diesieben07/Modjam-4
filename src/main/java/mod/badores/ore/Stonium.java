@@ -19,10 +19,10 @@ import java.util.Random;
  */
 public class Stonium extends AbstractOre {
 
-	@Override
-	public String getName() {
-		return "stonium";
-	}
+    @Override
+    public String getName() {
+        return "stonium";
+    }
 
     @Override
     protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
@@ -45,32 +45,32 @@ public class Stonium extends AbstractOre {
     }
 
     @Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-		drops.add(new ItemStack(Blocks.cobblestone));
-	}
+    public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+        drops.add(new ItemStack(Blocks.cobblestone));
+    }
 
-	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (!BadOres.config.isOreGenerationDisabled(this)) {
-			BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(this);
-			Block block = blockInfo.block;
-			int meta = blockInfo.metadata;
-			Block stone = Blocks.stone;
-			Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+        if (!BadOres.config.isOreGenerationDisabled(this)) {
+            BlockInfo blockInfo = BadOres.oreManager.getBlockInfo(this);
+            Block block = blockInfo.block;
+            int meta = blockInfo.metadata;
+            Block stone = Blocks.stone;
+            Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 
-			// highly optimized (i hope)
-			// generate on the 3rd layer in the 4 topmost blocks (16 + 16 = 32; 32 + 12 = 44 => generate on 44 - 47)
-			for (int y = 12; y < 16; ++y) {
-				for (int x = 0; x < 16; ++x) {
-					for (int z = 0; z < 16; ++z) {
-						ExtendedBlockStorage layer;
-						if (rand.nextInt(2) == 0 && (layer = chunk.getBlockStorageArray()[2]) != null && layer.getBlockByExtId(x, y, z) == stone) {
-							layer.func_150818_a(x, y, z, block);
-							layer.setExtBlockMetadata(x, y, z, meta);
-						}
-					}
-				}
-			}
-		}
-	}
+            // highly optimized (i hope)
+            // generate on the 3rd layer in the 4 topmost blocks (16 + 16 = 32; 32 + 12 = 44 => generate on 44 - 47)
+            for (int y = 12; y < 16; ++y) {
+                for (int x = 0; x < 16; ++x) {
+                    for (int z = 0; z < 16; ++z) {
+                        ExtendedBlockStorage layer;
+                        if (rand.nextInt(2) == 0 && (layer = chunk.getBlockStorageArray()[2]) != null && layer.getBlockByExtId(x, y, z) == stone) {
+                            layer.func_150818_a(x, y, z, block);
+                            layer.setExtBlockMetadata(x, y, z, meta);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

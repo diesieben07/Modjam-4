@@ -10,15 +10,15 @@ import net.minecraft.world.World;
  */
 public class Ghostium extends AbstractOre {
 
-	@Override
-	public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock) {
-		EntityItem e = new EntityItem(world, x, y, z, stack);
-		e.delayBeforeCanPickup = Integer.MAX_VALUE;
-		return e;
-	}
+    @Override
+    public Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock) {
+        EntityItem e = new EntityItem(world, x, y, z, stack);
+        e.delayBeforeCanPickup = Integer.MAX_VALUE;
+        return e;
+    }
 
-	@Override
-	public String getName() {
-		return "ghostium";
-	}
+    @Override
+    public String getName() {
+        return "ghostium";
+    }
 }

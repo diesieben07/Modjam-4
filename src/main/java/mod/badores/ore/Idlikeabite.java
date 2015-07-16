@@ -16,12 +16,12 @@ import java.util.Random;
  */
 public class Idlikeabite extends AbstractOre {
 
-	@Override
+    @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (side.isServer())
-			miner.getFoodStats().addExhaustion(rand.nextFloat() * 40.0f);
-	}
+        if (side.isServer())
+            miner.getFoodStats().addExhaustion(rand.nextFloat() * 40.0f);
+    }
 
     @Override
     public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
@@ -56,7 +56,7 @@ public class Idlikeabite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "idlikeabite";
-	}
+    public String getName() {
+        return "idlikeabite";
+    }
 }

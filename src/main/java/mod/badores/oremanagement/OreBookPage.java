@@ -5,8 +5,8 @@ package mod.badores.oremanagement;
  */
 public interface OreBookPage {
 
-	String getDisplayName();
+    String getDisplayName();
 
-	String getDescriptionText();
+    String getDescriptionText();
 
 }

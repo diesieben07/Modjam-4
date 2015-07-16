@@ -11,18 +11,18 @@ import net.minecraft.world.World;
  */
 public class Breakium extends AbstractOre {
 
-	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (FakePlayerDetection.isFakePlayer(miner)) return;
-		ItemStack equip = miner.getCurrentEquippedItem();
-		if (equip != null) {
-			miner.renderBrokenItemStack(equip);
-			miner.destroyCurrentEquippedItem();
-		}
-	}
+    @Override
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
+        ItemStack equip = miner.getCurrentEquippedItem();
+        if (equip != null) {
+            miner.renderBrokenItemStack(equip);
+            miner.destroyCurrentEquippedItem();
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "breakium";
-	}
+    @Override
+    public String getName() {
+        return "breakium";
+    }
 }

@@ -12,43 +12,43 @@ import mod.badores.BadOres;
  */
 public class PacketRandomTranslation implements IMessage {
 
-	public String baseKey;
-	public String[] data;
+    public String baseKey;
+    public String[] data;
 
-	public PacketRandomTranslation() {
-	}
+    public PacketRandomTranslation() {
+    }
 
-	public PacketRandomTranslation(String baseKey, String... data) {
-		this.baseKey = baseKey;
-		this.data = data;
-	}
+    public PacketRandomTranslation(String baseKey, String... data) {
+        this.baseKey = baseKey;
+        this.data = data;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		baseKey = ByteBufUtils.readUTF8String(buf);
-		int len = buf.readUnsignedByte();
-		data = new String[len];
-		for (int i = 0; i < len; ++i) {
-			data[i] = ByteBufUtils.readUTF8String(buf);
-		}
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        baseKey = ByteBufUtils.readUTF8String(buf);
+        int len = buf.readUnsignedByte();
+        data = new String[len];
+        for (int i = 0; i < len; ++i) {
+            data[i] = ByteBufUtils.readUTF8String(buf);
+        }
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeUTF8String(buf, baseKey);
-		buf.writeByte(data.length);
-		for (String s : data) {
-			ByteBufUtils.writeUTF8String(buf, s);
-		}
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+        ByteBufUtils.writeUTF8String(buf, baseKey);
+        buf.writeByte(data.length);
+        for (String s : data) {
+            ByteBufUtils.writeUTF8String(buf, s);
+        }
+    }
 
-	public static class Handle implements IMessageHandler<PacketRandomTranslation, IMessage> {
+    public static class Handle implements IMessageHandler<PacketRandomTranslation, IMessage> {
 
-		@Override
-		public IMessage onMessage(PacketRandomTranslation message, MessageContext ctx) {
-			BadOres.proxy.handleRandomTranslation(message);
-			return null;
-		}
-	}
+        @Override
+        public IMessage onMessage(PacketRandomTranslation message, MessageContext ctx) {
+            BadOres.proxy.handleRandomTranslation(message);
+            return null;
+        }
+    }
 
 }

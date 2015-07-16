@@ -11,17 +11,17 @@ import net.minecraftforge.common.config.Configuration;
  */
 public interface BOProxy {
 
-	void preInit(FMLPreInitializationEvent event);
+    void preInit(FMLPreInitializationEvent event);
 
-	void init(FMLInitializationEvent event);
+    void init(FMLInitializationEvent event);
 
-	void postInit(FMLPostInitializationEvent event);
+    void postInit(FMLPostInitializationEvent event);
 
-	void openRandomWebsite();
+    void openRandomWebsite();
 
-	void handleRandomTranslation(PacketRandomTranslation message);
+    void handleRandomTranslation(PacketRandomTranslation message);
 
-	void openBook();
+    void openBook();
 
-	void loadConfig(String configID);
+    void loadConfig(String configID);
 }

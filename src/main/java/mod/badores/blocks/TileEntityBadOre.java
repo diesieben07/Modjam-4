@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * Created by Lukas Tenbrink on 18.05.2014.
  */
-public class TileEntityBadOre extends TileEntity implements BlockTickProvider{
+public class TileEntityBadOre extends TileEntity implements BlockTickProvider {
     private int ticksUntilEventFire = -1;
 
     @Override
@@ -29,7 +29,7 @@ public class TileEntityBadOre extends TileEntity implements BlockTickProvider{
     }
 
     private void fireTick() {
-        BlockBadOre block = (BlockBadOre)getBlockType();
+        BlockBadOre block = (BlockBadOre) getBlockType();
         int meta = getBlockMetadata();
 
         block.getOre(meta).tick(getWorldObj(), xCoord, yCoord, zCoord, worldObj.rand, Sides.logical(getWorldObj()), BlockBadOre.isIngotBlock(meta), this);

@@ -18,14 +18,14 @@ import net.minecraft.world.World;
  */
 public class Smite extends AbstractOre {
 
-	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+    @Override
+    public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (side.isServer()) {
+        if (side.isServer()) {
             if (rand.nextInt(3) == 0)
                 spawnLightning(world, miner);
-		}
-	}
+        }
+    }
 
     @Override
     public boolean hasIngot() {
@@ -74,13 +74,12 @@ public class Smite extends AbstractOre {
         }
     }
 
-    private void spawnLightning(World world, Entity entity)
-    {
+    private void spawnLightning(World world, Entity entity) {
         world.addWeatherEffect(new EntityLightningBolt(world, entity.posX, world.getPrecipitationHeight(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posZ)), entity.posZ));
     }
 
     @Override
-	public String getName() {
-		return "smite";
-	}
+    public String getName() {
+        return "smite";
+    }
 }

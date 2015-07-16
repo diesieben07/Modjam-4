@@ -113,7 +113,7 @@ public class ModelFleeingBlock extends ModelBase {
         this.toeright1.rotateAngleX = this.footright.rotateAngleX;
         this.toeright2.rotateAngleX = this.footright.rotateAngleX;
         this.toeright3.rotateAngleX = this.footright.rotateAngleX;
-        this.footleft.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
+        this.footleft.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float) Math.PI) * 1.4F * par2;
         this.toeleft1.rotateAngleX = this.footleft.rotateAngleX;
         this.toeleft2.rotateAngleX = this.footleft.rotateAngleX;
         this.toeleft3.rotateAngleX = this.footleft.rotateAngleX;

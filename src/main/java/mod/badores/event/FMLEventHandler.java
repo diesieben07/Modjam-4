@@ -29,121 +29,121 @@ import java.util.List;
  */
 public enum FMLEventHandler {
 
-	INSTANCE;
+    INSTANCE;
 
-	private final List<Task> tasks = Lists.newArrayList();
-	private final List<Task> scheduledNow = Lists.newArrayList();
+    private final List<Task> tasks = Lists.newArrayList();
+    private final List<Task> scheduledNow = Lists.newArrayList();
 
-	public void schedule(Runnable task, int ticks) {
-		tasks.add(new Task(task, ticks));
-	}
+    public void schedule(Runnable task, int ticks) {
+        tasks.add(new Task(task, ticks));
+    }
 
-	@SubscribeEvent
-	public void onTick(TickEvent.ServerTickEvent event) {
-		if (tasks.size() > 0) {
-			List<Task> sn = scheduledNow;
-			for (Iterator<Task> it = tasks.iterator(); it.hasNext(); ) {
-				Task t = it.next();
-				if (t.tick()) {
-					sn.add(t);
-					it.remove();
-				}
-			}
-			for (Task t : sn) {
-				t.r.run();
-			}
-			sn.clear();
-		}
-	}
+    @SubscribeEvent
+    public void onTick(TickEvent.ServerTickEvent event) {
+        if (tasks.size() > 0) {
+            List<Task> sn = scheduledNow;
+            for (Iterator<Task> it = tasks.iterator(); it.hasNext(); ) {
+                Task t = it.next();
+                if (t.tick()) {
+                    sn.add(t);
+                    it.remove();
+                }
+            }
+            for (Task t : sn) {
+                t.r.run();
+            }
+            sn.clear();
+        }
+    }
 
-	private static final String NBT_KEY = "badores.firstjoin";
+    private static final String NBT_KEY = "badores.firstjoin";
 
-	@SubscribeEvent
-	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		NBTTagCompound data = event.player.getEntityData();
-		NBTTagCompound persistent;
-		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
-			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, (persistent = new NBTTagCompound()));
-		} else {
-			persistent = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-		}
+    @SubscribeEvent
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        NBTTagCompound data = event.player.getEntityData();
+        NBTTagCompound persistent;
+        if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
+            data.setTag(EntityPlayer.PERSISTED_NBT_TAG, (persistent = new NBTTagCompound()));
+        } else {
+            persistent = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+        }
 
-		if (!persistent.hasKey(NBT_KEY)) {
-			persistent.setBoolean(NBT_KEY, true);
-			event.player.inventory.addItemStackToInventory(new ItemStack(BadOres.badOreBook));
-		}
-	}
+        if (!persistent.hasKey(NBT_KEY)) {
+            persistent.setBoolean(NBT_KEY, true);
+            event.player.inventory.addItemStackToInventory(new ItemStack(BadOres.badOreBook));
+        }
+    }
 
-	@SubscribeEvent
-	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		if (event.side.isServer() && event.phase == TickEvent.Phase.START) {
-			Container c = event.player.openContainer;
-			if (c != event.player.inventoryContainer) {
-				@SuppressWarnings("unchecked")
-				List<Slot> slots = c.inventorySlots;
-				int l = slots.size();
-				for (int i = 0; i < l; ++i) { // avoid generating iterator garbage every tick
-					Slot slot = slots.get(i);
-					if (slot.inventory != event.player.inventory) {
-						ItemStack stack = slot.getStack();
-						Item item;
-						if (stack != null && ((item = stack.getItem()) instanceof BadOreItem)) {
-							((BadOreItem) item).onContainerTick(c, slot, stack);
-						}
-					}
-				}
-			}
-		}
-	}
+    @SubscribeEvent
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.side.isServer() && event.phase == TickEvent.Phase.START) {
+            Container c = event.player.openContainer;
+            if (c != event.player.inventoryContainer) {
+                @SuppressWarnings("unchecked")
+                List<Slot> slots = c.inventorySlots;
+                int l = slots.size();
+                for (int i = 0; i < l; ++i) { // avoid generating iterator garbage every tick
+                    Slot slot = slots.get(i);
+                    if (slot.inventory != event.player.inventory) {
+                        ItemStack stack = slot.getStack();
+                        Item item;
+                        if (stack != null && ((item = stack.getItem()) instanceof BadOreItem)) {
+                            ((BadOreItem) item).onContainerTick(c, slot, stack);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
-	    if (event.crafting == null) return;
+        if (event.crafting == null) return;
 
-	    Item item = event.crafting.getItem();
+        Item item = event.crafting.getItem();
 
-	    if (item instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlockBadOre) item).field_150939_a).getOre(event.crafting) instanceof BarelyGenerite) {
-		    event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
-	    } else if (item == BadOres.marmiteBread) {
-		    event.player.triggerAchievement(BOAchievementList.madeMarmiteBread);
-	    }
+        if (item instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlockBadOre) item).field_150939_a).getOre(event.crafting) instanceof BarelyGenerite) {
+            event.player.triggerAchievement(BOAchievementList.buildBarelyGeneriteBlock);
+        } else if (item == BadOres.marmiteBread) {
+            event.player.triggerAchievement(BOAchievementList.madeMarmiteBread);
+        }
     }
 
     @SubscribeEvent
     public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-	    ItemStack stack = event.pickedUp.getEntityItem();
-	    if (stack.getItem() instanceof ItemBlockBadOre) {
-		    BadOre ore = ((BlockBadOre) ((ItemBlockBadOre) stack.getItem()).field_150939_a).getOre(stack);
-		    if (ore instanceof Shiftium) {
-			    event.player.triggerAchievement(BOAchievementList.getShiftium);
-		    } else if (ore instanceof BarelyGenerite) {
-			    event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
-		    }
-	    }
+        ItemStack stack = event.pickedUp.getEntityItem();
+        if (stack.getItem() instanceof ItemBlockBadOre) {
+            BadOre ore = ((BlockBadOre) ((ItemBlockBadOre) stack.getItem()).field_150939_a).getOre(stack);
+            if (ore instanceof Shiftium) {
+                event.player.triggerAchievement(BOAchievementList.getShiftium);
+            } else if (ore instanceof BarelyGenerite) {
+                event.player.triggerAchievement(BOAchievementList.barelyGeneriteFound);
+            }
+        }
     }
 
     @SubscribeEvent
     public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
         if (ItemBOIngot.getOre(event.smelting) instanceof Fleesonsite) {
-	        event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
+            event.player.triggerAchievement(BOAchievementList.smeltedFleesonsite);
         }
     }
 
-	private class Task {
+    private class Task {
 
-		final Runnable r;
-		int remaining;
+        final Runnable r;
+        int remaining;
 
-		private Task(Runnable r, int remaining) {
-			this.r = r;
-			this.remaining = remaining;
-		}
+        private Task(Runnable r, int remaining) {
+            this.r = r;
+            this.remaining = remaining;
+        }
 
-		boolean tick() {
-			return --remaining == 0;
-		}
+        boolean tick() {
+            return --remaining == 0;
+        }
 
-	}
+    }
 
 
 }

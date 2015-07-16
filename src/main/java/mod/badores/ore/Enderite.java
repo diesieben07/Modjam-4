@@ -47,11 +47,11 @@ public class Enderite extends AbstractOre {
     }
 
     @Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (side.isServer()) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (side.isServer()) {
             teleportTo(world, miner, findRandomSpot(world, x, y, z));
-		}
-	}
+        }
+    }
 
     @Override
     public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side) {
@@ -75,27 +75,26 @@ public class Enderite extends AbstractOre {
     }
 
     private ChunkCoordinates findRandomSpot(World world, int x, int y, int z) {
-		int rX = x - RADIUS + rand.nextInt(RAD_DOUBLE);
-		int rZ = z - RADIUS + rand.nextInt(RAD_DOUBLE);
-		int rY = 10 + rand.nextInt(240);
-		return new ChunkCoordinates(rX, rY, rZ);
-	}
+        int rX = x - RADIUS + rand.nextInt(RAD_DOUBLE);
+        int rZ = z - RADIUS + rand.nextInt(RAD_DOUBLE);
+        int rY = 10 + rand.nextInt(240);
+        return new ChunkCoordinates(rX, rY, rZ);
+    }
 
-    private void teleportTo(World world, EntityLivingBase entity, ChunkCoordinates coords)
-    {
-        if (entity instanceof EntityPlayer && FakePlayerDetection.isFakePlayer((EntityPlayer) entity)) return; // You can't teleport a fake player
+    private void teleportTo(World world, EntityLivingBase entity, ChunkCoordinates coords) {
+        if (entity instanceof EntityPlayer && FakePlayerDetection.isFakePlayer((EntityPlayer) entity))
+            return; // You can't teleport a fake player
         short short1 = 128;
 
-        for (int l = 0; l < short1; ++l)
-        {
-            double d6 = (double)l / ((double)short1 - 1.0D);
+        for (int l = 0; l < short1; ++l) {
+            double d6 = (double) l / ((double) short1 - 1.0D);
             float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
             float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
             float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-            double d7 = coords.posX + (entity.posX - coords.posX) * d6 + (this.rand.nextDouble() - 0.5D) * (double)entity.width * 2.0D;
-            double d8 = coords.posY + (entity.posY - coords.posY) * d6 + this.rand.nextDouble() * (double)entity.height;
-            double d9 = coords.posZ + (entity.posZ - coords.posZ) * d6 + (this.rand.nextDouble() - 0.5D) * (double)entity.width * 2.0D;
-            world.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+            double d7 = coords.posX + (entity.posX - coords.posX) * d6 + (this.rand.nextDouble() - 0.5D) * (double) entity.width * 2.0D;
+            double d8 = coords.posY + (entity.posY - coords.posY) * d6 + this.rand.nextDouble() * (double) entity.height;
+            double d9 = coords.posZ + (entity.posZ - coords.posZ) * d6 + (this.rand.nextDouble() - 0.5D) * (double) entity.width * 2.0D;
+            world.spawnParticle("portal", d7, d8, d9, (double) f, (double) f1, (double) f2);
         }
 
         world.playSoundEffect(coords.posX, coords.posY, coords.posZ, "mob.endermen.portal", 1.0F, 1.0F);
@@ -103,8 +102,8 @@ public class Enderite extends AbstractOre {
         entity.setPositionAndUpdate(coords.posX, coords.posY, coords.posZ);
     }
 
-	@Override
-	public String getName() {
-		return "enderite";
-	}
+    @Override
+    public String getName() {
+        return "enderite";
+    }
 }

@@ -21,37 +21,37 @@ import java.util.List;
  */
 public class Misleadium extends AbstractOre {
 
-	private static final int SIDE_RANGE = 500;
-	private List<ItemStack> cache;
+    private static final int SIDE_RANGE = 500;
+    private List<ItemStack> cache;
 
-	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (side.isServer()) {
-			int numItems = Item.itemRegistry.getKeys().size();
-			Item item;
-			List<ItemStack> cache = (this.cache == null) ? (this.cache = Lists.newArrayList()) : this.cache;
-			cache.clear();
-			do {
-				do {
-					int itemIdx = rand.nextInt(numItems);
-					item = (Item) Iterables.get(Item.itemRegistry, itemIdx);
-				} while (item.getCreativeTab() == null);
-				item.getSubItems(item, CreativeTabs.tabAllSearch, cache);
-			} while (cache.isEmpty());
+    @Override
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
+        if (side.isServer()) {
+            int numItems = Item.itemRegistry.getKeys().size();
+            Item item;
+            List<ItemStack> cache = (this.cache == null) ? (this.cache = Lists.newArrayList()) : this.cache;
+            cache.clear();
+            do {
+                do {
+                    int itemIdx = rand.nextInt(numItems);
+                    item = (Item) Iterables.get(Item.itemRegistry, itemIdx);
+                } while (item.getCreativeTab() == null);
+                item.getSubItems(item, CreativeTabs.tabAllSearch, cache);
+            } while (cache.isEmpty());
 
-			ItemStack stack = JavaUtils.selectRandom(rand, cache);
+            ItemStack stack = JavaUtils.selectRandom(rand, cache);
 
-			int fX = (x + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
-			int fY = (rand.nextInt(100) + 10);
-			int fZ = (z + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
+            int fX = (x + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
+            int fY = (rand.nextInt(100) + 10);
+            int fZ = (z + rand.nextInt(SIDE_RANGE) - rand.nextInt(SIDE_RANGE));
 
-			BadOres.network.sendTo(new PacketRandomTranslation("badores.misleadium.baseMessage", stack.getDisplayName(), Integer.toString(fX), Integer.toString(fY), Integer.toString(fZ)), ((EntityPlayerMP) miner));
-		}
-	} 
+            BadOres.network.sendTo(new PacketRandomTranslation("badores.misleadium.baseMessage", stack.getDisplayName(), Integer.toString(fX), Integer.toString(fY), Integer.toString(fZ)), ((EntityPlayerMP) miner));
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "misleadium";
-	}
+    @Override
+    public String getName() {
+        return "misleadium";
+    }
 }

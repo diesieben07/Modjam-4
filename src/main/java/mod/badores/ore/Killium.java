@@ -14,32 +14,32 @@ import net.minecraft.world.World;
  */
 public class Killium extends AbstractOre {
 
-	private static final DamageSource killiumDamage = new DamageSource("badores.killium").setDamageBypassesArmor().setDamageIsAbsolute();
+    private static final DamageSource killiumDamage = new DamageSource("badores.killium").setDamageBypassesArmor().setDamageIsAbsolute();
 
-	@Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (rand.nextInt(5) == 0) {
+    @Override
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
+        if (rand.nextInt(5) == 0) {
             kill(miner);
         } else {
             miner.triggerAchievement(BOAchievementList.minedKillium);
         }
-	}
+    }
 
-	private void kill(EntityPlayer miner) {
-		miner.attackEntityFrom(killiumDamage, 10000.0f);
-	}
+    private void kill(EntityPlayer miner) {
+        miner.attackEntityFrom(killiumDamage, 10000.0f);
+    }
 
-	@Override
-	public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
-		if (rand.nextInt(1000) == 0) {
-			kill(player);
-		}
-	}
+    @Override
+    public void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side) {
+        if (rand.nextInt(1000) == 0) {
+            kill(player);
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "killium";
-	}
+    @Override
+    public String getName() {
+        return "killium";
+    }
 
 }

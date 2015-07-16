@@ -17,18 +17,15 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
  */
 public enum ForgeEventHandler {
 
-	INSTANCE;
+    INSTANCE;
 
-	@SubscribeEvent
-    public void onEntityAttacked(LivingAttackEvent event)
-    {
-        if (event.entityLiving instanceof EntityPlayer)
-        {
+    @SubscribeEvent
+    public void onEntityAttacked(LivingAttackEvent event) {
+        if (event.entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
             for (int i = 0; i < 4; i++) {
                 ItemStack armor = player.getCurrentArmor(i);
-                if (armor != null && armor.getItem() instanceof ItemBOArmor)
-                {
+                if (armor != null && armor.getItem() instanceof ItemBOArmor) {
                     World world = player.getEntityWorld();
                     ((ItemBOArmor) armor.getItem()).ore.onArmorAttacked(((ItemBOArmor) armor.getItem()).omArmorType, player, event.source, event.ammount, world, Sides.logical(world));
                 }

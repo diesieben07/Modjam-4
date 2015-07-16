@@ -22,82 +22,82 @@ import java.util.Random;
  */
 public interface BadOre extends OreBookPage {
 
-	boolean hasTools();
+    boolean hasTools();
 
-	boolean hasArmor();
+    boolean hasArmor();
 
-	boolean hasIngot();
+    boolean hasIngot();
 
-	boolean hasIngotBlock();
+    boolean hasIngotBlock();
 
-	boolean dropsIngotDirectly();
+    boolean dropsIngotDirectly();
 
     int ingotStackSize();
 
-	ToolInfo getToolInfo();
+    ToolInfo getToolInfo();
 
-	ArmorInfo getArmorInfo();
+    ArmorInfo getArmorInfo();
 
-	void postProcessItem(BOOreProduct item, OreForm form);
+    void postProcessItem(BOOreProduct item, OreForm form);
 
-	void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
+    void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
 
-	void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
+    void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock);
 
-	void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side);
+    void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side);
 
-	void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side);
+    void onToolEntityAttack(ToolType type, EntityPlayer player, EntityLivingBase target, World world, Side side);
 
-	void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack);
+    void onArmorTick(ArmorType type, EntityPlayer player, World world, Side side, int slot, ItemStack stack);
 
-	void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side);
+    void onInventoryTick(OreForm form, ItemStack stack, int slot, EntityPlayer player, World world, Side side);
 
     void onArmorAttacked(ArmorType type, EntityPlayer player, DamageSource damageSource, float amount, World world, Side side);
 
-	void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack);
+    void onContainerTick(OreForm form, Container container, Slot slot, ItemStack stack);
 
-	void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side logical);
+    void onLeftClick(World world, int x, int y, int z, EntityPlayer player, boolean isIngotBlock, Side logical);
 
-	boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side);
+    boolean onRightClick(World world, int x, int y, int z, ForgeDirection clickSide, EntityPlayer player, boolean isIngotBlock, Side side);
 
-	String getIconName();
+    String getIconName();
 
-	String getName();
+    String getName();
 
-	String getIngotIconName();
+    String getIngotIconName();
 
-	String getIngotBlockIcon();
+    String getIngotBlockIcon();
 
-	String getArmorIconName(ArmorType type);
+    String getArmorIconName(ArmorType type);
 
-	void addDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock);
+    void addDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops, boolean isIngotBlock);
 
-	Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock);
+    Entity createDropEntity(World world, double x, double y, double z, ItemStack stack, boolean isIngotBlock);
 
-	void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
+    void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider);
 
-	int lightLevel(boolean isIngotBlock);
+    int lightLevel(boolean isIngotBlock);
 
     boolean canTick(boolean isIngotBlock);
 
-	int initialTickRate(boolean isIngotBlock);
+    int initialTickRate(boolean isIngotBlock);
 
-	void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider);
+    void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider);
 
-	float getHardness(World world, int x, int y, int z, boolean isIngotBlock);
+    float getHardness(World world, int x, int y, int z, boolean isIngotBlock);
 
-	String getDisplayName(OreSubName name);
+    String getDisplayName(OreSubName name);
 
-	float getExplosionResistance(World world, int x, int y, int z, boolean isIngotBlock);
+    float getExplosionResistance(World world, int x, int y, int z, boolean isIngotBlock);
 
-	boolean shouldSelectionRayTrace(boolean isIngotBlock);
+    boolean shouldSelectionRayTrace(boolean isIngotBlock);
 
-	float getSmeltingXP();
+    float getSmeltingXP();
 
     int harvestLevelRequired(boolean isIngotBlock);
 
     String toolRequired(boolean isIngotBlock);
 
-	boolean requiredForAll();
+    boolean requiredForAll();
 
 }

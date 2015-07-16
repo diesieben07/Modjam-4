@@ -23,14 +23,11 @@ public class Tauntum extends AbstractOre {
         return 3;
     }
 
-    public static List<String> getAllMobSounds(World world)
-    {
-        if (mobSounds == null)
-        {
+    public static List<String> getAllMobSounds(World world) {
+        if (mobSounds == null) {
             mobSounds = new ArrayList<String>();
             HashMap map = EntityList.entityEggs;
-            for (Object obj : map.keySet())
-            {
+            for (Object obj : map.keySet()) {
                 Integer i = (Integer) obj;
                 Entity entity = EntityList.createEntityByID(i, world);
 
@@ -50,10 +47,10 @@ public class Tauntum extends AbstractOre {
         return mobSounds;
     }
 
-	@Override
-	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
-		return r.nextInt(100) == 0 ? 1 : 0;
-	}
+    @Override
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(100) == 0 ? 1 : 0;
+    }
 
     @Override
     public boolean canTick(boolean isIngotBlock) {
@@ -61,26 +58,26 @@ public class Tauntum extends AbstractOre {
     }
 
     @Override
-	public int initialTickRate(boolean isIngotBlock) {
-		return rand.nextInt(400) + 40;
-	}
+    public int initialTickRate(boolean isIngotBlock) {
+        return rand.nextInt(400) + 40;
+    }
 
-	@Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
-		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
+    @Override
+    public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
+        super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
-		if (side.isServer()) {
-			playRandomSound(world, x, y, z, random);
-		}
-	}
+        if (side.isServer()) {
+            playRandomSound(world, x, y, z, random);
+        }
+    }
 
-	private void playRandomSound(World world, double x, double y, double z, Random random) {
+    private void playRandomSound(World world, double x, double y, double z, Random random) {
         String sound = JavaUtils.selectRandom(random, getAllMobSounds(world));
         world.playSoundEffect(x, y, z, sound, 3.0F, 1.0f);
-	}
+    }
 
-	@Override
-	public String getName() {
-		return "tauntum";
-	}
+    @Override
+    public String getName() {
+        return "tauntum";
+    }
 }

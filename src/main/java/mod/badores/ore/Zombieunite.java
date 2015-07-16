@@ -23,10 +23,10 @@ public class Zombieunite extends AbstractOre {
     }
 
     @Override
-	public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
-		int numZombies = world.getEntitiesWithinAABB(EntityZombie.class, AxisAlignedBB.getBoundingBox(x - 10, y - 10, z - 10, x + 10, y + 10, z + 10)).size();
-		return numZombies < 10 ? -18000000.0F : 3f;
-	}
+    public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
+        int numZombies = world.getEntitiesWithinAABB(EntityZombie.class, AxisAlignedBB.getBoundingBox(x - 10, y - 10, z - 10, x + 10, y + 10, z + 10)).size();
+        return numZombies < 10 ? -18000000.0F : 3f;
+    }
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
@@ -35,7 +35,7 @@ public class Zombieunite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "zombieunite";
-	}
+    public String getName() {
+        return "zombieunite";
+    }
 }

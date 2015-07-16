@@ -8,15 +8,15 @@ import mod.badores.util.I18n;
  */
 public enum Doesntevenexistium implements OreBookPage {
 
-	INSTANCE;
+    INSTANCE;
 
     @Override
-	public String getDisplayName() {
-		return I18n.translate("badores.doesntevenexistium");
-	}
+    public String getDisplayName() {
+        return I18n.translate("badores.doesntevenexistium");
+    }
 
-	@Override
-	public String getDescriptionText() {
-		return I18n.translate("badores.doesntevenexistium.description");
-	}
+    @Override
+    public String getDescriptionText() {
+        return I18n.translate("badores.doesntevenexistium.description");
+    }
 }

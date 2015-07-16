@@ -9,13 +9,13 @@ import java.util.Random;
  */
 public class JavaUtils {
 
-	public static <T> T selectRandom(Random r, List<T> list) {
-		return list.get(r.nextInt(list.size()));
-	}
+    public static <T> T selectRandom(Random r, List<T> list) {
+        return list.get(r.nextInt(list.size()));
+    }
 
-	@SafeVarargs
-	public static <T> T selectRandom(Random r, T... list) {
-		return selectRandom(r, Arrays.asList(list));
-	}
+    @SafeVarargs
+    public static <T> T selectRandom(Random r, T... list) {
+        return selectRandom(r, Arrays.asList(list));
+    }
 
 }

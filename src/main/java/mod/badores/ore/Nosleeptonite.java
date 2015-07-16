@@ -49,13 +49,13 @@ public class Nosleeptonite extends AbstractOre {
     }
 
     @Override
-	public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
-		super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
+    public void tick(World world, int x, int y, int z, Random random, Side side, boolean isIngotBlock, BlockTickProvider tickProvider) {
+        super.tick(world, x, y, z, random, side, isIngotBlock, tickProvider);
 
         if (side.isServer() && rand.nextInt(10) == 0 && !isIngotBlock) {
             world.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, BadOres.MOD_ID + ":nosleeptonite.idle", 1.0f, 1.0f);
         }
-	}
+    }
 
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
@@ -79,7 +79,7 @@ public class Nosleeptonite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "nosleeptonite";
-	}
+    public String getName() {
+        return "nosleeptonite";
+    }
 }

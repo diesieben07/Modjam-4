@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Wannafite extends AbstractOre {
 
-	private static final DamageSource wannafiteDamage = new DamageSource("badores.wannafite");
+    private static final DamageSource wannafiteDamage = new DamageSource("badores.wannafite");
 
     @Override
     protected void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
@@ -23,14 +23,14 @@ public class Wannafite extends AbstractOre {
     }
 
     @Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (FakePlayerDetection.isFakePlayer(miner)) return;
-		miner.attackEntityFrom(wannafiteDamage, 4);
-	}
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
+        miner.attackEntityFrom(wannafiteDamage, 4);
+    }
 
-	@Override
-	public String getName() {
-		return "wannafite";
-	}
+    @Override
+    public String getName() {
+        return "wannafite";
+    }
 
 }

@@ -5,56 +5,56 @@ package mod.badores.oremanagement;
  */
 public enum OreForm {
 
-	ORE,
-	INGOT_BLOCK,
-	INGOT,
-	HELMET,
-	CHESTPLATE,
-	LEGGINGS,
-	BOOTS,
-	PICKAXE,
-	SHOVEL,
-	AXE,
-	HOE,
-	SWORD;
+    ORE,
+    INGOT_BLOCK,
+    INGOT,
+    HELMET,
+    CHESTPLATE,
+    LEGGINGS,
+    BOOTS,
+    PICKAXE,
+    SHOVEL,
+    AXE,
+    HOE,
+    SWORD;
 
-	public boolean isArmor() {
-		return this == HELMET || this == CHESTPLATE || this == LEGGINGS || this == BOOTS;
-	}
+    public boolean isArmor() {
+        return this == HELMET || this == CHESTPLATE || this == LEGGINGS || this == BOOTS;
+    }
 
-	public boolean isTool() {
-		return this == PICKAXE || this == AXE || this == SHOVEL || this == HOE || this == SWORD;
-	}
+    public boolean isTool() {
+        return this == PICKAXE || this == AXE || this == SHOVEL || this == HOE || this == SWORD;
+    }
 
-	public static OreForm fromArmor(ArmorType armorType) {
-		switch (armorType) {
-			case BOOTS:
-				return BOOTS;
-			case CHESTPLATE:
-				return CHESTPLATE;
-			case LEGGINGS:
-				return LEGGINGS;
-			case HELMET:
-				return HELMET;
-			default:
-				throw new IllegalArgumentException();
-		}
-	}
+    public static OreForm fromArmor(ArmorType armorType) {
+        switch (armorType) {
+            case BOOTS:
+                return BOOTS;
+            case CHESTPLATE:
+                return CHESTPLATE;
+            case LEGGINGS:
+                return LEGGINGS;
+            case HELMET:
+                return HELMET;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 
-	public static OreForm fromTool(ToolType type) {
-		switch (type) {
-			case SWORD:
-				return SWORD;
-			case HOE:
-				return HOE;
-			case SHOVEL:
-				return SHOVEL;
-			case AXE:
-				return AXE;
-			case PICKAXE:
-				return PICKAXE;
-			default:
-				throw new IllegalArgumentException();
-		}
-	}
+    public static OreForm fromTool(ToolType type) {
+        switch (type) {
+            case SWORD:
+                return SWORD;
+            case HOE:
+                return HOE;
+            case SHOVEL:
+                return SHOVEL;
+            case AXE:
+                return AXE;
+            case PICKAXE:
+                return PICKAXE;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }

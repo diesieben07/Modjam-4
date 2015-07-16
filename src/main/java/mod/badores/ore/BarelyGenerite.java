@@ -15,17 +15,17 @@ public class BarelyGenerite extends AbstractOre {
     }
 
     @Override
-	protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
-		return r.nextInt(10000) == 0 ? 1 : 0;
-	}
+    protected int veinsPerChunk(Random r, World w, int chunkX, int chunkZ) {
+        return r.nextInt(10000) == 0 ? 1 : 0;
+    }
 
-	@Override
-	protected int veinSize() {
-		return 1;
-	}
+    @Override
+    protected int veinSize() {
+        return 1;
+    }
 
-	@Override
-	public String getName() {
-		return "barelyGenerite";
-	}
+    @Override
+    public String getName() {
+        return "barelyGenerite";
+    }
 }

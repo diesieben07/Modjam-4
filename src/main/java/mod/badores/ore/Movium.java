@@ -15,25 +15,25 @@ import java.util.List;
  */
 public class Movium extends AbstractOre {
 
-	@Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (side.isServer()) {
-			ForgeDirection dir = JavaUtils.selectRandom(rand, ForgeDirection.VALID_DIRECTIONS);
-			int tX = x + dir.offsetX;
-			int tY = y + dir.offsetY;
-			int tZ = z + dir.offsetZ;
+    @Override
+    public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (side.isServer()) {
+            ForgeDirection dir = JavaUtils.selectRandom(rand, ForgeDirection.VALID_DIRECTIONS);
+            int tX = x + dir.offsetX;
+            int tY = y + dir.offsetY;
+            int tZ = z + dir.offsetZ;
 
-			BadOres.oreManager.getBlockInfo(this).placeAt(world, tX, tY, tZ);
-		}
-	}
+            BadOres.oreManager.getBlockInfo(this).placeAt(world, tX, tY, tZ);
+        }
+    }
 
-	@Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-		// no drops
-	}
+    @Override
+    public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+        // no drops
+    }
 
-	@Override
-	public String getName() {
-		return "movium";
-	}
+    @Override
+    public String getName() {
+        return "movium";
+    }
 }

@@ -23,10 +23,9 @@ import java.util.Random;
  */
 public class Pandaemonium extends AbstractOre {
 
-	private final List<Item> items = Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
+    private final List<Item> items = Arrays.asList(Item.getItemFromBlock(Blocks.netherrack), Item.getItemFromBlock(Blocks.nether_wart), Item.getItemFromBlock(Blocks.obsidian), Items.fire_charge, Items.blaze_rod, Items.magma_cream);
 
-	public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits)
-    {
+    public static void setBlockSafe(World world, int x, int y, int z, Block block, int meta, int notifyBits) {
         if (world.getBlock(x, y, z).getBlockHardness(world, x, y, z) >= 0f)
             world.setBlock(x, y, z, block, meta, notifyBits);
     }
@@ -79,10 +78,8 @@ public class Pandaemonium extends AbstractOre {
             float fireChance = rand.nextFloat() * rand.nextFloat();
             for (int xP = -fireRange; xP <= fireRange; xP++)
                 for (int yP = -fireRange; yP <= fireRange; yP++)
-                    for (int zP = -fireRange; zP <= fireRange; zP++)
-                    {
-                        if (rand.nextFloat() < fireChance)
-                        {
+                    for (int zP = -fireRange; zP <= fireRange; zP++) {
+                        if (rand.nextFloat() < fireChance) {
                             if (Blocks.fire.canPlaceBlockAt(world, x + xP, y + yP, z + zP))
                                 setBlockSafe(world, x + xP, y + yP, z + zP, Blocks.fire, 0, 3);
                         }
@@ -92,14 +89,14 @@ public class Pandaemonium extends AbstractOre {
 
     @Override
     public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-	    int num = rand.nextInt(3);
+        int num = rand.nextInt(3);
         for (int i = 0; i < num; i++) {
             Item item = JavaUtils.selectRandom(rand, items);
             drops.add(new ItemStack(item, rand.nextInt(5)));
         }
     }
 
-	@Override
+    @Override
     protected int genMin(Random random, World world, int chunkX, int chunkZ) {
         return 0;
     }
@@ -110,7 +107,7 @@ public class Pandaemonium extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "pandaemonium";
-	}
+    public String getName() {
+        return "pandaemonium";
+    }
 }

@@ -5,6 +5,6 @@ package mod.badores.oremanagement;
  */
 public interface OreSubName {
 
-	public String subName(String translatedOreName);
+    public String subName(String translatedOreName);
 
 }

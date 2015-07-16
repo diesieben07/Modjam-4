@@ -24,9 +24,9 @@ public class Appetite extends AbstractOre {
     @Override
     public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (side.isServer())
-			miner.getFoodStats().addStats(4, 0.2f);
-	}
+        if (side.isServer())
+            miner.getFoodStats().addStats(4, 0.2f);
+    }
 
     @Override
     public float getHardness(World world, int x, int y, int z, boolean isIngotBlock) {
@@ -59,7 +59,7 @@ public class Appetite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "appetite";
-	}
+    public String getName() {
+        return "appetite";
+    }
 }

@@ -11,15 +11,15 @@ import net.minecraft.world.World;
  */
 public class BadOreBook extends BOItem {
 
-	public BadOreBook() {
-		setCreativeTab(BadOres.creativeTab);
-	}
+    public BadOreBook() {
+        setCreativeTab(BadOres.creativeTab);
+    }
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (Sides.logical(world).isClient()) {
-			BadOres.proxy.openBook();
-		}
-		return stack;
-	}
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if (Sides.logical(world).isClient()) {
+            BadOres.proxy.openBook();
+        }
+        return stack;
+    }
 }

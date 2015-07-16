@@ -7,6 +7,6 @@ import net.minecraft.item.Item;
  */
 public interface BOOreProduct {
 
-	void overrideIcon(Item model);
+    void overrideIcon(Item model);
 
 }

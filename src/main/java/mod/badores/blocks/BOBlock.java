@@ -8,8 +8,8 @@ import net.minecraft.block.material.Material;
  */
 public class BOBlock extends Block {
 
-	protected BOBlock(Material material) {
-		super(material);
-	}
+    protected BOBlock(Material material) {
+        super(material);
+    }
 
 }

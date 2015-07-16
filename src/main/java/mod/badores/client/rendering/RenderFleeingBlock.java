@@ -18,12 +18,12 @@ public class RenderFleeingBlock extends RendererLivingEntity {
         texture = new ResourceLocation(BadOres.MOD_ID, "textures/entity/fleeingBlockFleesonsite.png");
     }
 
-	@Override
-	protected boolean func_110813_b(EntityLivingBase par1EntityLivingBase) {
-		return false;
-	}
+    @Override
+    protected boolean func_110813_b(EntityLivingBase par1EntityLivingBase) {
+        return false;
+    }
 
-	@Override
+    @Override
     protected ResourceLocation getEntityTexture(Entity var1) {
         return texture;
     }

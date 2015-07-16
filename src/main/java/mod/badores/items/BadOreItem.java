@@ -9,6 +9,6 @@ import net.minecraft.item.ItemStack;
  */
 public interface BadOreItem {
 
-	void onContainerTick(Container c, Slot slot, ItemStack stack);
+    void onContainerTick(Container c, Slot slot, ItemStack stack);
 
 }

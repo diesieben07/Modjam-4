@@ -5,8 +5,8 @@ package net.minecraft.world;
  */
 public class BOWorldAccessProxy {
 
-	public static boolean chunkExists(World world, int chunkX, int chunkZ) {
-		return world.chunkExists(chunkX, chunkZ);
-	}
+    public static boolean chunkExists(World world, int chunkX, int chunkZ) {
+        return world.chunkExists(chunkX, chunkZ);
+    }
 
 }

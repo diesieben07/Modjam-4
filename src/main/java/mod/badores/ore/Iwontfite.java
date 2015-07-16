@@ -17,33 +17,33 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
  */
 public class Iwontfite extends AbstractOre {
 
-	public Iwontfite() {
-		MinecraftForge.EVENT_BUS.register(this);
-	}
+    public Iwontfite() {
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-	@SubscribeEvent
-	public void onPlayerAttack(LivingHurtEvent event) {
-		Entity entity = event.source.getEntity();
-		if (!(entity instanceof EntityPlayer)) {
-			return;
-		}
+    @SubscribeEvent
+    public void onPlayerAttack(LivingHurtEvent event) {
+        Entity entity = event.source.getEntity();
+        if (!(entity instanceof EntityPlayer)) {
+            return;
+        }
 
-		IInventory inv = ((EntityPlayer) entity).inventory;
-		int len = inv.getSizeInventory();
-		for (int i = 0; i < len; ++i) {
-			ItemStack stack = inv.getStackInSlot(i);
-			if (stack != null && stack.getItem() instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlock) stack.getItem()).field_150939_a).getOre(stack) == this) {
-				event.ammount = rand.nextInt(1000) == 0 ? 1 : 0;
-				if (event.ammount != 0) {
-					((EntityPlayer) entity).triggerAchievement(BOAchievementList.iwontfiteDamage);
-				}
-				break;
-			}
-		}
-	}
+        IInventory inv = ((EntityPlayer) entity).inventory;
+        int len = inv.getSizeInventory();
+        for (int i = 0; i < len; ++i) {
+            ItemStack stack = inv.getStackInSlot(i);
+            if (stack != null && stack.getItem() instanceof ItemBlockBadOre && ((BlockBadOre) ((ItemBlock) stack.getItem()).field_150939_a).getOre(stack) == this) {
+                event.ammount = rand.nextInt(1000) == 0 ? 1 : 0;
+                if (event.ammount != 0) {
+                    ((EntityPlayer) entity).triggerAchievement(BOAchievementList.iwontfiteDamage);
+                }
+                break;
+            }
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "iwontfite";
-	}
+    @Override
+    public String getName() {
+        return "iwontfite";
+    }
 }

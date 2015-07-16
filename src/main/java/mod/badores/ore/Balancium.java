@@ -14,12 +14,12 @@ import java.util.List;
  */
 public class Balancium extends AbstractOre {
 
-	public static final List<Item> items = Arrays.asList(Items.diamond, Items.emerald, Items.gold_ingot, Items.iron_ingot, Items.coal, Items.quartz, Items.golden_apple);
+    public static final List<Item> items = Arrays.asList(Items.diamond, Items.emerald, Items.gold_ingot, Items.iron_ingot, Items.coal, Items.quartz, Items.golden_apple);
 
-	@Override
-	public String getName() {
-		return "balancium";
-	}
+    @Override
+    public String getName() {
+        return "balancium";
+    }
 
     @Override
     protected int veinSize() {
@@ -27,12 +27,12 @@ public class Balancium extends AbstractOre {
     }
 
     @Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-	    int num = rand.nextInt(50) + 5;
-		for (int i = 0; i < num; i++) {
-			Item item = JavaUtils.selectRandom(rand, items);
-			drops.add(new ItemStack(item, 1));
-		}
-	}
+    public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+        int num = rand.nextInt(50) + 5;
+        for (int i = 0; i < num; i++) {
+            Item item = JavaUtils.selectRandom(rand, items);
+            drops.add(new ItemStack(item, 1));
+        }
+    }
 
 }

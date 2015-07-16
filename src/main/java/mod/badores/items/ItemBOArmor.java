@@ -23,57 +23,57 @@ import net.minecraft.world.World;
  */
 public class ItemBOArmor extends ItemArmor implements BOOreProduct, BadOreItem {
 
-	public ArmorType omArmorType;
-	public BadOre ore;
-	private Item overriddenIcon;
+    public ArmorType omArmorType;
+    public BadOre ore;
+    private Item overriddenIcon;
 
-	public ItemBOArmor(ArmorMaterial material, ArmorType armorType, BadOre ore) {
-		super(material, 0, armorType.vanillaID);
-		this.omArmorType = armorType;
-		this.ore = ore;
-	}
+    public ItemBOArmor(ArmorMaterial material, ArmorType armorType, BadOre ore) {
+        super(material, 0, armorType.vanillaID);
+        this.omArmorType = armorType;
+        this.ore = ore;
+    }
 
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		return ore.getArmorIconName(omArmorType);
-	}
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+        return ore.getArmorIconName(omArmorType);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public String getItemStackDisplayName(ItemStack stack) {
-		return ore.getDisplayName(omArmorType);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getItemStackDisplayName(ItemStack stack) {
+        return ore.getDisplayName(omArmorType);
+    }
 
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		ore.onArmorTick(omArmorType, player, world, Sides.logical(world), 36 + (3 - omArmorType.vanillaID), itemStack);
-	}
+    @Override
+    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+        ore.onArmorTick(omArmorType, player, world, Sides.logical(world), 36 + (3 - omArmorType.vanillaID), itemStack);
+    }
 
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
-		super.onUpdate(stack, world, player, slot, inHotbar);
-		AbstractOre.invokeInventoryTick(ore, OreForm.fromArmor(omArmorType), stack, slot, world, player);
-	}
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean inHotbar) {
+        super.onUpdate(stack, world, player, slot, inHotbar);
+        AbstractOre.invokeInventoryTick(ore, OreForm.fromArmor(omArmorType), stack, slot, world, player);
+    }
 
-	@Override
-	public IIcon getIconFromDamage(int metadata) {
-		return overriddenIcon == null ? super.getIconFromDamage(metadata) : overriddenIcon.getIconFromDamage(metadata);
-	}
+    @Override
+    public IIcon getIconFromDamage(int metadata) {
+        return overriddenIcon == null ? super.getIconFromDamage(metadata) : overriddenIcon.getIconFromDamage(metadata);
+    }
 
-	@Override
-	public void registerIcons(IIconRegister iconRegister) {
-		if (overriddenIcon == null) {
-			super.registerIcons(iconRegister);
-		}
-	}
+    @Override
+    public void registerIcons(IIconRegister iconRegister) {
+        if (overriddenIcon == null) {
+            super.registerIcons(iconRegister);
+        }
+    }
 
-	@Override
-	public void overrideIcon(Item model) {
-		overriddenIcon = model;
-	}
+    @Override
+    public void overrideIcon(Item model) {
+        overriddenIcon = model;
+    }
 
-	@Override
-	public void onContainerTick(Container c, Slot slot, ItemStack stack) {
-		ore.onContainerTick(OreForm.fromArmor(omArmorType), c, slot, stack);
-	}
+    @Override
+    public void onContainerTick(Container c, Slot slot, ItemStack stack) {
+        ore.onContainerTick(OreForm.fromArmor(omArmorType), c, slot, stack);
+    }
 }

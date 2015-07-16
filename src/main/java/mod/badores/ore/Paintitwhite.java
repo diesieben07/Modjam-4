@@ -14,10 +14,10 @@ import java.util.Random;
  */
 public class Paintitwhite extends AbstractOre {
 
-	@Override
-	public String getName() {
-		return "paintitwhite";
-	}
+    @Override
+    public String getName() {
+        return "paintitwhite";
+    }
 
     @Override
     protected Block replace() {
@@ -55,7 +55,7 @@ public class Paintitwhite extends AbstractOre {
     }
 
     @Override
-	public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
-		drops.add(new ItemStack(Items.dye, 1, 15));
-	}
+    public void addOreDrops(World world, int x, int y, int z, int meta, int fortune, List<ItemStack> drops) {
+        drops.add(new ItemStack(Items.dye, 1, 15));
+    }
 }

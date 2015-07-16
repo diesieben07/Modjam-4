@@ -11,15 +11,15 @@ import java.util.Random;
  */
 public class Marmite extends AbstractOre {
 
-	@Override
-	public boolean hasIngot() {
-		return true;
-	}
+    @Override
+    public boolean hasIngot() {
+        return true;
+    }
 
-	@Override
-	protected Block replace() {
-		return Blocks.clay;
-	}
+    @Override
+    protected Block replace() {
+        return Blocks.clay;
+    }
 
     @Override
     public int harvestLevelRequired(boolean isIngotBlock) {
@@ -42,7 +42,7 @@ public class Marmite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "marmite";
-	}
+    public String getName() {
+        return "marmite";
+    }
 }

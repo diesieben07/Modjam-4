@@ -20,12 +20,12 @@ public class Lite extends AbstractOre {
     }
 
     @Override
-	public int lightLevel(boolean isIngotBlock) {
-		return 10;
-	}
+    public int lightLevel(boolean isIngotBlock) {
+        return 10;
+    }
 
-	@Override
-	public String getName() {
-		return "lite";
-	}
+    @Override
+    public String getName() {
+        return "lite";
+    }
 }

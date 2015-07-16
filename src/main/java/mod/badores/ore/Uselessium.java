@@ -5,10 +5,10 @@ package mod.badores.ore;
  */
 public class Uselessium extends AbstractOre {
 
-	@Override
-	public boolean hasIngot() {
-		return true;
-	}
+    @Override
+    public boolean hasIngot() {
+        return true;
+    }
 
     @Override
     public boolean hasIngotBlock() {
@@ -16,7 +16,7 @@ public class Uselessium extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "uselessium";
-	}
+    public String getName() {
+        return "uselessium";
+    }
 }

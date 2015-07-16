@@ -20,15 +20,15 @@ public class Website extends AbstractOre {
     }
 
     @Override
-	public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
-		if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (side.isClient()) {
-			BadOres.proxy.openRandomWebsite();
-		}
-	}
+    public void onRemove(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+        if (FakePlayerDetection.isFakePlayer(miner)) return;
+        if (side.isClient()) {
+            BadOres.proxy.openRandomWebsite();
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "website";
-	}
+    @Override
+    public String getName() {
+        return "website";
+    }
 }

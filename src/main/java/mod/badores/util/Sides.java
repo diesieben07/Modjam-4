@@ -8,11 +8,11 @@ import net.minecraft.world.World;
  */
 public final class Sides {
 
-	public static Side logical(World world) {
-		return world.isRemote ? Side.CLIENT : Side.SERVER;
-	}
+    public static Side logical(World world) {
+        return world.isRemote ? Side.CLIENT : Side.SERVER;
+    }
 
-	private Sides() {
-	}
+    private Sides() {
+    }
 
 }

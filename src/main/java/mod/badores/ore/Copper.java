@@ -32,27 +32,27 @@ public class Copper extends AbstractOre {
     }
 
     @Override
-	public boolean hasTools() {
-		return true;
-	}
+    public boolean hasTools() {
+        return true;
+    }
 
-	@Override
-	public ToolInfo getToolInfo() {
-		return new ToolInfo(1, 200, 5.0F, 1.0F, 15);
-	}
+    @Override
+    public ToolInfo getToolInfo() {
+        return new ToolInfo(1, 200, 5.0F, 1.0F, 15);
+    }
 
-	@Override
-	public boolean hasArmor() {
-		return true;
-	}
+    @Override
+    public boolean hasArmor() {
+        return true;
+    }
 
-	@Override
-	public ArmorInfo getArmorInfo() {
-		return new ArmorInfo(8, new int[]{1, 4, 3, 1}, 15);
-	}
+    @Override
+    public ArmorInfo getArmorInfo() {
+        return new ArmorInfo(8, new int[]{1, 4, 3, 1}, 15);
+    }
 
-	@Override
-	public String getName() {
-		return "copper";
-	}
+    @Override
+    public String getName() {
+        return "copper";
+    }
 }

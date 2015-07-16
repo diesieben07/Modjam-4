@@ -29,12 +29,12 @@ public class Polite extends AbstractOre {
     }
 
     @Override
-	public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
+    public void onHarvest(EntityPlayer miner, World world, int x, int y, int z, Side side, boolean isIngotBlock) {
         if (FakePlayerDetection.isFakePlayer(miner)) return;
-		if (!isIngotBlock && side.isServer()) {
-			BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.mined"), (EntityPlayerMP) miner);
-		}
-	}
+        if (!isIngotBlock && side.isServer()) {
+            BadOres.network.sendTo(new PacketRandomTranslation("badores.polite.mined"), (EntityPlayerMP) miner);
+        }
+    }
 
     @Override
     public void onToolMine(ToolType type, EntityPlayer player, World world, int x, int y, int z, Side side) {
@@ -83,7 +83,7 @@ public class Polite extends AbstractOre {
     }
 
     @Override
-	public String getName() {
-		return "polite";
-	}
+    public String getName() {
+        return "polite";
+    }
 }
