@@ -44,7 +44,7 @@ import org.apache.logging.log4j.Logger;
 public class BadOres {
 
     public static final String MOD_ID = "badores";
-    public static final String VERSION = "0.2";
+    public static final String VERSION = "1.7.10-2.0.0.0";
     public static final String NAME = "BadOres";
 
     @SidedProxy(clientSide = "mod.badores.client.BOClientProxy", serverSide = "mod.badores.server.BOServerProxy")
