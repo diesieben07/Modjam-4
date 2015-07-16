@@ -29,7 +29,7 @@ archivesBaseName = "BadOres"
 
 minecraft {
     version = "1.7.10-10.13.4.1448-1.7.10"
-    assetDir = "eclipse/assets"
+    runDir = "eclipse"
 }
 
 idea.module.inheritOutputDirs = true
@@ -51,7 +51,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.11'
+    gradleVersion = '2.5'
 }
 
 processResources
