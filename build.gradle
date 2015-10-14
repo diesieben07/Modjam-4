@@ -17,7 +17,8 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-2.0.0.0"
+// http://mcforge.readthedocs.org/en/latest/conventions/versioning/
+version = "1.7.10-2.0.0.1"
 def ENV = System.getenv()
 if (ENV.DRONE_BUILD_NUMBER) {
     version += "." + ENV.DRONE_BUILD_NUMBER
