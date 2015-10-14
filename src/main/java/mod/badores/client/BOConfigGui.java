@@ -27,7 +27,7 @@ public class BOConfigGui extends GuiConfig {
 
     @SuppressWarnings("unchecked")
     private static List<IConfigElement> createConfigElements() {
-        return ImmutableList.builder()
+        return ImmutableList.<IConfigElement>builder()
                 .addAll(new ConfigElement(BadOres.config.configFile.getCategory(BOConfig.CATEGORY_BALANCING)).getChildElements())
                 .addAll(new ConfigElement(BadOres.config.configFile.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements())
                 .build();
