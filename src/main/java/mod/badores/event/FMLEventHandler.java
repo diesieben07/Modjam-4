@@ -61,6 +61,10 @@ public enum FMLEventHandler {
 
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (BadOres.config.isStartingBookDisabled()) {
+            return;
+        }
+
         NBTTagCompound data = event.player.getEntityData();
         NBTTagCompound persistent;
         if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {

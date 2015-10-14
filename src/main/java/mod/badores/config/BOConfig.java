@@ -18,11 +18,16 @@ public class BOConfig {
     public static final String CATEGORY_BALANCING = "balancing";
 
     private final Set<BadOre> disabledOreGeneration = new HashSet<>();
+    private boolean disableStartingBook = false;
 
     public final Configuration configFile;
 
     public BOConfig(File suggestedConfigurationFile) {
         configFile = new Configuration(suggestedConfigurationFile);
+    }
+
+    public boolean isStartingBookDisabled() {
+        return disableStartingBook;
     }
 
     public boolean isOreGenerationDisabled(BadOre badOre) {
@@ -51,6 +56,8 @@ public class BOConfig {
                 BadOres.logger.fatal("Configuration fault! '{}' is not a known ore!", disabledOre);
             }
         }
+
+        disableStartingBook = configFile.getBoolean("disableStartingBook", Configuration.CATEGORY_GENERAL, false, "Disables spawning of the starting book for new players");
 
         if (configFile.hasChanged()) {
             configFile.save();
