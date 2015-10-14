@@ -1,19 +1,17 @@
-[
-{
+[{
   "modid": "badores",
   "name": "Bad Ores",
   "description": "Adding tons of Ores, potentially maybe not useful.",
-  "version": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "credits": "",
   "logoFile": "",
-  "mcversion": "",
   "url":  "",
   "updateUrl": "",
   "authorList": [ "Ivorius", "TripleHeadedSheep", "diesieben07" ],
   "parent": "",
   "screenshots": [],
   "dependencies": [
-         "Forge"
-    ]
-}
-]
+   "Forge"
+  ]
+}]
